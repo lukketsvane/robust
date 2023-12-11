@@ -1,0 +1,34 @@
+/* Import the Vesterbro 700 font from a suitable source */
+@import url('https://fonts.googleapis.com/css2?family=Vesterbro:wght@700&display=swap');
+
+/* Tailwind CSS base, components, and utilities */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-family: 'Vesterbro', serif; /* Use the Vesterbro font */
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  font-family: var(--font-family); /* Apply the Vesterbro font */
+  font-weight: 700; /* Use the 700 font-weight */
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
