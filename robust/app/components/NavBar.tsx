@@ -4,16 +4,22 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MenuIcon, XIcon } from 'lucide-react';
 import Link from 'next/link';
 
+interface NavBarProps {
+  currentSection: number; // Define the type for currentSection
+  sectionColors: string[]; // Define the type for sectionColors
+}
+
 const overlayVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
 };
 
-const NavBar = ({ currentSection, sectionColors }) => {
+const NavBar = ({ currentSection, sectionColors }: NavBarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuOverlayBackgroundColor = sectionColors?.[currentSection] || '#FFFFFF'; // Default background color if sectionColors is undefined or currentSection is out of range
-  const iconSize = "w-10 h-10"; // Icon size
-  const logoSize = "text-5xl"; // Logo size
+  const menuOverlayBackgroundColor = sectionColors?.[currentSection] || '#FFFFFF';
+
+  const iconSize = "w-10 h-10";
+  const logoSize = "text-5xl";
 
   return (
     <>

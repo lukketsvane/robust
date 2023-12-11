@@ -6,17 +6,17 @@ const teamMembers = [
     {
         name: "Hege Aalby",
         position: "Co-founder & Managing Director",
-        imageUrl: "https://unsplash.com/photos/oh0DITWoHi4/download?force=true&w=640"
+        imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640"
     },
     {
         name: "Matt Rice",
         position: "Co-founder & Creative Director",
-        imageUrl: "https://unsplash.com/photos/3TLl_97HNJo/download?force=true&w=640"
+        imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640"
     },
     {
         name: "Bridget Dawodu",
         position: "Product Manager",
-        imageUrl: "https://unsplash.com/photos/0E_vhMVqL9g/download?force=true&w=640"
+        imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640"
     },
     {
         name: "Najilba Noh",

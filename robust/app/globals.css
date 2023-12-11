@@ -1,10 +1,9 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-family: 'Vesterbro', serif; /* Use the Vesterbro font */
+  --font-family: 'Vesterbro', serif;
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -19,8 +18,8 @@
 }
 
 body {
-  font-family: var(--font-family); /* Apply the Vesterbro font */
-  font-weight: 700; /* Use the 700 font-weight */
+  font-family: var(--font-family);
+  font-weight: 700;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
     to bottom,
@@ -30,19 +29,23 @@ body {
   rgb(var(--background-start-rgb));
 }
 
-/* Apply white text color to specific background colors */
+/* Apply text color based on the current section */
 body[data-section="1"],
 body[data-section="2"] {
-  color: white;
+  color: white; /* White text for '#617864', '#4324D2' backgrounds */
 }
 
-/* Add margin to body for sections */
+body[data-section="0"],
+body[data-section="3"],
+body[data-section="4"] {
+  color: black; /* Black text for other backgrounds */
+}
+
 body[data-section] {
-  margin-left: 0; /* Remove margin on the left */
-  margin-right: 0; /* Remove margin on the right */
+  margin-left: 0;
+  margin-right: 0;
 }
 
-/* Hide the scrollbar */
 body::-webkit-scrollbar {
   width: 0.5rem;
   background-color: transparent;
@@ -50,4 +53,8 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar-thumb {
   background-color: transparent;
+}
+
+body {
+  zoom: 80%;
 }
