@@ -22,16 +22,19 @@ export default function Home() {
   const [currentSection, setCurrentSection] = useState<number>(0);
 
   useEffect(() => {
-    const unsubscribe = scrollYProgress.onChange((latest) => {
+    const handleScroll = () => {
+      const scrollPosition: number = scrollYProgress.current;
+
       for (let i = 0; i < triggerPoints.length; i++) {
-        if (latest < triggerPoints[i]) {
+        if (scrollPosition < triggerPoints[i]) {
           setCurrentSection(i);
           break;
         }
       }
-    });
+    };
 
-    return () => unsubscribe();
+    scrollYProgress.onChange(handleScroll);
+    handleScroll();
   }, [scrollYProgress]);
 
   const scrollToSection = (index: number) => {
