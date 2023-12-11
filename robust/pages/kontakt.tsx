@@ -1,14 +1,18 @@
 "use client";
 import { motion } from 'framer-motion';
 import Head from 'next/head';
+import Script from 'next/script';
 
 const Kontakt = () => {
   return (
     <>
       <Head>
         <title>Contact Page</title>
-        <script src="https://cdn.tailwindcss.com"></script>
       </Head>
+      <Script
+        src="https://cdn.tailwindcss.com"
+        strategy="beforeInteractive"
+      ></Script>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -24,7 +28,7 @@ const Kontakt = () => {
             animate={{ x: 0 }}
             transition={{ type: 'spring', stiffness: 100 }}
           >
-            <h1 className="text-5xl font-bold text-gray-800">Let's work together</h1>
+            <h1 className="text-5xl font-bold text-gray-800">Let&apos;s work together</h1>
             <div className="mt-6">
               <h2 className="text-xl font-semibold text-gray-700">New Business</h2>
               <a href="mailto:hello@example.com" className="text-gray-600">hello@example.com</a>
