@@ -1,3 +1,4 @@
+// prosjekter.tsx
 "use client";
 import { motion } from 'framer-motion';
 import HeroTitle from '../app/components/HeroTitle';
@@ -7,12 +8,12 @@ const Prosjekter = () => {
   return (
     <div>
       <HeroTitle />
-      <HeroTitle />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
+        <AboutHero text="Foreningen Robust utforsker bærekraftig omstilling i Norge. Vi fokuserer på nedvekst-tiltak for et samfunn innenfor naturens tålegrenser." />
         
         <section>
           <h2>Nedvekst og Smultringøkonomi</h2>

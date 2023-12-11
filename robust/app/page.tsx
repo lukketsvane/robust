@@ -1,5 +1,3 @@
-// Page.tsx
-
 "use client";
 import { useEffect, useState } from 'react';
 import { motion, useViewportScroll } from 'framer-motion';
@@ -34,41 +32,33 @@ export default function Home() {
     return () => unsubscribe();
   }, [scrollYProgress]);
 
-  const scrollToSection = (index: number) => {
-    const triggerPoint = triggerPoints[index];
-    window.scrollTo({
-      top: triggerPoint * window.innerHeight,
-      behavior: 'smooth',
-    });
-  };
-
   return (
     <>
       <NavBar currentSection={currentSection} sectionColors={sectionColors} />
       <motion.main
-        className="min-h-screen flex flex-col items-center justify-between px-12 lg:px-24 lg:px-48"
-        style={{
-          backgroundColor: sectionColors[currentSection],
-        }}
+        className="min-h-screen flex flex-col items-center justify-between px-[10%]" // Adjust the padding value as needed
+        style={{ backgroundColor: sectionColors[currentSection] }}
         animate={{ backgroundColor: sectionColors[currentSection] }}
         transition={{ duration: 0.35 }}
         data-section={currentSection}
       >
-        {[0, 1, 2, 3, 4].map((index) => (
-          <div key={index} className="section">
-            {index === 0 && <HeroTitle />}
-            {index === 1 && <AboutHero />}
-            {index === 2 && (
-              <>
-                <Stories />
-                <HeroSection />
-              </>
-            )}
-            {index === 3 && <Partners />}
-            {index === 4 && <TeamSection />}
-          </div>
-        ))}
-        <FingerFooter />
+        <div className="max-w-[80%] mx-auto"> {/* Container with 80% width */}
+          {[0, 1, 2, 3, 4].map((index) => (
+            <div key={index} className="section">
+              {index === 0 && <HeroTitle />}
+              {index === 1 && <AboutHero />}
+              {index === 2 && (
+                <>
+                  <Stories />
+                  <HeroSection />
+                </>
+              )}
+              {index === 3 && <Partners />}
+              {index === 4 && <TeamSection />}
+            </div>
+          ))}
+          <FingerFooter />
+        </div>
       </motion.main>
     </>
   );

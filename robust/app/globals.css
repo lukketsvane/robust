@@ -54,7 +54,17 @@ body::-webkit-scrollbar {
 body::-webkit-scrollbar-thumb {
   background-color: transparent;
 }
+.customMain {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.main-container {
+  padding-left: 5vw; /* 5% of viewport width */
+  padding-right: 5vw; /* 5% of viewport width */
+}
 
-body {
-  zoom: 80%;
+
+.element {
+  /* top and bottom | left and right */
+  padding: 0 20px; /* This will add no padding to the top and bottom, and 20px padding to the left and right */
 }
