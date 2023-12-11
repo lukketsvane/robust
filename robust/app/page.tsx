@@ -14,7 +14,13 @@ import Partners from './components/Partners';
 import TeamSection from './components/TeamSection';
 import FingerFooter from './components/FingerFooter';
 
-const sectionColors: string[] = ['#F2C744', '#617864', '#4324D2', '#FFFFFF', '#F2C744'];
+const sectionColors: string[] = [
+  '#F2C744',
+  '#617864',
+  '#4324D2',
+  '#FFFFFF',
+  '#F2C744',
+];
 const triggerPoints: number[] = [0.2, 0.4, 0.6, 0.8, 1.0];
 
 export default function Home() {

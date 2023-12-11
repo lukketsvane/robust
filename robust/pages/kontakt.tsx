@@ -28,10 +28,16 @@ const Kontakt = () => {
             animate={{ x: 0 }}
             transition={{ type: 'spring', stiffness: 100 }}
           >
-            <h1 className="text-5xl font-bold text-gray-800">Let&apos;s work together</h1>
+            <h1 className="text-5xl font-bold text-gray-800">
+              Let&apos;s work together
+            </h1>
             <div className="mt-6">
-              <h2 className="text-xl font-semibold text-gray-700">New Business</h2>
-              <a href="mailto:hello@example.com" className="text-gray-600">hello@example.com</a>
+              <h2 className="text-xl font-semibold text-gray-700">
+                New Business
+              </h2>
+              <a href="mailto:hello@example.com" className="text-gray-600">
+                hello@example.com
+              </a>
             </div>
             <div className="flex space-x-4 mt-4">
               {/* Social icons */}
@@ -53,11 +59,17 @@ const Kontakt = () => {
               </div>
               <div>
                 <h2 className="text-xl font-semibold text-gray-700">Join us</h2>
-                <a href="mailto:careers@example.com" className="text-gray-600">careers@example.com</a>
+                <a href="mailto:careers@example.com" className="text-gray-600">
+                  careers@example.com
+                </a>
               </div>
               <div>
-                <h2 className="text-xl font-semibold text-gray-700">Stay in the loop</h2>
-                <a href="#" className="text-gray-600">Sign up to our newsletter</a>
+                <h2 className="text-xl font-semibold text-gray-700">
+                  Stay in the loop
+                </h2>
+                <a href="#" className="text-gray-600">
+                  Sign up to our newsletter
+                </a>
               </div>
             </motion.div>
           </div>
