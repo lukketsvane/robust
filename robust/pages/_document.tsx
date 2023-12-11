@@ -5,13 +5,12 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          {/* Link to the external font */}
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Vesterbro:wght@700&display=swap"
           />
         </Head>
-        <body style={{ fontFamily: 'Inter, sans-serif' }}> {/* Apply the font directly to the body */}
+        <body style={{ fontFamily: 'Inter, sans-serif' }}> 
           <Main />
           <NextScript />
         </body>

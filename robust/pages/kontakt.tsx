@@ -14,9 +14,7 @@ const Kontakt = () => {
         exit={{ opacity: 0 }}
         className="min-h-screen bg-[#fefcbf] flex flex-col justify-center px-6 py-12"
       >
-        {/* Contact Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
-          {/* Left side - Title and Email */}
           <motion.div
             className="mb-8 md:mb-0 space-y-6"
             initial={{ x: -100 }}
@@ -30,10 +28,8 @@ const Kontakt = () => {
             </div>
             <div className="flex space-x-4 mt-4">
               {/* Social icons */}
-              {/* Add your SVGs here */}
             </div>
           </motion.div>
-          {/* Right side - Additional details */}
           <div className="space-y-6">
             <motion.div
               initial={{ x: 100 }}
