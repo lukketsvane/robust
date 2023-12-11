@@ -1,6 +1,6 @@
 // TeamSection.tsx
 "use client";
-import React from 'react';
+import Image from 'next/image';
 
 const teamMembers = [
     {
@@ -34,7 +34,7 @@ const TeamSection = () => {
                     {teamMembers.map(member => (
                         <div key={member.name} className="w-full sm:w-1/2 md:w-1/4 px-2 mb-4">
                             <div className="team-member p-2">
-                                <img className="w-full h-auto mx-auto mb-4" src={member.imageUrl} alt={member.name} />
+                                <Image className="w-full h-auto mx-auto mb-4" src={member.imageUrl} alt={member.name} width={640} height={360} />
                                 <h3 className="text-lg font-bold team-text">{member.name}</h3>
                                 <p className="team-text">{member.position}</p>
                             </div>
