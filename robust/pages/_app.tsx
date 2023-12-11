@@ -1,5 +1,6 @@
 import '../app/globals.css';
 // pages/_app.tsx
+import layout from '@/app/layout';
 import type { AppProps } from 'next/app';
 import NavBar from '../app/components/NavBar'; // Adjust the path as necessary
 

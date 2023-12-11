@@ -1,3 +1,4 @@
+// TeamSection.tsx
 "use client";
 import React from 'react';
 
@@ -26,7 +27,7 @@ const teamMembers = [
 
 const TeamSection = () => {
     return (
-        <section className="team-section py-12 px-4">
+        <section className="team-section py-12 px-8 lg:px-24">
             <div className="max-w-6xl mx-auto">
                 <h2 className="text-3xl mb-6 font-bold font-heading team-heading">Meet our team</h2>
                 <div className="flex flex-wrap justify-start -mx-2 mb-4">

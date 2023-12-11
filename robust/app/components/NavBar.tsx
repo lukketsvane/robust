@@ -1,4 +1,3 @@
-// NavBar.tsx
 "use client";
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -12,24 +11,24 @@ const overlayVariants = {
 
 const NavBar = ({ currentSection, sectionColors }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuOverlayBackgroundColor = sectionColors[currentSection]; // Set the menu overlay background color dynamically
-
-  const toggleIcon = isMenuOpen ? <XIcon className="w-6 h-6" /> : <MenuIcon className="w-6 h-6" />;
+  const menuOverlayBackgroundColor = sectionColors?.[currentSection] || '#FFFFFF'; // Default background color if sectionColors is undefined or currentSection is out of range
+  const iconSize = "w-10 h-10"; // Icon size
+  const logoSize = "text-5xl"; // Logo size
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 flex items-center justify-between p-4 z-50 bg-transparent">
+      <nav className="fixed top-0 left-0 right-0 flex items-center justify-between py-2 mx-6 z-50 bg-transparent">
         <Link href="/" passHref>
-          <span className="text-xl font-bold cursor-pointer z-50">S.</span>
+          <span className={`font-bold cursor-pointer z-50 ${logoSize}`}>S.</span>
         </Link>
-        
+
         <motion.button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           animate={{ rotate: isMenuOpen ? 180 : 0 }}
           transition={{ type: 'spring', stiffness: 260, damping: 20 }}
           className="z-50 focus:outline-none"
         >
-          {toggleIcon}
+          {isMenuOpen ? <XIcon className={iconSize} /> : <MenuIcon className={iconSize} />}
         </motion.button>
       </nav>
 
@@ -37,29 +36,23 @@ const NavBar = ({ currentSection, sectionColors }) => {
         {isMenuOpen && (
           <motion.div
             className="fixed inset-0 z-40 flex flex-col items-center justify-center"
-            style={{ backgroundColor: menuOverlayBackgroundColor }} // Set the background color dynamically
+            style={{ backgroundColor: menuOverlayBackgroundColor }}
             variants={overlayVariants}
             initial="hidden"
             animate="visible"
             exit="hidden"
             transition={{ duration: 0.2 }}
           >
-            <div className="space-y-8 text-black text-4xl font-bold">
-              <Link href="/om-oss" passHref><span className="hover:underline my-2">Om Oss</span></Link> {/* Added my-2 for vertical spacing */}
-              <Link href="/siste-nytt" passHref><span className="hover:underline my-2">Siste nytt</span></Link> {/* Added my-2 for vertical spacing */}
-              <Link href="/prosjekter" passHref><span className="hover:underline my-2">Nedvekst</span></Link> {/* Added my-2 for vertical spacing */}
+            <div className="space-y-8 text-black text-4xl  font-bold ">
+              <Link href="/om-oss" passHref><span className="hover:underline px-4 my-2 ">Om Oss</span></Link>
+              <Link href="/siste-nytt" passHref><span className="hover:underline px-4 my-2 ">Siste nytt</span></Link>
+              <Link href="/prosjekter" passHref><span className="hover:underline px-4 my-2 ">Nedvekst</span></Link>
             </div>
+
             <div className="absolute bottom-8 flex gap-6 text-black text-sm">
               <Link href="/kontakt" passHref><span className="hover:underline">Kontakt</span></Link>
               <Link href="/nyhetsbrev" passHref><span className="hover:underline">Nyhetsbrev</span></Link>
             </div>
-            <motion.button
-              onClick={() => setIsMenuOpen(false)}
-              className="absolute top-4 right-4"
-              whileTap={{ scale: 0.95 }}
-            >
-              <XIcon className="w-6 h-6 text-black" />
-            </motion.button>
           </motion.div>
         )}
       </AnimatePresence>

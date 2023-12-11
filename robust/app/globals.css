@@ -1,7 +1,4 @@
-/* Import the Vesterbro 700 font from a suitable source */
-@import url('https://fonts.googleapis.com/css2?family=Vesterbro:wght@700&display=swap');
 
-/* Tailwind CSS base, components, and utilities */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -26,9 +23,31 @@ body {
   font-weight: 700; /* Use the 700 font-weight */
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    to bottom,
+    transparent,
+    rgb(var(--background-end-rgb))
+  )
+  rgb(var(--background-start-rgb));
+}
+
+/* Apply white text color to specific background colors */
+body[data-section="1"],
+body[data-section="2"] {
+  color: white;
+}
+
+/* Add margin to body for sections */
+body[data-section] {
+  margin-left: 0; /* Remove margin on the left */
+  margin-right: 0; /* Remove margin on the right */
+}
+
+/* Hide the scrollbar */
+body::-webkit-scrollbar {
+  width: 0.5rem;
+  background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: transparent;
 }

@@ -1,7 +1,11 @@
+// Page.tsx
+
 "use client";
 
 import { useEffect, useState } from 'react';
 import { motion, useViewportScroll } from 'framer-motion';
+import './globals.css';
+
 import NavBar from './components/NavBar';
 import HeroTitle from './components/HeroTitle';
 import HeroSection from './components/HeroSection';
@@ -47,7 +51,7 @@ export default function Home() {
     <>
       <NavBar currentSection={currentSection} sectionColors={sectionColors} />
       <motion.main
-        className="flex min-h-screen flex-col items-center justify-between p-4 lg:p-24 lg:px-48"
+        className="min-h-screen flex flex-col items-center justify-between px-12 lg:px-24 lg:px-48"
         style={{
           backgroundColor: sectionColors[currentSection], // Set the background color to the current section color
         }}
@@ -73,11 +77,11 @@ export default function Home() {
         ))}
         <FingerFooter /> {/* Moved FingerFooter to the last section */}
       </motion.main>
-      <div className="fixed bottom-10 right-10 flex flex-col gap-4">
+      <div className="fixed  bottom-10  right-10 flex flex-col gap-4">
         {[0, 1, 2, 3, 4].map((index) => (
           <button
             key={index}
-            className={`w-8 h-8 rounded-full border-2 border-white`}
+            className={`w-8 px-22  h-8 rounded-full border-2 border-white`}
             style={{ backgroundColor: sectionColors[index] }} // Set button color to match the section color
             onClick={() => scrollToSection(index)} // Use scrollToSection function
           />
