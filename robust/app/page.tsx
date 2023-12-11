@@ -1,3 +1,5 @@
+// Page.tsx
+
 "use client";
 import { useEffect, useState } from 'react';
 import { motion, useViewportScroll } from 'framer-motion';
@@ -20,19 +22,16 @@ export default function Home() {
   const [currentSection, setCurrentSection] = useState<number>(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition: number = scrollYProgress.get(); // Updated line
-
+    const unsubscribe = scrollYProgress.onChange((latest) => {
       for (let i = 0; i < triggerPoints.length; i++) {
-        if (scrollPosition < triggerPoints[i]) {
+        if (latest < triggerPoints[i]) {
           setCurrentSection(i);
           break;
         }
       }
-    };
+    });
 
-    scrollYProgress.onChange(handleScroll);
-    handleScroll();
+    return () => unsubscribe();
   }, [scrollYProgress]);
 
   const scrollToSection = (index: number) => {
