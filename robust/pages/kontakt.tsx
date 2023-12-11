@@ -1,9 +1,9 @@
 "use client";
 import { motion } from 'framer-motion';
 import Head from 'next/head';
-import Script from 'next/script';
 
 const Kontakt = () => {
+
   return (
     <>
       <Head>

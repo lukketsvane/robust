@@ -14,13 +14,7 @@ import Partners from './components/Partners';
 import TeamSection from './components/TeamSection';
 import FingerFooter from './components/FingerFooter';
 
-const sectionColors: string[] = [
-  '#F2C744',
-  '#617864',
-  '#4324D2',
-  '#FFFFFF',
-  '#F2C744',
-];
+const sectionColors: string[] = ['#F2C744', '#617864', '#4324D2', '#FFFFFF', '#F2C744'];
 const triggerPoints: number[] = [0.2, 0.4, 0.6, 0.8, 1.0];
 
 export default function Home() {
@@ -28,19 +22,16 @@ export default function Home() {
   const [currentSection, setCurrentSection] = useState<number>(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition: number = scrollYProgress.current;
-
+    const unsubscribe = scrollYProgress.onChange((latest) => {
       for (let i = 0; i < triggerPoints.length; i++) {
-        if (scrollPosition < triggerPoints[i]) {
+        if (latest < triggerPoints[i]) {
           setCurrentSection(i);
           break;
         }
       }
-    };
+    });
 
-    scrollYProgress.onChange(handleScroll);
-    handleScroll();
+    return () => unsubscribe();
   }, [scrollYProgress]);
 
   const scrollToSection = (index: number) => {
