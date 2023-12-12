@@ -1,8 +1,6 @@
-// prosjekter.tsx
 "use client";
 import { motion } from 'framer-motion';
 import HeroTitle from '../app/components/HeroTitle';
-import AboutHero from '../app/components/AboutHero';
 
 const Prosjekter = () => {
   return (
@@ -13,7 +11,6 @@ const Prosjekter = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <AboutHero text="Foreningen Robust utforsker bærekraftig omstilling i Norge. Vi fokuserer på nedvekst-tiltak for et samfunn innenfor naturens tålegrenser." />
         
         <section>
           <h2>Nedvekst og Smultringøkonomi</h2>

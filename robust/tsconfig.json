@@ -8,7 +8,7 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": false, // Turned off strict mode
+    "strict": false,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -27,7 +27,7 @@
         "./*"
       ]
     },
-    "strictNullChecks": false // Disabled strict null checks
+    "strictNullChecks": true
   },
   "include": [
     "next-env.d.ts",
