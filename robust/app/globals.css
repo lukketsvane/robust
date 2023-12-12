@@ -2,20 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 :root {
-  --font-family: 'Vesterbro', serif;
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
 
 body {
   font-family: var(--font-family);
@@ -53,18 +47,4 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar-thumb {
   background-color: transparent;
-}
-.customMain {
-  padding-left: 10%;
-  padding-right: 10%;
-}
-.main-container {
-  padding-left: 5vw; /* 5% of viewport width */
-  padding-right: 5vw; /* 5% of viewport width */
-}
-
-
-.element {
-  /* top and bottom | left and right */
-  padding: 0 20px; /* This will add no padding to the top and bottom, and 20px padding to the left and right */
 }
