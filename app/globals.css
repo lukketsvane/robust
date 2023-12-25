@@ -52,11 +52,11 @@ body {
   min-height: 100%;
   background-attachment: fixed;
 }
-
-.line-clamp-3 {
+.line-clamp {
   display: -webkit-box;
   -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;  
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: normal;
 }
