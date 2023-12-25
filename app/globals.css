@@ -5,8 +5,8 @@
 :root {
   --font-family: Arial, sans-serif; /* Add your desired font-family here */
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-start-rgb: 242, 199, 68; /* Adjusted to match yellow color */
+  --background-end-rgb: 242, 199, 68; /* Adjusted to match yellow color */
 }
 
 body {
@@ -15,10 +15,9 @@ body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
     to bottom,
-    transparent,
-    rgb(var(--background-end-rgb))
-  )
-  rgb(var(--background-start-rgb));
+    rgba(var(--background-start-rgb), 1),
+    rgba(var(--background-end-rgb), 1)
+  ); /* Updated to a solid yellow background gradient */
 }
 
 /* Apply text color based on the current section */
@@ -45,4 +44,11 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar-thumb {
   background-color: transparent;
+}
+
+/* Ensure that the background color fills the entire screen even when scrolling */
+html,
+body {
+  min-height: 100%;
+  background-attachment: fixed;
 }

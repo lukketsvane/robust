@@ -12,7 +12,8 @@ const Kontakt = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="min-h-screen bg-[#fefcbf] flex flex-col justify-center px-6 py-12"
+        // Apply the same yellow background color as in the 'globals.css'
+        className="min-h-screen bg-[#F2C744] flex flex-col justify-center sm:px-[10%] px-4 py-12"
       >
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
           <motion.div
@@ -21,7 +22,7 @@ const Kontakt = () => {
             animate={{ x: 0 }}
             transition={{ type: 'spring', stiffness: 100 }}
           >
-            <h1 className="text-5xl font-bold text-gray-800">Let&apos;s work together</h1>
+            <h1 className="text-5xl font-bold text-gray-800">Let's work together</h1>
             <div className="mt-6">
               <h2 className="text-xl font-semibold text-gray-700">New Business</h2>
               <a href="mailto:hello@example.com" className="text-gray-600">hello@example.com</a>
