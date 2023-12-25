@@ -49,13 +49,14 @@ const NavBar = ({ currentSection, sectionColors }: NavBarProps) => {
             exit="hidden"
             transition={{ duration: 0.2 }}
           >
-            <div className="space-y-8 text-black text-4xl  font-bold ">
-              <Link href="/om-oss" passHref><span className="hover:underline px-4 my-2 ">Om Oss</span></Link>
-              <Link href="/siste-nytt" passHref><span className="hover:underline px-4 my-2 ">Siste nytt</span></Link>
-              <Link href="/prosjekter" passHref><span className="hover:underline px-4 my-2 ">Nedvekst</span></Link>
+            <div className="space-y-12 text-black text-3xl font-bold">
+              <Link href="/om-oss" passHref><span className="hover:underline px-4 my-2">Om Oss</span></Link>
+              <Link href="/siste-nytt" passHref><span className="hover:underline px-4 my-2">Siste nytt</span></Link>
+              <Link href="/prosjekter" passHref><span className="hover:underline px-4 my-2">Nedvekst</span></Link>
             </div>
 
-            <div className="absolute bottom-8 flex gap-6 text-black text-sm">
+            {/* The contact and newsletter links are horizontal as initially */}
+            <div className="absolute bottom-8 flex gap-6 text-black text-sm justify-center w-full">
               <Link href="/kontakt" passHref><span className="hover:underline">Kontakt</span></Link>
               <Link href="/nyhetsbrev" passHref><span className="hover:underline">Nyhetsbrev</span></Link>
             </div>

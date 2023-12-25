@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from 'react';
-import { motion, useScroll } from 'framer-motion'; // Update to useScroll
+import { motion, useScroll } from 'framer-motion';
 import './globals.css';
 
 import NavBar from './components/NavBar';
@@ -32,16 +32,20 @@ export default function Home() {
     return () => unsubscribe();
   }, [scrollYProgress]);
 
+  // Adjust padding for mobile without affecting desktop
+  const paddingClass = 'px-4 sm:px-[10%]';
+
   return (
     <>
       <NavBar currentSection={currentSection} sectionColors={sectionColors} />
       <motion.main
-        className="min-h-screen flex flex-col items-center justify-between px-[10%]" // Adjust the padding value as needed
+        className={`min-h-screen flex flex-col items-center justify-between ${paddingClass}`} // Adjust the padding value based on screen size
         style={{ backgroundColor: sectionColors[currentSection] }}
         animate={{ backgroundColor: sectionColors[currentSection] }}
         transition={{ duration: 0.35 }}
         data-section={currentSection}
       >
+        {/* Retain the mx-auto for desktop */}
         <div className="max-w-[80%] mx-auto"> {/* Container with 80% width */}
           {[0, 1, 2, 3, 4].map((index) => (
             <div key={index} className="section">
