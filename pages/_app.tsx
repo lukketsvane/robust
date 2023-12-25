@@ -1,5 +1,6 @@
 // _app.tsx
 import type { AppProps } from 'next/app';
+import '../app/globals.css'; // Adjust this import to the correct path of globals.css
 import NavBar from '../app/components/NavBar'; // Adjust the path as necessary
 
 function MyApp({ Component, pageProps }: AppProps) {
