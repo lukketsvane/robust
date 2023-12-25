@@ -51,9 +51,9 @@ const NavBar = ({ currentSection, sectionColors }: NavBarProps) => {
           >
             <div className="text-center">
               <div className="space-y-6 text-black text-3xl font-bold mb-12">
-                <Link href="/om-oss" passHref><span className="hover:underline d-block my-2">Om Oss</span></Link>
-                <Link href="/siste-nytt" passHref><span className="hover:underline d-block my-2">Siste nytt</span></Link>
-                <Link href="/prosjekter" passHref><span className="hover:underline d-block my-2">Nedvekst</span></Link>
+                <Link href="/om-oss" passHref><span className="hover:underline d-block my-2  mx-4 ">Om Oss</span></Link>
+                <Link href="/siste-nytt" passHref><span className="hover:underline d-block my-2  mx-4 ">Siste nytt</span></Link>
+                <Link href="/prosjekter" passHref><span className="hover:underline d-block my-2  mx-4 ">Nedvekst</span></Link>
               </div>
 
               {/* Contact and newsletter links are horizontally spaced */}
