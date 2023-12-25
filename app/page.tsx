@@ -32,11 +32,11 @@ export default function Home() {
     return () => unsubscribe();
   }, [scrollYProgress]);
 
+  // Responsive padding classes applied here
   const paddingClass = 'px-4 sm:px-[10%]';
 
-  // Set the body background color to the yellow defined in globals.css
   useEffect(() => {
-    document.body.style.backgroundColor = sectionColors[0]; // Use the first section color assuming it's the yellow one
+    document.body.style.backgroundColor = sectionColors[0]; // Use the first section color for the background
   }, []);
 
   return (
@@ -49,9 +49,9 @@ export default function Home() {
         transition={{ duration: 0.35 }}
         data-section={currentSection}
       >
-        <div className="max-w-[80%] mx-auto">
+        <div className="w-full sm:max-w-[80%] sm:mx-auto">
           {[0, 1, 2, 3, 4].map((index) => (
-            <div key={index} className="section">
+            <div key={index} className="section w-full">
               {index === 0 && <HeroTitle />}
               {index === 1 && <AboutHero />}
               {index === 2 && (

@@ -26,11 +26,11 @@ const Stories = () => {
           />
           <div className="p-6">
             <h3 className="text-xl font-semibold mb-2">Nytt Arbeid — Robust</h3>
-            <p className="text-gray-600 mb-4 line-clamp">
+            <p className="text-gray-600 mb-4">
               Vi har samarbeidet tett med norske ingeniører og oppfinnere hos Robust for å utvikle en digital merkevareopplevelse for lanseringen av deres innovative lunsjboks.
             </p>
             <Link href="/case-study/robust">
-              <a className="cursor-pointer text-indigo-600 hover:text-indigo-800 transition duration-150 ease-in-out">Les Casestudien</a>
+              <div> className="text-indigo-600 hover:text-indigo-800 transition duration-150 ease-in-out">Les Casestudien</div>>
             </Link>
           </div>
         </motion.div>
@@ -52,11 +52,11 @@ const Stories = () => {
           />
           <div className="p-6">
             <h3 className="text-xl font-semibold mb-2">36 Dager med Type</h3>
-            <p className="text-gray-600 mb-4 line-clamp">
+            <p className="text-gray-600 mb-4">
               Vårt designteam har forpliktet seg til et tredje år med 36 dager med Type, et prosjekt som inviterer designere til å uttrykke sin tolkning av bokstaver og tall i alfabetet.
             </p>
             <Link href="/design-prosess">
-              <a className="cursor-pointer text-indigo-600 hover:text-indigo-800 transition duration-150 ease-in-out">Designprosessen</a>
+              <div> className="text-indigo-600 hover:text-indigo-800 transition duration-150 ease-in-out">Designprosessen</div>>
             </Link>
           </div>
         </motion.div>
