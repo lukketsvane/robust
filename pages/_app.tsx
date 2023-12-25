@@ -1,4 +1,4 @@
-import globals 
+// _app.tsx
 import type { AppProps } from 'next/app';
 import NavBar from '../app/components/NavBar'; // Adjust the path as necessary
 
