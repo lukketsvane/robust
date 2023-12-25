@@ -3,8 +3,9 @@ import React from 'react'; // Import React to ensure it's in scope for JSX
 
 const HeroTitle = () => {
     return (
-      <div className="min-h-screen flex items-center">
-        <h1 className="text-6xl font-extrabold text-black text-left leading-tight">
+      // Apply consistent padding class
+      <div className="min-h-screen flex items-center justify-center px-4 sm:px-[10%]">
+        <h1 className="text-6xl font-extrabold text-black text-center sm:text-left leading-tight">
           Håndverk for bærekraft<br />
           skapt med menneskelig varme<br />
           i Norges ånd.

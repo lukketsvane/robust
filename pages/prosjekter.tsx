@@ -4,17 +4,18 @@ import HeroTitle from '../app/components/HeroTitle';
 
 const Prosjekter = () => {
   return (
-    <div className="min-h-screen bg-[#F2C744]"> {/* Set the background color and minimum screen height */}
+    // The same yellow background color as page.tsx
+    <div className="min-h-screen bg-[#F2C744]">
       <HeroTitle />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="px-4 sm:px-[10%] py-12" /* Apply padding for mobile and desktop */
+        // Apply consistent padding class
+        className="px-4 sm:px-[10%] py-12"
       >
-        
-        <section className="mb-8"> {/* Add margin-bottom for spacing between sections */}
-          <h2 className="text-xl font-bold mb-3">Nedvekst og Smultringøkonomi</h2> {/* Style the headings */}
+        <section className="mb-8">
+          <h2 className="text-xl font-bold mb-3">Nedvekst og Smultringøkonomi</h2>
           <p>
             Vi dykker inn i ideer som nedvekst og smultringøkonomi for å skape et økonomisk system som ivaretar velvære og beskytter planetens økosystemer.
           </p>
@@ -41,6 +42,8 @@ const Prosjekter = () => {
           </p>
         </section>
       </motion.div>
+      {/* Apply yellow background color */}
+      <div style={{ backgroundColor: '#F2C744' }}></div>
     </div>
   );
 }
