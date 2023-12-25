@@ -7,7 +7,6 @@ import FingerFooter from '../app/components/FingerFooter';
 import '../app/globals.css';
 import dynamic from 'next/dynamic';
 
-
 const InteractiveBook = dynamic(
   () => import('../app/components/InteractiveBook'),
   { ssr: false }
@@ -33,21 +32,34 @@ const OmOss = () => {
     return () => unsubscribe();
   }, [scrollYProgress]);
 
+  useEffect(() => {
+    // Apply the yellow background color globally
+    const body = document.getElementsByTagName('body')[0];
+    body.style.backgroundColor = sectionColorsOmOss[0];
+
+    // Clean up the effect by setting the color back on component unmount
+    return () => {
+      body.style.backgroundColor = '';
+    };
+  }, []);
+
   return (
     <>
       <NavBar currentSection={currentSection} sectionColors={sectionColorsOmOss} />
-      <motion.main
-        className="min-h-screen flex flex-col items-center justify-between px-[10%]"
+      <motion.div
+        className="flex flex-col items-center justify-center w-full min-h-screen" // Ensure div is at least the height of the viewport
         style={{ backgroundColor: sectionColorsOmOss[currentSection] }}
+        initial={{ backgroundColor: sectionColorsOmOss[currentSection] }}
         animate={{ backgroundColor: sectionColorsOmOss[currentSection] }}
         transition={{ duration: 0.35 }}
         data-section={currentSection}
       >
-        <div className="max-w-[80%] mx-auto">
+        {/* Content Container */}
+        <div className="w-full sm:px-[10%] px-4 py-12"> {/* Adjust padding for different screen sizes */}
           <OmOssSectionContent />
           <InteractiveBook file="/vedtekter-ROBUST.pdf" />
         </div>
-      </motion.main>
+      </motion.div>
       <FingerFooter />
     </>
   );
