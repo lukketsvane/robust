@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+
+body {
+  font-family: var(--font-family);
+  font-weight: 700;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgb(var(--background-end-rgb))
+  )
+  rgb(var(--background-start-rgb));
+}
+
+/* Apply text color based on the current section */
+body[data-section="1"],
+body[data-section="2"] {
+  color: white; /* White text for '#617864', '#4324D2' backgrounds */
+}
+
+body[data-section="0"],
+body[data-section="3"],
+body[data-section="4"] {
+  color: black; /* Black text for other backgrounds */
+}
+
+body[data-section] {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+body::-webkit-scrollbar {
+  width: 0.5rem;
+  background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
