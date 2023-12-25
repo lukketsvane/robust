@@ -32,21 +32,24 @@ export default function Home() {
     return () => unsubscribe();
   }, [scrollYProgress]);
 
-  // Adjust padding for mobile without affecting desktop
   const paddingClass = 'px-4 sm:px-[10%]';
+
+  // Set the body background color to the yellow defined in globals.css
+  useEffect(() => {
+    document.body.style.backgroundColor = sectionColors[0]; // Use the first section color assuming it's the yellow one
+  }, []);
 
   return (
     <>
       <NavBar currentSection={currentSection} sectionColors={sectionColors} />
       <motion.main
-        className={`min-h-screen flex flex-col items-center justify-between ${paddingClass}`} // Adjust the padding value based on screen size
+        className={`min-h-screen flex flex-col items-center justify-between ${paddingClass}`}
         style={{ backgroundColor: sectionColors[currentSection] }}
         animate={{ backgroundColor: sectionColors[currentSection] }}
         transition={{ duration: 0.35 }}
         data-section={currentSection}
       >
-        {/* Retain the mx-auto for desktop */}
-        <div className="max-w-[80%] mx-auto"> {/* Container with 80% width */}
+        <div className="max-w-[80%] mx-auto">
           {[0, 1, 2, 3, 4].map((index) => (
             <div key={index} className="section">
               {index === 0 && <HeroTitle />}
