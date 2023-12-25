@@ -34,14 +34,16 @@ const InteractiveBook = ({ file }) => {
         </a>
       </div>
       <motion.div
-        className="w-1/2"
+        className="w-1/2 relative rounded-lg overflow-hidden"
         onClick={nextPage}
         whileHover={{ scale: 1.03 }}
+        style={{
+          paddingBottom: '141.4%', // 1:1.41 aspect ratio (A4 paper)
+        }}
       >
         <Document
           file={file}
           onLoadSuccess={onDocumentLoadSuccess}
-          className="rounded-lg overflow-hidden"
         >
           <Page
             pageNumber={pageNumber}
