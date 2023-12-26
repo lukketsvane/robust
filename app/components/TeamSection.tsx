@@ -4,27 +4,27 @@ import Image from 'next/image';
 const teamMembers = [
     {
         name: "Anna Nordahl Carlsen",
-        position: "Lead Strategist",
+        position: "medlem",
         imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640"
     },
     {
         name: "Marie Storli",
-        position: "Operations Manager",
+        position: "medlem",
         imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640"
     },
     {
         name: "Sigrid Loevlie",
-        position: "Finance Director",
+        position: "medlem",
         imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640"
     },
     {
         name: "Thomas Rokas",
-        position: "Technical Lead",
+        position: "medlem",
         imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640"
     },
     {
         name: "Iver Finne",
-        position: "Marketing Director",
+        position: "medlem",
         imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640"
     },
 
