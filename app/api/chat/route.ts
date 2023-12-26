@@ -11,7 +11,7 @@ export async function POST(req: Request) {
     const request = await req.json();
     const { messages } = request;
 
-    const response = await openai.createChatCompletion({
+    const openaiResponse = await openai.createChatCompletion({
       model: "gpt-4-0314",
       messages,
       temperature: 0.5,
@@ -19,9 +19,9 @@ export async function POST(req: Request) {
       stream: true,
     });
 
-    // Correctly handle the response
-    // Assuming response contains the expected data in a property (e.g., 'choices')
-    const responseData = response.choices ? response.choices[0].text : "No response from AI";
+    // Assuming openaiResponse returns the expected structure
+    const choices = openaiResponse.choices;
+    const responseData = choices && choices.length > 0 ? choices[0].text : "No response from AI";
 
     return new Response(JSON.stringify({ message: responseData }), {
       headers: { 'Content-Type': 'application/json' },
