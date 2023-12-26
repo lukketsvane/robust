@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -7,7 +6,7 @@ const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
 
-  const handleSendMessage = async (content) => {
+  const handleSendMessage = async (content: string) => {  // Explicitly declare content as a string
     if (!content.trim()) return;
 
     const userMessage = { role: 'user', content };
