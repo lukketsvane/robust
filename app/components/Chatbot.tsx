@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Define a type for the messages
@@ -36,7 +36,9 @@ const Chatbot = () => {
   };
 
   const handleClickOutside = (event: React.MouseEvent) => {
-    if ((event.target as HTMLElement).id === 'chatbox-wrapper') setIsOpen(false);
+    if ((event.target as HTMLElement).id === 'chatbox-wrapper') {
+      setIsOpen(false);
+    }
   };
 
   return (
@@ -58,7 +60,7 @@ const Chatbot = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0 }}
               className="relative bg-white rounded-lg shadow-xl p-4 max-w-sm w-full"
-              onClick={(e) => e.stopPropagation()} // Prevent click inside from closing the chat
+              onClick={(e) => e.stopPropagation()}
             >
               <button className="absolute top-2 right-2 text-white" onClick={() => setIsOpen(false)}>
                 X {/* Replace with 'X' icon */}
@@ -78,7 +80,7 @@ const Chatbot = () => {
                 />
                 <button type="submit" className="p-2 bg-blue-500 w-full">Send</button>
               </form>
-            </div>
+            </motion.div>
           </div>
         )}
       </AnimatePresence>
