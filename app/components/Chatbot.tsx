@@ -15,7 +15,8 @@ const Chatbot = () => {
   const handleSendMessage = async (content: string) => {
     if (!content.trim()) return;
 
-    const userMessage = { role: 'user', content };
+    // Explicitly typing userMessage
+    const userMessage: Message = { role: 'user', content };
     setMessages(messages => [...messages, userMessage]);
     setInput('');
 
@@ -42,7 +43,7 @@ const Chatbot = () => {
           className="p-3 bg-blue-500 rounded-full shadow-lg hover:bg-blue-600 transition-colors"
           onClick={() => setIsOpen(true)}
         >
-          {/* Replace with Robot icon */}
+          {/* Robot icon here */}
         </button>
       </div>
 
@@ -56,7 +57,7 @@ const Chatbot = () => {
           >
             <div className="relative bg-white rounded-lg shadow-xl p-4 max-w-sm w-full">
               <button className="absolute top-2 right-2" onClick={() => setIsOpen(false)}>
-                {/* Replace with 'X' icon */}
+                {/* 'X' icon here */}
               </button>
               <div className="overflow-y-auto h-64">
                 {messages.map((message, index) => (
