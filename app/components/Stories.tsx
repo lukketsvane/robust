@@ -5,11 +5,11 @@ import { motion } from 'framer-motion';
 
 const Stories = () => {
   return (
-    <div className="container mx-auto py-16 px-8">
-      <h2 className="text-2xl font-semibold mb-6">Utvalgte Historier</h2>
+    <div className="container mx-auto py-16 px-4 sm:px-6 md:px-8 lg:px-24">
+      <h2 className="text-2xl font-semibold mb-6">Innsikt i Robust</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Card 1 */}
+        {/* Story 1 */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -18,24 +18,24 @@ const Stories = () => {
         >
           <Image
             src="https://source.unsplash.com/random/400x300"
-            alt="Utvalgt historie"
+            alt="Degrowth politikk"
             width={400}
             height={300}
             layout="responsive"
             className="object-cover"
           />
           <div className="p-6">
-            <h3 className="text-xl font-semibold mb-2">Nytt Arbeid — Robust</h3>
+            <h3 className="text-xl font-semibold mb-2">Vekstens Grenser</h3>
             <p className="text-gray-600 mb-4">
-              Vi har samarbeidet tett med norske ingeniører og oppfinnere hos Robust for å utvikle en digital merkevareopplevelse for lanseringen av deres innovative lunsjboks.
+              Robust tar initiativ for å sette lys på begrensningene av økonomisk vekst og utforsker alternative modeller som vektlegger miljømessig bærekraft og sosial rettferdighet.
             </p>
-            <Link href="/case-study/robust">
-              <div> className="text-indigo-600 hover:text-indigo-800 transition duration-150 ease-in-out" Les Casestudien</div>
+            <Link href="/degrowth-strategies" passHref>
+              <span className="text-indigo-600 hover:text-indigo-800 transition duration-150 ease-in-out cursor-pointer">Les Mer</span>
             </Link>
           </div>
         </motion.div>
 
-        {/* Card 2 */}
+        {/* Story 2 */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -44,19 +44,19 @@ const Stories = () => {
         >
           <Image
             src="https://source.unsplash.com/random/400x301"
-            alt="Utvalgt historie"
+            alt="Robust Samfunnsengasjement"
             width={400}
             height={301}
             layout="responsive"
             className="object-cover"
           />
           <div className="p-6">
-            <h3 className="text-xl font-semibold mb-2">36 Dager med Type</h3>
+            <h3 className="text-xl font-semibold mb-2">Samfunnsengasjement og Bærekraft</h3>
             <p className="text-gray-600 mb-4">
-              Vårt designteam har forpliktet seg til et tredje år med 36 dager med Type, et prosjekt som inviterer designere til å uttrykke sin tolkning av bokstaver og tall i alfabetet.
+              Oppdag hvordan Robust engasjerer seg i samfunnet for å fremme bærekraftige løsninger og støtter prosjekter som bidrar til en mer rettferdig og holdbar fremtid.
             </p>
-            <Link href="/design-prosess">
-              <div> className="text-indigo-600 hover:text-indigo-800 transition duration-150 ease-in-out" Designprosessen</div>
+            <Link href="/community-engagement" passHref>
+              <span className="text-indigo-600 hover:text-indigo-800 transition duration-150 ease-in-out cursor-pointer">Utforsk Prosjekter</span>
             </Link>
           </div>
         </motion.div>

@@ -49,9 +49,11 @@ body::-webkit-scrollbar-thumb {
 /* Ensure that the background color fills the entire screen even when scrolling */
 html,
 body {
-  min-height: 100%;
+  min-height: 100vh; /* Fallback for browsers that do not support svh */
+  min-height: 100svh; /* Full viewport height on mobile, addressing the mobile browser navbar issue */
   background-attachment: fixed;
 }
+
 .line-clamp {
   display: -webkit-box;
   -webkit-line-clamp: 3;

@@ -1,4 +1,3 @@
-// TeamSection.tsx
 "use client";
 import Image from 'next/image';
 
@@ -27,9 +26,9 @@ const teamMembers = [
 
 const TeamSection = () => {
     return (
-        <section className="team-section py-12 px-8 lg:px-24">
+        <section className="team-section py-12 px-4 sm:px-8 lg:px-24">
             <div className="max-w-6xl mx-auto">
-                <h2 className="text-3xl mb-6 font-bold font-heading team-heading">Meet our team</h2>
+                <h2 className="text-3xl mb-6 font-bold font-heading team-heading">vårt styre</h2>
                 <div className="flex flex-wrap justify-start -mx-2 mb-4">
                     {teamMembers.map(member => (
                         <div key={member.name} className="w-full sm:w-1/2 md:w-1/4 px-2 mb-4">

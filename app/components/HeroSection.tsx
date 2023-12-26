@@ -10,11 +10,11 @@ const cardVariants = {
 
 const HeroSection = () => {
     return (
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-24 py-12">
         <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-1/2">
             <p className="text-sm uppercase text-gray-500 mb-2">Robust | Din Pålitelige Partner</p>
-            <h1 className="text-4xl font-bold mb-4">Skap Styrke med Robust Teknologi</h1>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Skap Styrke med Robust Teknologi</h1>
             <Link href="/case-study">
               <span className="cursor-pointer text-indigo-600 hover:text-indigo-800 transition-colors duration-300">Se Casestudie</span>
             </Link>
@@ -26,8 +26,8 @@ const HeroSection = () => {
               variants={cardVariants}
               className="bg-white max-w-sm rounded-lg overflow-hidden shadow-lg my-4"
             >
-              <Image className="w-full " src="https://source.unsplash.com/featured/?technology" alt="Robust Teknologi" width={400} height={300} layout="responsive" />
-              <div className="px-6 py-4 ">
+              <Image className="w-full" src="https://source.unsplash.com/featured/?technology" alt="Robust Teknologi" width={400} height={300} layout="responsive" />
+              <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2">Teknologisk Innovasjon</div>
                 <p className="text-gray-700 text-base">
                   Utforsk den nyeste teknologiske innovasjonen som Robust tilbyr for å styrke din virksomhet.

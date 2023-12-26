@@ -32,26 +32,23 @@ export default function Home() {
     return () => unsubscribe();
   }, [scrollYProgress]);
 
-  // Responsive padding classes applied here
-  const paddingClass = 'px-4 sm:px-[10%]';
-
   useEffect(() => {
-    document.body.style.backgroundColor = sectionColors[0]; // Use the first section color for the background
-  }, []);
+    document.body.style.backgroundColor = sectionColors[currentSection]; // Use the current section color for the background
+  }, [currentSection]);
 
   return (
     <>
       <NavBar currentSection={currentSection} sectionColors={sectionColors} />
       <motion.main
-        className={`min-h-screen flex flex-col items-center justify-between ${paddingClass}`}
+        className="min-h-screen flex flex-col items-center justify-center"
         style={{ backgroundColor: sectionColors[currentSection] }}
         animate={{ backgroundColor: sectionColors[currentSection] }}
         transition={{ duration: 0.35 }}
         data-section={currentSection}
       >
-        <div className="w-full sm:max-w-[80%] sm:mx-auto">
+        <div className="w-full max-w-[90%] sm:max-w-[80%] mx-auto">
           {[0, 1, 2, 3, 4].map((index) => (
-            <div key={index} className="section w-full">
+            <div key={index} className="section w-full my-8">
               {index === 0 && <HeroTitle />}
               {index === 1 && <AboutHero />}
               {index === 2 && (

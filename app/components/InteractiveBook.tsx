@@ -1,63 +1,58 @@
 "use client";
 import React, { useState } from 'react';
-import { Document, Page, pdfjs } from 'react-pdf';
 import { motion } from 'framer-motion';
-
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+import Image from 'next/image';
 
 type InteractiveBookProps = {
-  file: string;
+  images: string[]; // Array of image paths representing the pages
 };
 
-type LoadSuccess = {
-  numPages: number;
-};
+const InteractiveBook: React.FC<InteractiveBookProps> = ({ images }) => {
+  const [pageNumber, setPageNumber] = useState(0);
 
-const InteractiveBook: React.FC<InteractiveBookProps> = ({ file }) => {
-  const [pageNumber, setPageNumber] = useState(1);
-  const [numPages, setNumPages] = useState(0);
-
-  const onDocumentLoadSuccess = ({ numPages }: LoadSuccess) => {
-    setNumPages(numPages);
-  };
-
-  const nextPage = () => {
-    setPageNumber((prevPageNumber) => prevPageNumber === numPages ? 1 : prevPageNumber + 1);
+  const togglePage = () => {
+    setPageNumber((prevPageNumber) => (prevPageNumber + 1) % images.length);
   };
 
   return (
-    <div className="flex flex-row">
-      <div className="w-1/2 p-4">
-        <p className="text-lg">
-          Side {pageNumber} av {numPages}
-        </p>
-        <div
-          href={file}
-          download
-          className="text-blue-600 hover:text-blue-800 transition-colors duration-300 rounded-lg"
+    <div className="flex flex-col md:flex-row items-center justify-center my-12">
+      <div className="w-full md:w-1/2">
+        <motion.div
+          className="relative rounded-lg overflow-hidden shadow-lg cursor-pointer"
+          onClick={togglePage}
+          whileHover={{ scale: 1.03 }}
+          layoutId="interactiveBookPage"
         >
-          Last ned PDF
-        </div>
-      </div>
-      <motion.div
-        className="w-1/2 relative rounded-lg overflow-hidden"
-        onClick={nextPage}
-        whileHover={{ scale: 1.03 }}
-        style={{
-          paddingBottom: '141.4%', // 1:1.41 aspect ratio (A4 paper)
-        }}
-      >
-        <Document
-          file={file}
-          onLoadSuccess={onDocumentLoadSuccess}
-        >
-          <Page
-            pageNumber={pageNumber}
+          <Image
+            src={images[pageNumber]}
+            alt={`Side ${pageNumber + 1}`}
             width={595}
             height={842}
+            layout="responsive"
+            className="rounded-lg"
           />
-        </Document>
-      </motion.div>
+          <div className="absolute top-0 left-0 p-4">
+            <div className="bg-white bg-opacity-75 rounded p-2">
+              <p className="text-lg">
+                Side {pageNumber + 1} av {images.length}
+              </p>
+              <a
+                href={images[pageNumber]}
+                download={`Vedtekter-side-${pageNumber + 1}.png`}
+                className="text-blue-600 hover:text-blue-800 transition-colors duration-300"
+              >
+                Last ned PDF
+              </a>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+      <div className="w-full md:w-1/2 p-4">
+        <h3 className="text-xl font-semibold mb-2">Robusts Vedtekster</h3>
+        <p className="text-gray-600 mb-4">
+          Utforsk de offisielle dokumentene som definerer Robusts struktur og retningslinjer.
+        </p>
+      </div>
     </div>
   );
 };
