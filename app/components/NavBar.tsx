@@ -20,14 +20,14 @@ const NavBar = ({ currentSection, sectionColors }: NavBarProps) => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 flex items-center justify-between py-2 z-50 ${isMenuOpen ? 'bg-transparent' : sectionColors[currentSection]} px-4 sm:px-6 lg:px-8`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 py-2 ${isMenuOpen ? 'bg-transparent' : sectionColors[currentSection]} px-4 sm:px-6 lg:px-8 flex items-center justify-between`}>
         <Link href="/">
-          <span className="font-bold cursor-pointer z-50 text-5xl">S.</span>
+          <span className="font-bold cursor-pointer text-5xl z-50">S.</span>
         </Link>
 
         <motion.button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="z-50 focus:outline-none"
+          className="focus:outline-none z-50"
           animate={{ rotate: isMenuOpen ? 180 : 0 }}
           transition={{ type: 'spring', stiffness: 260, damping: 20 }}
         >
@@ -38,7 +38,7 @@ const NavBar = ({ currentSection, sectionColors }: NavBarProps) => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="fixed inset-0 z-40 flex flex-col items-center justify-between"
+            className="fixed inset-0 z-40"
             style={{ backgroundColor: menuOverlayBackgroundColor }}
             variants={overlayVariants}
             initial="hidden"
@@ -46,23 +46,23 @@ const NavBar = ({ currentSection, sectionColors }: NavBarProps) => {
             exit="hidden"
             transition={{ duration: 0.2 }}
           >
-            <div className="pt-16 w-full text-left">
+            <div className="pt-52 pl-4 pr-4 sm:pl-6 sm:pr-6 lg:pl-8 lg:pr-8 text-left">
               <Link href="/om-oss">
-                <span className="title block cursor-pointer text-8xl mb-6">Om Oss</span>
+                <span className="title block cursor-pointer text-8xl mb-4">Om Oss</span>
               </Link>
               <Link href="/siste-nytt">
-                <span className="title block cursor-pointer text-8xl mb-6">Siste nytt</span>
+                <span className="title block cursor-pointer text-8xl mb-4">Siste nytt</span>
               </Link>
               <Link href="/prosjekter">
-                <span className="title block cursor-pointer text-8xl mb-6">Nedvekst</span>
+                <span className="title block cursor-pointer text-8xl mb-4">Nedvekst</span>
               </Link>
             </div>
-            <div className="w-full px-4 pb-4 flex justify-between items-end">
+            <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
               <Link href="/kontakt">
-                <span className=" cursor-pointer text-4xl mb-2 sm:mb-0 sm:mx-4">Kontakt</span>
+                <span className="cursor-pointer text-4xl">Kontakt</span>
               </Link>
               <Link href="/nyhetsbrev">
-                <span className=" cursor-pointer text-4xl sm:mx-4">Nyhetsbrev</span>
+                <span className="cursor-pointer text-4xl">Nyhetsbrev</span>
               </Link>
             </div>
           </motion.div>

@@ -1,3 +1,4 @@
+// Stories.tsx
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -7,7 +8,6 @@ const Stories = () => {
   return (
     <div className="container mx-auto py-16 px-4 sm:px-6 md:px-8 lg:px-24">
       <h2 className="text-2xl font-semibold mb-6">Innsikt i Robust</h2>
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Story 1 */}
         <motion.div
@@ -17,7 +17,7 @@ const Stories = () => {
           className="bg-white rounded-lg overflow-hidden shadow-lg"
         >
           <Image
-            src="https://source.unsplash.com/random/400x300"
+            src="https://d5i52xlspk7ew.cloudfront.net/images/S_hero.gif"
             alt="Degrowth politikk"
             width={400}
             height={300}

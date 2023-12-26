@@ -13,10 +13,10 @@ const FingerFooter = () => {
   return (
     <div className="h-screen flex justify-center items-center">
       <div className="text-center">
-        <h1 className="text-5xl font-bold mb-6">Bli medlem i dag</h1>
+        <h1 className="title text-5xl font-bold mb-6">Bli medlem i dag</h1>
         <Link href="/medlemskap" passHref> {/* Wrap the button with Link */}
           <motion.a
-            className="py-2 px-4 bg-black text-white font-semibold rounded-full shadow-lg cursor-pointer"
+            className=" py-2 px-4 bg-black text-white font-semibold rounded-full shadow-lg cursor-pointer"
             whileHover={{ scale: 1.1 }}
           >
             BLI MEDLEM
