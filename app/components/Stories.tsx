@@ -1,4 +1,3 @@
-// Stories.tsx
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,7 +8,6 @@ const Stories = () => {
     <div className="container mx-auto py-16 px-4 sm:px-6 md:px-8 lg:px-24">
       <h2 className="text-2xl font-semibold mb-6">Innsikt i Robust</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Story 1 */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}

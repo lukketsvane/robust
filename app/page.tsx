@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion';
 import './globals.css';
 
 import NavBar from './components/NavBar';
@@ -12,6 +12,7 @@ import AboutHero from './components/AboutHero';
 import Partners from './components/Partners';
 import TeamSection from './components/TeamSection';
 import FingerFooter from './components/FingerFooter';
+import ChatBox from './components/ChatBox'; // Import the ChatBox component
 
 const sectionColors: string[] = ['#F2C744', '#617864', '#4324D2', '#FFFFFF', '#F2C744'];
 const textColorForSection: { [key: string]: string } = {
@@ -60,19 +61,16 @@ export default function Home() {
             <div key={index} className={`section w-full my-8 ${textColor}`}>
               {index === 0 && <HeroTitle />}
               {index === 1 && <AboutHero textColor={textColor} />}
-              {index === 2 && (
-                <>
-                  <Stories />
-                  <HeroSection />
-                </>
-              )}
-              {index === 3 && <Partners />}
-              {index === 4 && <TeamSection />}
+              {index === 2 && <Stories />}
+              {index === 3 && <HeroSection />}
+              {index === 4 && <Partners />}
+              {index === 5 && <TeamSection />}
             </div>
           ))}
           <FingerFooter />
         </div>
       </motion.main>
+      <ChatBox /> {/* Add the ChatBox component to the page */}
     </>
   );
 }

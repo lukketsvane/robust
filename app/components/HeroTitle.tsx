@@ -1,5 +1,5 @@
-"use client"; // Ensure client-side rendering for hooks and framer-motion
-import React from 'react'; // Import React to ensure it's in scope for JSX
+"use client"; 
+import React from 'react'; 
 
 const HeroTitle = () => {
     return (
