@@ -8,13 +8,31 @@ const Chatbot = () => {
 
   const handleSendMessage = async (content) => {
     if (!content) return;
-    // Append new message to the chat log
-    setMessages([...messages, { role: 'user', content }]);
+    // Append new user message to the chat log
+    setMessages(messages => [...messages, { role: 'user', content }]);
     setInput('');
 
-    // Here you would integrate with the OpenAI API or your backend
-    // const response = await sendMessageToBackend(content);
-    // setMessages([...messages, { role: 'bot', content: response }]);
+    // Make the POST request to your backend route
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ messages: [...messages, { role: 'user', content }] }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const responseData = await response.json();
+      // Assuming responseData contains the bot's response
+      setMessages(currentMessages => [...currentMessages, { role: 'bot', content: responseData.message }]);
+    } catch (error) {
+      console.error('Failed to send message:', error);
+      // Handle error (e.g., show an error message to the user)
+    }
   };
 
   return (
