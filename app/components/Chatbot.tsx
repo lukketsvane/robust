@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Define a type for the messages
@@ -15,7 +15,6 @@ const Chatbot = () => {
   const handleSendMessage = async (content: string) => {
     if (!content.trim()) return;
 
-    // Explicitly typing userMessage
     const userMessage: Message = { role: 'user', content };
     setMessages(messages => [...messages, userMessage]);
     setInput('');
@@ -30,15 +29,19 @@ const Chatbot = () => {
       if (!response.ok) throw new Error('Network response was not ok.');
 
       const responseData = await response.json();
-      setMessages(currentMessages => [...currentMessages, { role: 'bot', content: responseData.message }]);
+      setMessages(currentMessages => [...currentMessages, { role: 'bot', content: responseData.message || 'No response from AI' }]);
     } catch (error) {
       console.error('Chatbot error:', error);
     }
   };
 
+  const handleClickOutside = (event: React.MouseEvent) => {
+    if ((event.target as HTMLElement).id === 'chatbox-wrapper') setIsOpen(false);
+  };
+
   return (
     <>
-      <div className={`fixed bottom-4 right-4 z-10 ${isOpen ? 'hidden' : ''}`}>
+      <div className={`fixed bottom-4 right-4 z-30 ${isOpen ? 'hidden' : ''}`}>
         <button
           className="p-3 bg-blue-500 rounded-full shadow-lg hover:bg-blue-600 transition-colors"
           onClick={() => setIsOpen(true)}
@@ -49,15 +52,16 @@ const Chatbot = () => {
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-50 z-20 flex justify-center items-center p-4"
-          >
-            <div className="relative bg-white rounded-lg shadow-xl p-4 max-w-sm w-full">
-              <button className="absolute top-2 right-2" onClick={() => setIsOpen(false)}>
-                {/* 'X' icon here */}
+          <div id="chatbox-wrapper" className="fixed inset-0 z-20 flex items-center justify-center" onClick={handleClickOutside}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0 }}
+              className="relative bg-white rounded-lg shadow-xl p-4 max-w-sm w-full"
+              onClick={(e) => e.stopPropagation()} // Prevent click inside from closing the chat
+            >
+              <button className="absolute top-2 right-2 text-white" onClick={() => setIsOpen(false)}>
+                X {/* Replace with 'X' icon */}
               </button>
               <div className="overflow-y-auto h-64">
                 {messages.map((message, index) => (
@@ -75,7 +79,7 @@ const Chatbot = () => {
                 <button type="submit" className="p-2 bg-blue-500 w-full">Send</button>
               </form>
             </div>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </>
