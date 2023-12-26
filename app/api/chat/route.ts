@@ -15,18 +15,20 @@ export async function POST(req: Request) {
       model: "gpt-4-0314",
       messages,
       temperature: 0.5,
-      max_tokens: 150, // You can adjust the max tokens as needed
+      max_tokens: 150,
       stream: true,
     });
 
-    // Format and send the response back to the client
-    return new Response(JSON.stringify(response.data), {
+    // Correctly handle the response
+    // Assuming response contains the expected data in a property (e.g., 'choices')
+    const responseData = response.choices ? response.choices[0].text : "No response from AI";
+
+    return new Response(JSON.stringify({ message: responseData }), {
       headers: { 'Content-Type': 'application/json' },
       status: 200
     });
   } catch (error) {
     console.error('Error calling OpenAI:', error);
-    // Return a generic error response
     return new Response('Error processing your request', { status: 500 });
   }
 }
