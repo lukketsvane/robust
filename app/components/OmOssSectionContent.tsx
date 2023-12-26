@@ -4,7 +4,7 @@ import React from 'react';
 const OmOssSectionContent = () => {
   return (
     <div className="p-4 text-left">
-      <h1 className="text-3xl font-bold mb-4">Om Foreningen ROBUST</h1>
+      <h1 className="title text-3xl font-bold mb-4">Om Foreningen ROBUST</h1>
       <p className="mb-4">
         Vedtektene for ROBUST ble vedtatt av Anna Nordahl Carlsen og Marie Storli i Oslo, den 10. juni 2023.
       </p>
