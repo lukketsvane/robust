@@ -1,4 +1,4 @@
-// InteractiveBook.tsx
+"use client";
 import React, { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { motion } from 'framer-motion';
@@ -31,13 +31,13 @@ const InteractiveBook: React.FC<InteractiveBookProps> = ({ file }) => {
         <p className="text-lg">
           Side {pageNumber} av {numPages}
         </p>
-        <a
+        <div
           href={file}
           download
           className="text-blue-600 hover:text-blue-800 transition-colors duration-300 rounded-lg"
         >
           Last ned PDF
-        </a>
+        </div>
       </div>
       <motion.div
         className="w-1/2 relative rounded-lg overflow-hidden"

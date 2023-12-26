@@ -1,6 +1,7 @@
 "use client"; // Ensure client-side rendering for hooks and framer-motion
 import { motion } from 'framer-motion';
 import React from 'react';
+import Link from 'next/link'; // Import the Link component
 
 const FingerFooter = () => {
   // Define the animation variants for the finger graphic
@@ -13,12 +14,14 @@ const FingerFooter = () => {
     <div className="h-screen flex justify-center items-center">
       <div className="text-center">
         <h1 className="text-5xl font-bold mb-6">La oss jobbe sammen</h1>
-        <motion.button
-          className="py-2 px-4 bg-black text-white font-semibold rounded-full shadow-lg"
-          whileHover={{ scale: 1.1 }}
-        >
-          TA KONTAKT
-        </motion.button>
+        <Link href="/kontakt" passHref> {/* Wrap the button with Link */}
+          <motion.a
+            className="py-2 px-4 bg-black text-white font-semibold rounded-full shadow-lg cursor-pointer"
+            whileHover={{ scale: 1.1 }}
+          >
+            TA KONTAKT
+          </motion.a>
+        </Link>
         <motion.div
           className="mt-5"
           variants={fingerVariants}

@@ -30,7 +30,7 @@ const Stories = () => {
               Vi har samarbeidet tett med norske ingeniører og oppfinnere hos Robust for å utvikle en digital merkevareopplevelse for lanseringen av deres innovative lunsjboks.
             </p>
             <Link href="/case-study/robust">
-              <div> className="text-indigo-600 hover:text-indigo-800 transition duration-150 ease-in-out">Les Casestudien</div>>
+              <div> className="text-indigo-600 hover:text-indigo-800 transition duration-150 ease-in-out" Les Casestudien</div>
             </Link>
           </div>
         </motion.div>
@@ -56,7 +56,7 @@ const Stories = () => {
               Vårt designteam har forpliktet seg til et tredje år med 36 dager med Type, et prosjekt som inviterer designere til å uttrykke sin tolkning av bokstaver og tall i alfabetet.
             </p>
             <Link href="/design-prosess">
-              <div> className="text-indigo-600 hover:text-indigo-800 transition duration-150 ease-in-out">Designprosessen</div>>
+              <div> className="text-indigo-600 hover:text-indigo-800 transition duration-150 ease-in-out" Designprosessen</div>
             </Link>
           </div>
         </motion.div>
