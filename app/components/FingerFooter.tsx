@@ -11,9 +11,9 @@ const FingerFooter = () => {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center" >
+    <div className="h-screen flex justify-center items-center" style={{ backgroundColor: '#FADA5E' }}>
       <div className="text-center">
-        <h1 className="text-6xl font-bold mb-6" style={{ color: '#333333' }}>Meld deg inn i organisasjonen!</h1>
+        <h1 className="text-6xl font-bold mb-6" style={{ color: '#333333' }}>bli medlem!</h1>
         <Link href="/contact" passHref> {/* Wrap the button with Link */}
           <motion.a
             className="py-2 px-4 bg-transparent text-3xl font-semibold rounded-full border-2 border-black cursor-pointer"
