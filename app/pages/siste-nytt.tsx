@@ -18,8 +18,6 @@ const SisteNytt = () => {
     // Ensuring the div stretches to at least the height of the viewport with the correct background color
     <div className="flex flex-col items-center justify-center min-h-screen w-full" style={{ backgroundColor: '#F2C744' }}>
       <HeroTitle />
-      <AboutHero /> {/* Ensure any added components are contained within the main div */}
-      {/* More content can be added here with the proper background color */}
     </div>
   );
 }
