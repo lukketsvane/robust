@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { motion, useScroll } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import './globals.css';
 
 import NavBar from './components/NavBar';
@@ -21,10 +21,6 @@ const textColorForSection: { [key: string]: string } = {
   '#F2C744': 'text-black',
 };
 const triggerPoints: number[] = [0.10, 0.4, 0.6, 0.8, 1.0];
-
-interface AboutHeroProps {
-  textColor: string;
-}
 
 export default function Home() {
   const { scrollYProgress } = useScroll();
