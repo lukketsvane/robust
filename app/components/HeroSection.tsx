@@ -14,7 +14,7 @@ const HeroSection = () => {
         <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-1/2">
             <p className="text-sm uppercase text-gray-500 mb-2">Robust | Din Pålitelige Partner</p>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Skap Styrke med Robust Teknologi</h1>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 title">Skap Styrke med Robust Teknologi</h1>
             <Link href="/case-study">
               <span className="cursor-pointer text-indigo-600 hover:text-indigo-800 transition-colors duration-300">Se Casestudie</span>
             </Link>

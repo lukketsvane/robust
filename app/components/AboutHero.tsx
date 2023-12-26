@@ -12,8 +12,9 @@ const AboutHero = () => {
         >
             <div className="w-full max-w-2xl">
                 <h2 className="text-sm uppercase tracking-widest text-black mb-6">HVA GJØR ROBUST?</h2>
-                <p className="text-4xl sm:text-5xl font-extrabold leading-tight text-black mb-6">
-                Vi utvikler veivisere og strategier som skaper tillit, håp og engasjement i samfunnet.                </p>
+                <p className="title text-4xl sm:text-5xl font-extrabold leading-tight text-black mb-6">
+                    Vi utvikler veivisere og strategier som skaper tillit, håp og engasjement i samfunnet.
+                </p>
                 <p className="text-lg sm:text-xl text-black">
                     Vi styrker ditt team med prisvinnende kunnskap om bærekraft, robuste arbeidsprosesser og nye perspektiver fra tverrfaglig samarbeid.
                 </p>
