@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Define a type for the messages
 type Message = {
   role: 'user' | 'bot';
   content: string;
