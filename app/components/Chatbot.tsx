@@ -1,31 +1,78 @@
-import { Configuration, OpenAIApi } from "openai-edge";
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-// Set up the OpenAI API configuration using your API key
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+const Chatbot = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState('');
 
-const openai = new OpenAIApi(configuration);
+  const handleSendMessage = async (content) => {
+    if (!content.trim()) return;
 
-export async function POST(req: Request) {
-  try {
-    const request = await req.json();
-    const { messages } = request;
+    const userMessage = { role: 'user', content };
+    setMessages(messages => [...messages, userMessage]);
+    setInput('');
 
-    const response = await openai.createChatCompletion({
-      model: "gpt-4-0314",
-      messages,
-      temperature: 0.5,
-      max_tokens: 150,
-      stream: true,
-    });
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: [...messages, userMessage] }),
+      });
 
-    return new Response(JSON.stringify({ message: response.data.choices[0].message }), {
-      headers: { 'Content-Type': 'application/json' },
-      status: 200
-    });
-  } catch (error) {
-    console.error('Error calling OpenAI:', error);
-    return new Response('Error processing your request', { status: 500 });
-  }
-}
+      if (!response.ok) throw new Error('Network response was not ok.');
+
+      const responseData = await response.json();
+      setMessages(currentMessages => [...currentMessages, { role: 'bot', content: responseData.message }]);
+    } catch (error) {
+      console.error('Chatbot error:', error);
+    }
+  };
+
+  return (
+    <>
+      <div className={`fixed bottom-4 right-4 z-10 ${isOpen ? 'hidden' : ''}`}>
+        <button
+          className="p-3 bg-blue-500 rounded-full shadow-lg hover:bg-blue-600 transition-colors"
+          onClick={() => setIsOpen(true)}
+        >
+          {/* Robot icon here */}
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-50 z-20 flex justify-center items-center p-4"
+          >
+            <div className="relative bg-white rounded-lg shadow-xl p-4 max-w-sm w-full">
+              <button className="absolute top-2 right-2" onClick={() => setIsOpen(false)}>
+                {/* 'X' icon here */}
+              </button>
+              <div className="overflow-y-auto h-64">
+                {messages.map((message, index) => (
+                  <div key={index} className={`message ${message.role}`}>{message.content}</div>
+                ))}
+              </div>
+              <form onSubmit={(e) => { e.preventDefault(); handleSendMessage(input); }}>
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  className="w-full border-2 p-2 my-2"
+                  placeholder="Type your message here..."
+                />
+                <button type="submit" className="p-2 bg-blue-500 w-full">Send</button>
+              </form>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
+
+export default Chatbot;
