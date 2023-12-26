@@ -1,11 +1,9 @@
-// NavBar.tsx
 "use client";
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useAnimation } from 'framer-motion';
 import { MenuIcon, XIcon } from 'lucide-react';
 import Link from 'next/link';
 
-// Define the textColorForSection variable here
 const textColorForSection: { [key: string]: string } = {
   '#617864': 'text-white',
   '#4324D2': 'text-white',
@@ -44,10 +42,20 @@ const NavBar = ({ currentSection, sectionColors }: NavBarProps) => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 py-2 ${isMenuOpen ? 'bg-transparent' : sectionColors[currentSection]} px-4 sm:px-6 lg:px-8 flex items-center justify-between`}
-        style={{ transition: 'background-color 0.35s' }}>
+      <style jsx global>{`
+        .smooth-background-transition {
+          transition: background-color 0.35s;
+        }
+
+        @media (max-width: 640px) {
+          .small-text {
+            font-size: 3rem; /* Adjust the font size as needed for mobile */
+          }
+        }
+      `}</style>
+      <nav className={`fixed top-0 left-0 right-0 z-50 py-2 ${isMenuOpen ? 'bg-transparent' : sectionColors[currentSection]} px-4 sm:px-6 lg:px-8 flex items-center justify-between smooth-background-transition`}>
         <Link href="/">
-          <span className={`font-bold cursor-pointer text-5xl z-50 ${isTextWhite ? 'text-white' : 'text-black'}`}>S.</span>
+          <span className={`font-bold cursor-pointer text-5xl z-50 ${isTextWhite ? 'text-white' : 'text-black'} small-text`}>S.</span>
         </Link>
 
         <motion.button
@@ -73,21 +81,21 @@ const NavBar = ({ currentSection, sectionColors }: NavBarProps) => {
           >
             <div className="pt-52 pl-4 pr-4 sm:pl-6 sm:pr-6 lg:pl-8 lg:pr-8 text-left">
               <Link href="/om-oss">
-                <span className={`title block cursor-pointer text-8xl mb-4 ${isTextWhite ? 'text-white' : 'text-black'}`}>Om Oss</span>
+                <span className={`title block cursor-pointer text-8xl mb-4 ${isTextWhite ? 'text-white' : 'text-black'} small-text`}>Om Oss</span>
               </Link>
               <Link href="/siste-nytt">
-                <span className={`title block cursor-pointer text-8xl mb-4 ${isTextWhite ? 'text-white' : 'text-black'}`}>Siste nytt</span>
+                <span className={`title block cursor-pointer text-8xl mb-4 ${isTextWhite ? 'text-white' : 'text-black'} small-text`}>Siste nytt</span>
               </Link>
               <Link href="/prosjekter">
-                <span className={`title block cursor-pointer text-8xl mb-4 ${isTextWhite ? 'text-white' : 'text-black'}`}>Nedvekst</span>
+                <span className={`title block cursor-pointer text-8xl mb-4 ${isTextWhite ? 'text-white' : 'text-black'} small-text`}>Nedvekst</span>
               </Link>
             </div>
             <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
               <Link href="/kontakt">
-                <span className={`cursor-pointer text-4xl ${isTextWhite ? 'text-white' : 'text-black'}`}>Kontakt</span>
+                <span className={`cursor-pointer text-4xl ${isTextWhite ? 'text-white' : 'text-black'} small-text`}>Kontakt</span>
               </Link>
               <Link href="/nyhetsbrev">
-                <span className={`cursor-pointer text-4xl ${isTextWhite ? 'text-white' : 'text-black'}`}>Nyhetsbrev</span>
+                <span className={`cursor-pointer text-4xl ${isTextWhite ? 'text-white' : 'text-black'} small-text`}>Nyhetsbrev</span>
               </Link>
             </div>
           </motion.div>
