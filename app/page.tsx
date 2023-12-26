@@ -22,6 +22,10 @@ const textColorForSection: { [key: string]: string } = {
 };
 const triggerPoints: number[] = [0.10, 0.4, 0.6, 0.8, 1.0];
 
+interface AboutHeroProps {
+  textColor: string;
+}
+
 export default function Home() {
   const { scrollYProgress } = useScroll();
   const [currentSection, setCurrentSection] = useState<number>(0);
@@ -59,7 +63,7 @@ export default function Home() {
           {[0, 1, 2, 3, 4].map((index) => (
             <div key={index} className={`section w-full my-8 ${textColor}`}>
               {index === 0 && <HeroTitle />}
-              {index === 1 && <AboutHero />}
+              {index === 1 && <AboutHero textColor={textColor} />}
               {index === 2 && (
                 <>
                   <Stories />
