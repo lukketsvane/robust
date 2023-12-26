@@ -69,21 +69,21 @@ const NavBar = ({ currentSection, sectionColors }: NavBarProps) => {
             transition={{ duration: 0.2 }}
           >
             <div className="pt-52 pl-4 pr-4 sm:pl-6 sm:pr-6 lg:pl-8 lg:pr-8 text-left">
-              <Link href="/pages/om-oss">
+              <Link href="/om-oss">
                 <span className={`title block cursor-pointer text-5xl md:text-8xl mb-4 ${isTextWhite ? 'text-white' : 'text-black'} small-text menu-item`}>Om Oss</span>
               </Link>
-              <Link href="/pages/siste-nytt">
+              <Link href="/siste-nytt">
                 <span className={`title block cursor-pointer text-5xl md:text-8xl mb-4 ${isTextWhite ? 'text-white' : 'text-black'} small-text menu-item`}>Siste nytt</span>
               </Link>
-              <Link href="/pages/prosjekter">
+              <Link href="/prosjekter">
                 <span className={`title block cursor-pointer text-5xl md:text-8xl mb-4 ${isTextWhite ? 'text-white' : 'text-black'} small-text menu-item`}>Prosjekter</span>
               </Link>
             </div>
             <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
-              <Link href="/pages/kontakt">
+              <Link href="/kontakt">
                 <span className={`cursor-pointer text-3xl md:text-4xl ${isTextWhite ? 'text-white' : 'text-black'} small-text contact-newsletter-text`}>Kontakt</span>
               </Link>
-              <Link href="/pages/nyhetsbrev">
+              <Link href="/nyhetsbrev">
                 <span className={`cursor-pointer text-3xl md:text-4xl ${isTextWhite ? 'text-white' : 'text-black'} small-text contact-newsletter-text`}>Nyhetsbrev</span>
               </Link>
             </div>

@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Define a type for the messages
 type Message = {
   role: 'user' | 'bot';
   content: string;
@@ -15,7 +14,6 @@ const Chatbot = () => {
   const handleSendMessage = async (content: string) => {
     if (!content.trim()) return;
 
-    // Explicitly typing userMessage
     const userMessage: Message = { role: 'user', content };
     setMessages(messages => [...messages, userMessage]);
     setInput('');
@@ -36,9 +34,14 @@ const Chatbot = () => {
     }
   };
 
+  // Clicking outside the chat window should close it
+  const handleClickOutside = (event) => {
+    if (event.target.id === 'chatbox-wrapper') setIsOpen(false);
+  };
+
   return (
     <>
-      <div className={`fixed bottom-4 right-4 z-10 ${isOpen ? 'hidden' : ''}`}>
+      <div className={`fixed bottom-4 right-4 z-30 ${isOpen ? 'hidden' : ''}`}>
         <button
           className="p-3 bg-blue-500 rounded-full shadow-lg hover:bg-blue-600 transition-colors"
           onClick={() => setIsOpen(true)}
@@ -49,15 +52,15 @@ const Chatbot = () => {
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-50 z-20 flex justify-center items-center p-4"
-          >
-            <div className="relative bg-white rounded-lg shadow-xl p-4 max-w-sm w-full">
-              <button className="absolute top-2 right-2" onClick={() => setIsOpen(false)}>
-                {/* 'X' icon here */}
+          <div id="chatbox-wrapper" className="fixed inset-0 z-20" onClick={handleClickOutside}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0 }}
+              className="relative bg-white rounded-lg shadow-xl p-4 max-w-sm w-full m-auto"
+            >
+              <button className="absolute top-2 right-2 text-white" onClick={() => setIsOpen(false)}>
+                X {/* Replace with 'X' icon */}
               </button>
               <div className="overflow-y-auto h-64">
                 {messages.map((message, index) => (
@@ -74,8 +77,8 @@ const Chatbot = () => {
                 />
                 <button type="submit" className="p-2 bg-blue-500 w-full">Send</button>
               </form>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </>
