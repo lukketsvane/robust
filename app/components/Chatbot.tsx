@@ -35,7 +35,7 @@ const Chatbot = () => {
     }
   };
 
-  const handleClickOutside = (event: React.MouseEvent) => {
+  const handleClickOutside = (event: React.MouseEvent<HTMLDivElement>) => {
     if ((event.target as HTMLElement).id === 'chatbox-wrapper') {
       setIsOpen(false);
     }
