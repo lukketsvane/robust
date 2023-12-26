@@ -43,10 +43,10 @@ const Stories = () => {
           className="bg-white rounded-lg overflow-hidden shadow-lg"
         >
           <Image
-            src="https://source.unsplash.com/random/400x301"
+            src="https://d5i52xlspk7ew.cloudfront.net/images/percy-2_1.gif"
             alt="Robust Samfunnsengasjement"
             width={400}
-            height={301}
+            height={300}
             layout="responsive"
             className="object-cover"
           />

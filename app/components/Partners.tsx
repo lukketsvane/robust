@@ -12,7 +12,7 @@ const Partners = () => {
   return (
     <section className="py-12 text-gray-800">
       <div className="container mx-auto">
-        <h2 className="title text-3xl font-semibold text-center mb-8">
+        <h2 className="title text-5xl font-semibold text-left mb-8">
           Vi samarbeider med smarte bedrifter som setter brukeropplevelsen i sentrum for det de gjør.
         </h2>
         <div className="flex flex-wrap justify-center items-center gap-8">

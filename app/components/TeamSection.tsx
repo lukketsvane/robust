@@ -3,25 +3,31 @@ import Image from 'next/image';
 
 const teamMembers = [
     {
-        name: "Hege Aalby",
-        position: "Co-founder & Managing Director",
+        name: "Anna Nordahl Carlsen",
+        position: "Lead Strategist",
         imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640"
     },
     {
-        name: "Matt Rice",
-        position: "Co-founder & Creative Director",
+        name: "Marie Storli",
+        position: "Operations Manager",
         imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640"
     },
     {
-        name: "Bridget Dawodu",
-        position: "Product Manager",
+        name: "Sigrid Loevlie",
+        position: "Finance Director",
         imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640"
     },
     {
-        name: "Najilba Noh",
-        position: "Junior UX Designer",
+        name: "Thomas Rokas",
+        position: "Technical Lead",
         imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640"
-    }
+    },
+    {
+        name: "Iver Finne",
+        position: "Marketing Director",
+        imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640"
+    },
+
 ];
 
 const TeamSection = () => {
