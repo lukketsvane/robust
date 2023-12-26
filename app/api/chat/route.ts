@@ -1,4 +1,3 @@
-
 import { Configuration, OpenAIApi } from "openai-edge";
 
 const configuration = new Configuration({
@@ -12,6 +11,8 @@ export async function POST(req: Request) {
     const request = await req.json();
     const { messages } = request;
 
+    console.log("Sending to OpenAI:", { messages }); // Log the request
+
     const openaiResponse = await openai.createChatCompletion({
       model: "gpt-4-0314",
       messages,
@@ -20,10 +21,10 @@ export async function POST(req: Request) {
       stream: true,
     });
 
-    // Convert the response to JSON (assuming it's in JSON format)
     const content = await openaiResponse.json();
 
-    // Check if content contains the expected data (e.g., 'choices')
+    console.log("Received from OpenAI:", content); // Log the raw response
+
     const responseData = content.choices && content.choices.length > 0 ? content.choices[0].text : "No response from AI";
 
     return new Response(JSON.stringify({ message: responseData }), {
