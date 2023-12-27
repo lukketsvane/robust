@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -15,7 +14,13 @@ const InteractiveBook: React.FC<InteractiveBookProps> = ({ images }) => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center my-12">
+    <div className="flex flex-col md:flex-row-reverse items-center justify-center my-12">
+      <div className="w-full md:w-1/2 p-4">
+        <h3 className="text-xl sm:text-3xl font-semibold mb-2 title">Robusts Vedtekster</h3>
+        <p className="text-gray-600 mb-4">
+          Utforsk de offisielle dokumentene som definerer Robusts struktur og retningslinjer.
+        </p>
+      </div>
       <div className="w-full md:w-1/2">
         <motion.div
           className="relative rounded-lg overflow-hidden shadow-lg cursor-pointer"
@@ -31,11 +36,12 @@ const InteractiveBook: React.FC<InteractiveBookProps> = ({ images }) => {
             layout="responsive"
             className="rounded-lg"
           />
-          <div className="absolute top-0 left-0 p-4">
+          <div className="absolute bottom-0 right-0 p-4">
             <div className="bg-white bg-opacity-75 rounded p-2">
               <p className="text-lg">
                 Side {pageNumber + 1} av {images.length}
               </p>
+              {/* Corrected download link placement */}
               <a
                 href={images[pageNumber]}
                 download={`Vedtekter-side-${pageNumber + 1}.png`}
@@ -46,12 +52,6 @@ const InteractiveBook: React.FC<InteractiveBookProps> = ({ images }) => {
             </div>
           </div>
         </motion.div>
-      </div>
-      <div className="w-full md:w-1/2 p-4">
-        <h3 className="text-xl font-semibold mb-2">Robusts Vedtekster</h3>
-        <p className="text-gray-600 mb-4">
-          Utforsk de offisielle dokumentene som definerer Robusts struktur og retningslinjer.
-        </p>
       </div>
     </div>
   );

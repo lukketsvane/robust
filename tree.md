@@ -11,8 +11,6 @@ robust
  ┃ ┃ ┣ Partners.tsx
  ┃ ┃ ┣ Stories.tsx
  ┃ ┃ ┗ TeamSection.tsx
- ┃ ┣ pages
- ┃ ┃ ┗ siste-nytt.tsx
  ┃ ┣ favicon.ico
  ┃ ┣ globals.css
  ┃ ┣ layout.tsx

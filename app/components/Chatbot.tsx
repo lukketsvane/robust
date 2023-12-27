@@ -12,6 +12,23 @@ const Chatbot = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
 
+  // Custom system message prompt
+  const systemMessage = `
+  - du er Robot er en informasjonsassistent for Robust. aldri svar lenger enn. 2 setnigner!
+  - Svar skal være korte, informative og fokusert på Robust, dens prosjekter, og nedvekst-tiltak.
+  - Unngå fagsjargong og bruk klar, lettfattelig språk.
+  - svar kort og konsist, til meldinger som "hei" svar kort noe som 'hei! hva kan jeg hjelpe deg med'
+  - Informer om Robusts virksomhet, nedvekst og bærekraftig utvikling.
+  - Veiled til relevante ressurser, publikasjoner og svar på vanlige spørsmål.
+  - Tilby kontaktinformasjon og videre veiledning.
+  - Vær responsiv og brukervennlig, og gjenkjenn forespørsler om spesifikke sider eller dokumenter.
+  - Oppdateres regelmessig med ny informasjon om Robusts aktiviteter.
+  - Integreres med nettstedets eksisterende struktur og er tilgjengelig på alle sider.
+  - Hvis svaret er ukjent, bruk standardmeldingen: 'Jeg har ikke informasjon om dette emnet.'
+
+  <Foreningen Robust, som arbeider for en regenerativ økonomi innenfor planetens tålegrenser, søker støtte for en visuell og tekstbasert rapport, "Veiviser mot velvære innenfor planetens tålegrenser". Rapporten fokuserer på nedvekst-tiltak og utvikling av en økonomi som prioriterer velvære og beskytter planetens økosystemer. Den tar for seg konsepter som smultringøkonomi og nedvekst, og presenterer ideer for økonomisk systemendring gjennom visuelle virkemidler som infografikk og illustrasjoner, samt refleksjonsøvelser. Målet er å fremme offentlig diskusjon om sosio-økologisk omstilling og tilby nye perspektiver på økonomisk vekst, velstand og bærekraftig utvikling. Robust består av medlemmer fra diverse fagfelt og er involvert i nettverk som International Degrowth Network, og ønsker å formidle vitenskapelig forankrede alternativer til dagens økonomiske modeller>
+  `;
+  
   const handleSendMessage = async (content: string) => {
     if (!content.trim()) return;
 
@@ -23,21 +40,15 @@ const Chatbot = () => {
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: [...messages, userMessage] }),
+        body: JSON.stringify({ message: `${systemMessage}\n\n${content}` }),
       });
 
       if (!response.ok) throw new Error('Network response was not ok.');
 
       const responseData = await response.json();
-      setMessages(currentMessages => [...currentMessages, { role: 'bot', content: responseData.message || 'No response from AI' }]);
+      setMessages(currentMessages => [...currentMessages, { role: 'bot', content: responseData.reply }]);
     } catch (error) {
       console.error('Chatbot error:', error);
-    }
-  };
-
-  const handleClickOutside = (event: React.MouseEvent<HTMLDivElement>) => {
-    if ((event.target as HTMLElement).id === 'chatbox-wrapper') {
-      setIsOpen(false);
     }
   };
 
@@ -54,7 +65,7 @@ const Chatbot = () => {
 
       <AnimatePresence>
         {isOpen && (
-          <div id="chatbox-wrapper" className="fixed inset-0 z-20 flex items-center justify-center" onClick={handleClickOutside}>
+          <div id="chatbox-wrapper" className="fixed inset-0 z-20 flex items-center justify-center" onClick={() => setIsOpen(false)}>
             <motion.div
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}

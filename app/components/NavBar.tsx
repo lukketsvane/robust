@@ -24,15 +24,12 @@ const overlayVariants = {
 const NavBar = ({ currentSection, sectionColors }: NavBarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuOverlayBackgroundColor = sectionColors?.[currentSection] || 'transparent';
-
   const isTextWhite = textColorForSection[sectionColors[currentSection]] === 'text-white';
-
   const iconAnimation = useAnimation();
 
   useEffect(() => {
     const bgColor = sectionColors[currentSection];
     document.body.style.backgroundColor = bgColor;
-
     iconAnimation.start({ rotate: isMenuOpen ? 0 : 180 });
   }, [currentSection, sectionColors, iconAnimation, isMenuOpen]);
 
@@ -44,9 +41,8 @@ const NavBar = ({ currentSection, sectionColors }: NavBarProps) => {
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 py-2 ${isMenuOpen ? 'bg-transparent' : sectionColors[currentSection]} px-4 sm:px-6 lg:px-8 flex items-center justify-between smooth-background-transition`}>
         <Link href="/">
-          <span className={`font-bold cursor-pointer text-5xl z-50 ${isTextWhite ? 'text-white' : 'text-black'} small-text`}>R.</span>
+          <img src={isTextWhite ? '/logo_white.png' : '/logo_black.png'} alt="Robust Logo" className="w-12 h-12" />
         </Link>
-
         <motion.button
           onClick={toggleMenu}
           className="focus:outline-none z-50"
