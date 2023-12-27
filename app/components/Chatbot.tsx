@@ -12,7 +12,7 @@ const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
-  const endOfMessagesRef = useRef(null);
+  const endOfMessagesRef = useRef<HTMLDivElement>(null);
 
   // Scroll to the bottom whenever messages change
   useEffect(() => {
