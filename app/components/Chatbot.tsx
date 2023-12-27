@@ -15,7 +15,7 @@ const Chatbot = () => {
   ]);  const [input, setInput] = useState('');
   const endOfMessagesRef = useRef<HTMLDivElement>(null);
   const [showTooltip, setShowTooltip] = useState(false);
-  const handleToovltip = () => {
+  const handleTooltip = () => {
     setShowTooltip(!showTooltip);
   };
   useEffect(() => {
@@ -63,15 +63,15 @@ const Chatbot = () => {
               >
                 <div className="flex justify-between items-center">
                   <h2 className="text-xl font-bold mb-2">Chat med Robot-anna</h2>
-                  <button type="button" className="p-2" onClick={handleToovltip}>
+                  <button type="button" className="p-2" onClick={handleTooltip}>
                     <FaInfoCircle className="text-gray-500" />
                   </button>
                 </div>
                 {showTooltip && (
                   <div className="tooltip-content">
-        Test          
-        </div>
-        )}
+                  Test          
+                  </div>
+                  )}
                       <div className="overflow-y-auto h-[75vh] md:h-80" style={{ paddingBottom: '3.5rem' }}>
                 {messages.map((message, index) => (
                   <div key={index} className={`message flex items-center ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
