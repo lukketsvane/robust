@@ -9,13 +9,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     const { message } = req.body;
-    const llm = new OpenAI({ openAIApiKey: process.env.OPENAI_API_KEY });
+    const llm = new OpenAI({ 
+      openAIApiKey: process.env.OPENAI_API_KEY,
+      modelName: 'gpt-4-1106-preview' // specifying the model
+    });
 
-    // Replace with your model name and other parameters as needed
     const response = await llm.predict(message);
     res.status(200).json({ reply: response });
-  } catch (error) {
-    // Avoiding direct access to 'error.message' due to TypeScript's unknown type in catch blocks
+  } catch {
+    // Catch block without direct reference to error object
     res.status(500).json({ error: 'An error occurred while processing the request' });
   }
 }
