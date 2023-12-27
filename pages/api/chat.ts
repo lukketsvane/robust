@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const response = await llm.predict(message);
     res.status(200).json({ reply: response });
   } catch (error) {
-    console.error('Chatbot API error:', error);
-    res.status(500).json({ error: error.message });
+    // Avoiding direct access to 'error.message' due to TypeScript's unknown type in catch blocks
+    res.status(500).json({ error: 'An error occurred while processing the request' });
   }
 }
