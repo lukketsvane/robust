@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, User } from 'lucide-react';
+import { Send, User, Bot } from 'lucide-react';
 import systemMessage from './SystemMessage'; 
+import { FaInfoCircle } from 'react-icons/fa';
 type Message = {
   role: 'user' | 'bot';
   content: string;
@@ -9,11 +10,12 @@ type Message = {
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [input, setInput] = useState('');
+  const [messages, setMessages] = useState<Message[]>([
+    { role: 'bot', content: 'Hei! Jeg er Anna, din assistent. Hvordan kan jeg hjelpe deg i dag?' } // Initial message from the bot
+  ]);  const [input, setInput] = useState('');
   const endOfMessagesRef = useRef<HTMLDivElement>(null);
   const [showTooltip, setShowTooltip] = useState(false);
-  const handleTooltip = () => {
+  const handleToovltip = () => {
     setShowTooltip(!showTooltip);
   };
   useEffect(() => {
@@ -45,45 +47,53 @@ const Chatbot = () => {
 
   return (
     <>
-      <div className={`fixed bottom-4 right-4 z-30 ${isOpen ? 'hidden' : ''}`}>
-        <button className="p-3 bg-blue-500 rounded-full shadow-lg hover:bg-blue-600 transition-colors" onClick={() => setIsOpen(true)}>
-          <User className="text-white" />
-        </button>
-      </div>
-  
-      <AnimatePresence>
-        {isOpen && (
-          <div id="chatbox-wrapper" className="fixed inset-0 z-20 flex items-center justify-center" onClick={() => setIsOpen(false)}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              className="relative bg-white rounded-lg shadow-xl p-4 max-w-md w-full md:max-w-2xl md:w-3/4 h-auto md:h-5/6"
-              onClick={(e) => e.stopPropagation()}
-              style={{ paddingBottom: 'var(--safe-area-inset-bottom)', marginBottom: '20px' }}
-            >
-              <h2 className="text-xl font-bold mb-2">Chat med Robot-anna</h2>
-              <div className="overflow-y-auto h-[75vh] md:h-80" style={{ paddingBottom: '3.5rem' }}>
+        <div className={`fixed bottom-4 right-4 z-30 ${isOpen ? 'hidden' : ''}`}>
+          <button className="p-3 bg-blue-500 rounded-full shadow-lg hover:bg-blue-600 transition-colors" onClick={() => setIsOpen(true)}></button>
+        </div>  
+        <AnimatePresence>
+          {isOpen && (
+            <div id="chatbox-wrapper" className="fixed inset-0 z-20 flex items-center justify-center" onClick={() => setIsOpen(false)}>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                className="relative bg-white rounded-lg shadow-xl p-4 max-w-md w-full md:max-w-2xl md:w-3/4 h-auto md:h-5/6"
+                onClick={(e) => e.stopPropagation()}
+                style={{ paddingBottom: 'var(--safe-area-inset-bottom)', marginBottom: '20px' }}
+              >
+                <div className="flex justify-between items-center">
+                  <h2 className="text-xl font-bold mb-2">Chat med Robot-anna</h2>
+                  <button type="button" className="p-2" onClick={handleToovltip}>
+                    <FaInfoCircle className="text-gray-500" />
+                  </button>
+                </div>
+                {showTooltip && (
+                  <div className="tooltip-content">
+        Test          
+        </div>
+        )}
+                      <div className="overflow-y-auto h-[75vh] md:h-80" style={{ paddingBottom: '3.5rem' }}>
                 {messages.map((message, index) => (
                   <div key={index} className={`message flex items-center ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                    {message.role === 'bot' && <User size={20} className="mr-2" />}
+                    {message.role === 'bot' && <Bot size={20} className="mr-2" />}
+                    {message.role === 'user' && <User size={20} className="mr-2" />}
                     <div className={`${message.role === 'user' ? 'bg-blue-100' : 'bg-gray-200'} m-2 p-2 rounded-lg`}>{message.content}</div>
                   </div>
                 ))}
                 <div ref={endOfMessagesRef} />
               </div>
               <form onSubmit={(e) => { e.preventDefault(); handleSendMessage(input); }} className="absolute bottom-0 left-0 right-0 flex items-center bg-white p-4">
-                <input
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  className="w-full border-2 p-2 rounded-l-lg"
-                  placeholder="Skriv meldingen din her..."
-                />
-                <button type="submit" className="p-2 bg-blue-500 rounded-r-lg">
-                  <Send className="text-white" />
-                </button>
-              </form>          
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                className="w-full border-2 p-2 rounded-l-lg"
+                placeholder="Skriv meldingen din her..."
+              />
+              <button type="submit" className="p-2 bg-blue-500 rounded-r-lg">
+                <Send className="text-white" />
+              </button>
+            </form>         
             </motion.div>
         </div>
       )}
