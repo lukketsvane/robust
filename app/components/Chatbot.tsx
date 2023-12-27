@@ -73,17 +73,23 @@ const Chatbot = () => {
         ></button>
       </div>
 
+      
       <AnimatePresence>
         {isOpen && (
-          <div id="chatbox-wrapper" className="fixed inset-0 z-20 flex items-center justify-center" onClick={() => setIsOpen(false)}>
+          <div 
+            id="chatbox-wrapper" 
+            className="fixed inset-0 z-20 flex items-center justify-center p-4 md:p-0" 
+            onClick={() => setIsOpen(false)}
+          >
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
-              className="relative bg-white rounded-lg shadow-xl p-4 max-w-md w-full h-auto"
+              className="relative bg-white rounded-lg shadow-xl p-4 max-w-md w-full h-auto md:h-96"
               onClick={(e) => e.stopPropagation()}
             >
-              <h2 className="text-lg font-bold mb-2">Chat med Robot</h2>
+              
+              <h2 className="text-xl font-bold mb-2">Chat med Robot-anna</h2>
               <div className="overflow-y-auto h-[85vh] md:h-96">
                 {messages.map((message, index) => (
                   <div key={index} className={`message flex items-center ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>

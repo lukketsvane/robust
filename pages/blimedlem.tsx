@@ -1,13 +1,16 @@
 "use client";
-import { motion } from 'framer-motion';
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const Blimedlem = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <motion.div 
+      className="flex flex-col items-center justify-center min-h-screen py-12"
+      style={{ backgroundColor: '#F2C744' }} // Using the yellow color from om-oss.tsx
+    >
+      <div className="max-w-lg w-full space-y-8 bg-white p-8 rounded-lg shadow-md"> 
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="text-center text-3xl font-extrabold text-gray-900">
             Bli medlem av Robust
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
@@ -45,7 +48,33 @@ const Blimedlem = () => {
                 placeholder="E-postadresse"
               />
             </div>
-            {/* Additional form fields can be added here */}
+            {/* Additional form fields */}
+            <div>
+              <label htmlFor="phone-number" className="sr-only">
+                Telefonnummer
+              </label>
+              <input
+                id="phone-number"
+                name="phone"
+                type="tel"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Telefonnummer"
+              />
+            </div>
+            <div>
+              <label htmlFor="address" className="sr-only">
+                Adresse
+              </label>
+              <input
+                id="address"
+                name="address"
+                type="text"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Adresse"
+              />
+            </div>
           </div>
 
           <div>
@@ -58,7 +87,7 @@ const Blimedlem = () => {
           </div>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
