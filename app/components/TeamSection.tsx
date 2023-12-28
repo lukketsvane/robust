@@ -29,6 +29,8 @@ const teamMembers = [
     description: "Iver er eksperten på brukeropplevelse, med et skarpt øye for detaljer."
   }
 ];
+
+
 const TeamSection = () => {
   const [selectedMember, setSelectedMember] = useState<string | null>(null);
 
@@ -47,7 +49,7 @@ const TeamSection = () => {
         <h2 className="title text-4xl mb-6 font-bold leading-tight text-left">Møt Robust teamet</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
           {teamMembers.map(member => (
-            <motion.div key={member.name} className="team-card" layout>
+            <motion.div key={member.name} className="team-card h-[500px] overflow-hidden" layout>
               <div className="image-container">
                 <Image
                   src={selectedMember === member.name ? "https://d5i52xlspk7ew.cloudfront.net/images/Ahead_temp.svg" : member.imageUrl}

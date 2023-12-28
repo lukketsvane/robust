@@ -14,6 +14,7 @@
 :root {
   --background-start-rgb: 242, 199, 68;
   --background-end-rgb: 242, 199, 68;
+  --foreground-rgb: 0, 0, 0; /* Define a default foreground color */
 }
 
 body {
@@ -55,12 +56,12 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust scrollbar thumb color */
 }
 
 html, body {
   min-height: 100vh;
-  min-height: 100svh;
+  min-height: 100svh; /* Note: 'svh' might be a typo. It should be 'vh' */
   background-attachment: fixed;
 }
 
