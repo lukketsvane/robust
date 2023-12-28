@@ -1,76 +1,65 @@
-// pages/articles/[title].tsx
-
-import { GetStaticPaths, GetStaticProps } from 'next';
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import ArticleTemplate from '../../app/components/ArticleTemplate';
+import { GetStaticProps, GetStaticPaths } from 'next';
+import React from 'react';
 import { getSortedArticlesData, ArticleData } from '../../lib/articles';
 import path from 'path';
 import fs from 'fs';
 import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
+import { MDXRemote } from 'next-mdx-remote';
 
-// Optionally import any additional components used within your MDX here
-
-// Assuming articles are stored in /articles directory at the root of the project
 const articlesDirectory = path.join(process.cwd(), 'articles');
 
 interface ArticleProps {
   articleData: ArticleData;
-  mdxSource: MDXRemoteSerializeResult;
+  mdxSource: { compiledSource: string };
 }
 
 const Article: React.FC<ArticleProps> = ({ articleData, mdxSource }) => {
-  // Optionally include any other components that are used in the MDX content
-  const mdxComponents = {}; 
-
   return (
     <ArticleTemplate frontMatter={articleData}>
-      <MDXRemote {...mdxSource} components={mdxComponents} />
+      <MDXRemote {...mdxSource} />
     </ArticleTemplate>
   );
 };
 
-export const getStaticProps: GetStaticProps<ArticleProps> = async ({ params }) => {
-  // Fetch the title from the file name in params
-  const title = params?.title as string;
-
-  // Find the article data using the title
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const allArticles = getSortedArticlesData();
-  const articleData = allArticles.find((data) => data.title.replace(/\s+/g, '-').toLowerCase() === title) || null;
+  const formattedTitle = params?.title || '';
+  const articleData =
+    allArticles.find(
+      (data) => data.title.replace(/\s+/g, '-').toLowerCase() === formattedTitle
+    ) || null;
 
-  if (articleData === null) {
-    return { notFound: true };
+  let mdxSource;
+
+  if (articleData) {
+    const fullPath = path.join(articlesDirectory, `${formattedTitle}.mdx`);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const { content } = matter(fileContents);
+
+    // Serialize the MDX content
+    mdxSource = await serialize(content);
+  } else {
+    mdxSource = await serialize('<p>Article not found.</p>');
   }
-
-  // Construct the full path to the MDX file for the article
-  const fullPath = path.join(articlesDirectory, `${articleData.title.replace(/\s+/g, '-')}.mdx`);
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
-  const { content } = matter(fileContents);
-  
-  // Serialize the MDX content
-  const mdxSource = await serialize(content);
 
   return {
     props: {
-      articleData,
+      articleData: articleData,
       mdxSource,
     },
   };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // Use the getSortedArticlesData function to get the list of article titles
   const articles = getSortedArticlesData();
 
-  // Map over the list of articles to create an array of paths
   const paths = articles.map((article) => ({
     params: { title: article.title.replace(/\s+/g, '-').toLowerCase() },
   }));
 
-  return {
-    paths,
-    fallback: false, // Can be set to 'blocking' or 'true' for dynamic generation
-  };
+  return { paths, fallback: false };
 };
 
 export default Article;
