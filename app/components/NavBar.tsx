@@ -78,9 +78,9 @@ const NavBar = ({ currentSection, sectionColors }: NavBarProps) => {
             onClick={closeMenu}
           >
             <div className="pt-52 pl-4 pr-4 sm:pl-6 sm:pr-6 lg:pl-8 lg:pr-8 text-left">
-              <Link href="/om-oss"><div onClick={closeMenu} className={`title block cursor-pointer text-5xl md:text-8xl mb-4 ${isTextWhite ? 'text-white' : 'text-black'} small-text menu-item`}>Om Oss</div></Link>
-              <Link href="/siste-nytt"><div onClick={closeMenu} className={`title block cursor-pointer text-5xl md:text-8xl mb-4 ${isTextWhite ? 'text-white' : 'text-black'} small-text menu-item`}>Siste nytt</div></Link>
-              <Link href="/prosjekter"><div onClick={closeMenu} className={`title block cursor-pointer text-5xl md:text-8xl mb-4 ${isTextWhite ? 'text-white' : 'text-black'} small-text menu-item`}>Prosjekter</div></Link>
+              <Link href="/om-oss"><div onClick={closeMenu} className={`title pt-8 block cursor-pointer text-5xl md:text-8xl mb-4 ${isTextWhite ? 'text-white' : 'text-black'} small-text menu-item`}>Om Oss</div></Link>
+              <Link href="/siste-nytt"><div onClick={closeMenu} className={`title pt-8 block cursor-pointer text-5xl md:text-8xl mb-4 ${isTextWhite ? 'text-white' : 'text-black'} small-text menu-item`}>Siste nytt</div></Link>
+              <Link href="/prosjekter"><div onClick={closeMenu} className={`title pt-8 block cursor-pointer text-5xl md:text-8xl mb-4 ${isTextWhite ? 'text-white' : 'text-black'} small-text menu-item`}>Prosjekter</div></Link>
             </div>
             <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
             <Link href="/kontakt">
