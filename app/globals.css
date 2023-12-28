@@ -14,11 +14,11 @@
 :root {
   --background-start-rgb: 242, 199, 68;
   --background-end-rgb: 242, 199, 68;
-  --foreground-rgb: 0, 0, 0; /* Define a default foreground color */
+  --foreground-rgb: 0, 0, 0;
 }
 
 body {
-  font-family: 'Inter', sans-serif; /* Default font for the body */
+  font-family: 'Inter', sans-serif; 
   font-weight: 400;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -28,10 +28,9 @@ body {
   );
 }
 
-/* Styles specifically for titles using VesterbroPoster */
 .title {
   font-family: 'VesterbroPoster', sans-serif;
-  font-weight: 300; /* Assuming VesterbroPoster is bold, adjust as necessary */
+  font-weight: 300; 
 }
 
 body[data-section="1"],
@@ -56,7 +55,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.5); /* Adjust scrollbar thumb color */
+  background-color: rgba(0, 0, 0, 0.5); 
 }
 
 html, body {
