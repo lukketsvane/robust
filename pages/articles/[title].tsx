@@ -5,8 +5,8 @@ import { getSortedArticlesData, ArticleData as BaseArticleData } from '../../lib
 import path from 'path';
 import fs from 'fs';
 import matter from 'gray-matter';
-import { serialize, MDXRemoteSerializeResult } from 'next-mdx-remote/serialize';
-import { MDXRemote } from 'next-mdx-remote';
+import { serialize } from 'next-mdx-remote/serialize';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'; // Updated import
 
 const articlesDirectory = path.join(process.cwd(), 'articles');
 
