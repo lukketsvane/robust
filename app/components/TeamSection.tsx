@@ -45,14 +45,26 @@ const TeamSection = () => {
     hidden: { opacity: 0, height: 0 },
     visible: { opacity: 1, height: 'auto' }
   };
-
+  const customScrollbarStyles = {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    '::-webkit-scrollbar': {
+      display: 'none',
+    },
+    /* Hide scrollbar for IE, Edge and Firefox */
+    'msOverflowStyle': 'none',  /* IE and Edge */
+    'scrollbarWidth': 'none',  /* Firefox */
+  };
+  
   return (
     <section className="min-h-screen team-section bg-transparent overflow-hidden">
       <div className="">
-        <h2 className="title text-4xl pl-2 mb-2 font-boldtext-4xl font-bold leading-tight text-left pb-4">Møt Robust teamet</h2>
-        <div className="relative" style={{ width: '100vw' }}> 
-          <div className="flex overflow-x-auto gap-2 pb-8" style={{ paddingLeft: '0rem' }}>
-            {teamMembers.map(member => (
+        <h2 className="title text-4xl pl-4 mb-2 font-boldtext-4xl font-bold leading-tight text-left pb-4">Møt Robust teamet</h2>
+        <div className="relative" style={{ width: '100vw' }}>
+    <div 
+      className="flex overflow-x-auto gap-2 pb-8" 
+      style={{ ...customScrollbarStyles, paddingLeft: '0rem' }}
+      >
+      {teamMembers.map(member => (
               <motion.div key={member.name} className="team-card flex-shrink-0 pl-4" layout style={{ width: '250px' }}>
                 <div className="h-[280px] overflow-hidden mb-2">
                   <Image
