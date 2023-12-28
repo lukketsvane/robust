@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import HeroTitle from '../app/components/HeroTitle';
 import AboutHero from '../app/components/AboutHero';
+import TeamSection from '../app/components/TeamSection';
 
 const SisteNytt = () => {
   useEffect(() => {
@@ -21,6 +22,8 @@ const SisteNytt = () => {
       <HeroTitle />
       <AboutHero textColor="#000" /> {/* Ensure any added components are contained within the main div */}
       {/* More content can be added here with the proper background color */}
+
+      <TeamSection />
     </div>
   );
 }

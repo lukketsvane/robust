@@ -1,54 +1,94 @@
 "use client";
+import { useState } from 'react';
 import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const teamMembers = [
-    {
-        name: "Anna Nordahl Carlsen",
-        position: "medlem",
-        imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640"
-    },
-    {
-        name: "Marie Storli",
-        position: "medlem",
-        imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640"
-    },
-    {
-        name: "Sigrid Loevlie",
-        position: "medlem",
-        imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640"
-    },
-    {
-        name: "Thomas Rokas",
-        position: "medlem",
-        imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640"
-    },
-    {
-        name: "Iver Finne",
-        position: "medlem",
-        imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640"
-    },
-
+  {
+    name: "Anna Nordahl Carlsen",
+    position: "medlem",
+    imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640",
+    description: "Anna er grunnlegger og administrerende direktør med en lidenskap for design."
+  },
+  {
+    name: "Marie Storli",
+    position: "medlem",
+    imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640",
+    description: "Marie er teamets dynamo, alltid klar med innovative løsninger."
+  },
+  {
+    name: "Sigrid Loevlie",
+    position: "medlem",
+    imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640",
+    description: "Sigrids analytiske tilnærming sikrer alltid de beste resultater."
+  },
+  {
+    name: "Iver Finne",
+    position: "medlem",
+    imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640",
+    description: "Iver er eksperten på brukeropplevelse, med et skarpt øye for detaljer."
+  }
 ];
-
 const TeamSection = () => {
-    return (
-        <section className="team-section py-12 px-4 sm:px-8 lg:px-24">
-            <div className="max-w-6xl mx-auto">
-                <h2 className="text-3xl mb-6 font-bold font-heading team-heading title">vårt styre</h2>
-                <div className="flex flex-wrap justify-start -mx-2 mb-4">
-                    {teamMembers.map(member => (
-                        <div key={member.name} className="w-full sm:w-1/2 md:w-1/4 px-2 mb-4">
-                            <div className="team-member p-2">
-                                <Image className="w-full h-auto mx-auto mb-4" src={member.imageUrl} alt={member.name} width={640} height={360} />
-                                <h3 className="text-lg font-bold team-text">{member.name}</h3>
-                                <p className="team-text">{member.position}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
+  const [selectedMember, setSelectedMember] = useState<string | null>(null);
+
+  const handleMemberClick = (name: string) => {
+    setSelectedMember(selectedMember === name ? null : name);
+  };
+
+  const infoVariants = {
+    hidden: { opacity: 0, height: 0 },
+    visible: { opacity: 1, height: 'auto' }
+  };
+
+  return (
+    <section className="team-section py-12 bg-transparent">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="title text-4xl mb-6 font-bold leading-tight text-left">Møt Robust teamet</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          {teamMembers.map(member => (
+            <motion.div key={member.name} className="team-card" layout>
+              <div className="image-container">
+                <Image
+                  src={selectedMember === member.name ? "https://d5i52xlspk7ew.cloudfront.net/images/Ahead_temp.svg" : member.imageUrl}
+                  alt={member.name}
+                  width={320}
+                  height={320}
+                  layout="responsive"
+                />
+              </div>
+              <div className="info-container p-4">
+                <h3 className="title text-lg font-bold">{member.name}</h3>
+                <p className="text-sm">{member.position}</p>
+                <motion.div
+                  className="plus-icon cursor-pointer text-2xl"
+                  whileHover={{ scale: 1.1 }}
+                  onClick={() => handleMemberClick(member.name)}
+                >
+                  {selectedMember === member.name ? '−' : '+'}
+                </motion.div>
+              </div>
+              <AnimatePresence>
+                {selectedMember === member.name && (
+                  <motion.div
+                    variants={infoVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="hidden"
+                    transition={{ duration: 0.2 }}
+                    className="team-info text-sm"
+                    style={{ overflow: 'hidden' }}
+                  >
+                    <p>{member.description}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default TeamSection;
