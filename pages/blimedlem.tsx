@@ -5,12 +5,12 @@ import { motion } from 'framer-motion';
 const Blimedlem = () => {
   return (
     <motion.div 
-      className="flex flex-col items-center justify-center min-h-screen py-12"
+      className=" flex flex-col items-center justify-center min-h-screen py-12"
       style={{ backgroundColor: '#F2C744' }} // Using the yellow color from om-oss.tsx
     >
       <div className="max-w-lg w-full space-y-8 bg-white p-8 rounded-lg shadow-md"> 
         <div>
-          <h2 className="text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="title text-left text-3xl font-extrabold text-gray-900">
             Bli medlem av Robust
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
