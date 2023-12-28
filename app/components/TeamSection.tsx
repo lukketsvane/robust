@@ -1,4 +1,3 @@
-"use client";
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -8,25 +7,29 @@ const teamMembers = [
     name: "Anna Nordahl Carlsen",
     position: "medlem",
     imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640",
-    description: "Anna er grunnlegger og administrerende direktør med en lidenskap for design."
+    description: "Anna er grunnlegger og administrerende direktør med en lidenskap for design.",
+    profileImageUrl: "/profile_pictures/anna_carlsen.png"
   },
   {
     name: "Marie Storli",
     position: "medlem",
     imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640",
-    description: "Marie er teamets dynamo, alltid klar med innovative løsninger."
+    description: "Marie er teamets dynamo, alltid klar med innovative løsninger.",
+    profileImageUrl: "/profile_pictures/maria_storli.png"
   },
   {
     name: "Sigrid Loevlie",
     position: "medlem",
     imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640",
-    description: "Sigrids analytiske tilnærming sikrer alltid de beste resultater."
+    description: "Sigrids analytiske tilnærming sikrer alltid de beste resultater.",
+    profileImageUrl: "/profile_pictures/sigrid_leovlie.png"
   },
   {
     name: "Iver Finne",
     position: "medlem",
     imageUrl: "https://unsplash.com/photos/GXzHGgzraHc/download?force=true&w=640",
-    description: "Iver er eksperten på brukeropplevelse, med et skarpt øye for detaljer."
+    description: "Iver er eksperten på brukeropplevelse, med et skarpt øye for detaljer.",
+    profileImageUrl: "/profile_pictures/iver_finne.png"
   }
 ];
 
@@ -43,18 +46,18 @@ const TeamSection = () => {
   };
 
   return (
-    <section className="ml-12 pl-12 team-section py-12 bg-transparent">
-      <div className="max-w-7xl mx-auto">
+    <section className="min-h-screen  items-right team-section -mr-24 py-12 bg-transparent overflow-x-auto ml-12 pl-12">
+      <div className="max-w-full mx-auto">
         <h2 className="title text-4xl mb-6 font-bold leading-tight text-left">Møt Robust teamet</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-flow-col auto-cols-max gap-4 md:grid-cols-4">
           {teamMembers.map(member => (
-            <motion.div key={member.name} className="team-card" layout style={{ height: '500px' }}>
+            <motion.div key={member.name} className="team-card" layout style={{ width: '250px' }}>
               <div className="image-container h-[320px] overflow-hidden">
                 <Image
-                  src={selectedMember === member.name ? (member.name === "Iver Finne" ? "/profile_pictures/iver_finne.jpeg" : "https://d5i52xlspk7ew.cloudfront.net/images/Ahead_temp.svg") : member.imageUrl}
+                  src={selectedMember === member.name ? member.profileImageUrl : member.imageUrl}
                   alt={member.name}
-                  width={320}
-                  height={320}
+                  width={400}
+                  height={400}
                   layout="responsive"
                 />
               </div>
