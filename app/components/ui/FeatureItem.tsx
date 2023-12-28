@@ -1,13 +1,11 @@
-"use client";
-interface FeatureItemProps {
-    icon: string;
-    title: string;
-  }
-  
-  export const FeatureItem: React.FC<FeatureItemProps> = ({ icon, title }) => (
-    <div className="flex items-center space-x-2">
-      <img src={icon} alt={title} className="w-8 h-8" />
-      <span>{title}</span>
-    </div>
-  );
-  
+import React from 'react';
+
+interface FeatureListProps {
+  children: React.ReactNode;
+}
+
+export const FeatureList: React.FC<FeatureListProps> = ({ children }) => (
+  <div className="grid grid-cols-2 md:grid-cols-3 gap-4 p-8">
+    {children}
+  </div>
+);
