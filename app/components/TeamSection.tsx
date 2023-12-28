@@ -1,3 +1,4 @@
+"use client";
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -46,13 +47,13 @@ const TeamSection = () => {
   };
 
   return (
-    <section className="min-h-screen items-right team-section -mr-24 py-12 bg-transparent overflow-x-auto ml-12 pl-12">
+    <section className="min-h-screen team-section -mr-24  bg-transparent overflow-x-auto ml-12 pl-12">
       <div className="max-w-full mx-auto">
-        <h2 className="title text-4xl mb-6 font-bold leading-tight text-left">Møt Robust teamet</h2>
+        <h2 className="title text-4xl mb-2 font-bold leading-tight text-left">Møt Robust teamet</h2>
         <div className="grid grid-flow-col auto-cols-max gap-4 md:grid-cols-4">
           {teamMembers.map(member => (
             <motion.div key={member.name} className="team-card" layout style={{ width: '250px' }}>
-              <div className="image-container h-[320px] overflow-hidden">
+              <div className="image-container h-[320px] overflow-hidden mb-2">
                 <Image
                   src={selectedMember === member.name ? member.profileImageUrl : member.imageUrl}
                   alt={member.name}
@@ -61,7 +62,8 @@ const TeamSection = () => {
                   layout="responsive"
                 />
               </div>
-              <div className="info-container py-4">
+              {/* ... */}
+            <div className="info-container pb-0 mt-[-72px]"> 
                 <h3 className="title text-lg font-bold">{member.name}</h3>
                 <p className="text-sm">{member.position}</p>
                 <motion.div
