@@ -60,7 +60,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 html, body {
-  min-height: 110vh;
+  min-height: 102vh;
   background-attachment: fixed;
 }
 
