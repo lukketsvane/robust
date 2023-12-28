@@ -11,7 +11,7 @@ type Message = {
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'bot', content: 'Hei! Jeg er Anna, din assistent. Hvordan kan jeg hjelpe deg i dag?' } // Initial message from the bot
+    { role: 'bot', content: 'Hei jordboer!' } // Initial message from the bot
   ]);  const [input, setInput] = useState('');
   const endOfMessagesRef = useRef<HTMLDivElement>(null);
   const [showTooltip, setShowTooltip] = useState(false);
