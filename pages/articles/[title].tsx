@@ -5,20 +5,20 @@ import { getSortedArticlesData, ArticleData as BaseArticleData } from '../../lib
 import path from 'path';
 import fs from 'fs';
 import matter from 'gray-matter';
-import { serialize } from 'next-mdx-remote/serialize';
+import { serialize, MDXRemoteSerializeResult } from 'next-mdx-remote/serialize';
 import { MDXRemote } from 'next-mdx-remote';
 
 const articlesDirectory = path.join(process.cwd(), 'articles');
 
-// Extending ArticleData to ensure it matches the expected structure for ArticleTemplate
+// Extending ArticleData to match the expected structure for ArticleTemplate
 interface ArticleData extends BaseArticleData {
-  image: string; // Add any other missing properties that ArticleTemplate expects
-  // ... other properties like 'author', 'tags', etc.
+  image: string;
+  // ... other properties
 }
 
 interface ArticleProps {
   articleData: ArticleData;
-  mdxSource: { compiledSource: string };
+  mdxSource: MDXRemoteSerializeResult; // Updated type
 }
 
 const Article: React.FC<ArticleProps> = ({ articleData, mdxSource }) => {
@@ -34,16 +34,16 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const formattedTitle = params?.title || '';
   const articleData = allArticles.find(
     (data) => data.title.replace(/\s+/g, '-').toLowerCase() === formattedTitle
-  ) as ArticleData | null; // Cast to ArticleData type
+  ) as ArticleData | null; 
 
-  let mdxSource;
+  let mdxSource: MDXRemoteSerializeResult;
 
   if (articleData) {
     const fullPath = path.join(articlesDirectory, `${formattedTitle}.mdx`);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { content } = matter(fileContents);
 
-    mdxSource = await serialize(content);
+    mdxSource = await serialize(content); // Serialize returns MDXRemoteSerializeResult
   } else {
     mdxSource = await serialize('<p>Article not found.</p>');
   }
