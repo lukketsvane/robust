@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import styles from './ArticleTemplate.module.css'; // Assume you have a CSS module for custom styles
 
 interface ArticleTemplateProps {
   children: React.ReactNode;
@@ -15,24 +14,21 @@ interface ArticleTemplateProps {
 
 const ArticleTemplate: React.FC<ArticleTemplateProps> = ({ children, frontMatter }) => {
   return (
-    <article className={styles.article}>
-      <h1 className={styles.title}>{frontMatter.title}</h1>
-      <div className={styles.meta}>
-        <span className={styles.date}>{frontMatter.date}</span>
-        <span className={styles.author}>By: {frontMatter.author}</span>
-      </div>
+    <article className="max-w-2xl mx-auto p-5">
+      <h1 className="text-3xl font-bold mb-2">{frontMatter.title}</h1>
+      <p className="text-sm text-gray-600 mb-4">{frontMatter.date} By: {frontMatter.author}</p>
       <Image
         src={frontMatter.image}
         alt={frontMatter.title}
         width={600}
         height={400}
         layout="responsive"
-        className={styles.image}
+        className="rounded"
       />
-      <div className={styles.content}>{children}</div>
-      <div className={styles.tags}>
+      <div className="mt-6 prose">{children}</div>
+      <div className="flex flex-wrap gap-2 mt-4">
         {frontMatter.tags.map((tag, index) => (
-          <span key={index} className={styles.tag}>
+          <span key={index} className="bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded">
             {tag}
           </span>
         ))}
