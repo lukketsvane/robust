@@ -47,54 +47,55 @@ const TeamSection = () => {
   };
 
   return (
-    <section className="min-h-screen team-section -mr-24  bg-transparent overflow-x-auto ml-12 pl-12">
-      <div className="max-w-full mx-auto">
-        <h2 className="title text-4xl mb-2 font-bold leading-tight text-left">Møt Robust teamet</h2>
-        <div className="grid grid-flow-col auto-cols-max gap-4 md:grid-cols-4">
-          {teamMembers.map(member => (
-            <motion.div key={member.name} className="team-card" layout style={{ width: '250px' }}>
-              <div className=" h-[280px] overflow-hidden mb-2">
-                <Image
-                  src={selectedMember === member.name ? member.profileImageUrl : member.imageUrl}
-                  alt={member.name}
-                  width={400}
-                  height={400}
-                  layout="responsive"
-                />
-              </div>
-              {/* ... */}
-            <div className="info-container py-0 mt-[-50px]"> 
-                <h3 className="title text-lg font-bold">{member.name}</h3>
-                <p className="text-sm">{member.position}</p>
-                <motion.div
-                  className="plus-icon cursor-pointer text-2xl"
-                  whileHover={{ scale: 1.1 }}
-                  onClick={() => handleMemberClick(member.name)}
-                >
-                  {selectedMember === member.name ? '−' : '+'}
-                </motion.div>
-              </div>
-              <AnimatePresence>
-                {selectedMember === member.name && (
+    <section className="min-h-screen team-section bg-transparent overflow-hidden">
+      <div className="">
+        <h2 className="title text-4xl pl-2 mb-2 font-boldtext-4xl font-bold leading-tight text-left pb-4">Møt Robust teamet</h2>
+        <div className="relative" style={{ width: '100vw' }}> 
+          <div className="flex overflow-x-auto gap-2 pb-8" style={{ paddingLeft: '0rem' }}>
+            {teamMembers.map(member => (
+              <motion.div key={member.name} className="team-card flex-shrink-0 pl-4" layout style={{ width: '250px' }}>
+                <div className="h-[280px] overflow-hidden mb-2">
+                  <Image
+                    src={selectedMember === member.name ? member.profileImageUrl : member.imageUrl}
+                    alt={member.name}
+                    width={400}
+                    height={400}
+                    layout="responsive"
+                  />
+                </div>
+                <div className="info-container py-0 mt-[-64px]">
+                  <h3 className="title text-lg font-bold">{member.name}</h3>
+                  <p className="text-sm">{member.position}</p>
                   <motion.div
-                    variants={infoVariants}
-                    initial="hidden"
-                    animate="visible"
-                    exit="hidden"
-                    transition={{ duration: 0.2 }}
-                    className="team-info text-sm overflow-auto"
-                    style={{ maxHeight: '100px' }}
+                    className="plus-icon cursor-pointer text-2xl"
+                    whileHover={{ scale: 1.1 }}
+                    onClick={() => handleMemberClick(member.name)}
                   >
-                    <p>{member.description}</p>
+                    {selectedMember === member.name ? '−' : '+'}
                   </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
+                </div>
+                <AnimatePresence>
+                  {selectedMember === member.name && (
+                    <motion.div
+                      variants={infoVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit="hidden"
+                      transition={{ duration: 0.2 }}
+                      className="team-info text-sm overflow-auto"
+                      style={{ maxHeight: '100px' }}
+                    >
+                      <p>{member.description}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default TeamSection;
+  }
+  export default TeamSection;
+  
