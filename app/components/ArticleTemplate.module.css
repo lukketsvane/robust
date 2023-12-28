@@ -1,0 +1,49 @@
+.article {
+    max-width: 2xl;
+    margin: auto;
+    padding: 1rem;
+    font-family: 'Your chosen font', sans-serif;
+    color: #333; /* or any color that matches your design */
+  }
+  
+  .title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: #666;
+  }
+  
+  .author {
+    font-style: italic;
+  }
+  
+  .image {
+    border-radius: 0.5rem;
+  }
+  
+  .content {
+    margin-top: 1.5rem;
+  }
+  
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .tag {
+    background-color: #e0e0e0;
+    color: #333;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+  }
+  
