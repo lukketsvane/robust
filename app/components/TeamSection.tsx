@@ -53,7 +53,7 @@ const TeamSection = () => {
         <div className="grid grid-flow-col auto-cols-max gap-4 md:grid-cols-4">
           {teamMembers.map(member => (
             <motion.div key={member.name} className="team-card" layout style={{ width: '250px' }}>
-              <div className="image-container h-[320px] overflow-hidden mb-2">
+              <div className=" h-[280px] overflow-hidden mb-2">
                 <Image
                   src={selectedMember === member.name ? member.profileImageUrl : member.imageUrl}
                   alt={member.name}
@@ -63,7 +63,7 @@ const TeamSection = () => {
                 />
               </div>
               {/* ... */}
-            <div className="info-container pb-0 mt-[-72px]"> 
+            <div className="info-container py-0 mt-[-50px]"> 
                 <h3 className="title text-lg font-bold">{member.name}</h3>
                 <p className="text-sm">{member.position}</p>
                 <motion.div
