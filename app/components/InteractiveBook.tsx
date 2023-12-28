@@ -42,13 +42,13 @@ const InteractiveBook: React.FC<InteractiveBookProps> = ({ images }) => {
               <p className="text-lg">
                 Side {pageNumber + 1} av {images.length}
               </p>
-              <div
+              <a
                 href={images[pageNumber]}
                 download={`Vedtekter-side-${pageNumber + 1}.png`}
                 className="text-blue-600 hover:text-blue-800 transition-colors duration-300"
               >
                 Last ned PDF
-              </div>
+              </a>
             </div>
           </div>
         </motion.div>
