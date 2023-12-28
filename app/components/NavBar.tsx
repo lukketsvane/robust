@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useAnimation } from 'framer-motion';
-import { MenuIcon, XIcon } from 'lucide-react';
+import { MenuIcon, XIcon, ArrowLeftIcon } from 'lucide-react';
 import Link from 'next/link';
 
 const textColorForSection: { [key: string]: string } = {
@@ -23,6 +23,7 @@ const overlayVariants = {
 
 const NavBar = ({ currentSection, sectionColors }: NavBarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSubPage, setIsSubPage] = useState(false);
   const menuOverlayBackgroundColor = sectionColors?.[currentSection] || 'transparent';
   const isTextWhite = textColorForSection[sectionColors[currentSection]] === 'text-white';
   const iconAnimation = useAnimation();
@@ -32,6 +33,17 @@ const NavBar = ({ currentSection, sectionColors }: NavBarProps) => {
     const bgColor = sectionColors[currentSection];
     document.body.style.backgroundColor = bgColor;
     iconAnimation.start({ rotate: isMenuOpen ? 0 : 180 });
+
+    const checkIfSubPage = () => {
+      const pathArray = window.location.pathname.split('/');
+      setIsSubPage(pathArray.length > 2);
+    };
+
+    window.addEventListener('popstate', checkIfSubPage);
+
+    checkIfSubPage();
+
+    return () => window.removeEventListener('popstate', checkIfSubPage);
   }, [currentSection, sectionColors, iconAnimation, isMenuOpen]);
 
   const toggleMenu = () => {
@@ -43,16 +55,28 @@ const NavBar = ({ currentSection, sectionColors }: NavBarProps) => {
   };
 
   const spinLogo = async () => {
-    await logoSpin.start({ rotate: 360 });
-    logoSpin.set({ rotate: 0 });
+    if (!isSubPage) {
+      await logoSpin.start({ rotate: 360 });
+      logoSpin.set({ rotate: 0 });
+    }
   };
+
+  const backLink = isSubPage ? '/articles' : '/';
 
   return (
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 py-2 ${isMenuOpen ? 'bg-transparent' : sectionColors[currentSection]} px-4 sm:px-6 lg:px-8 flex items-center justify-between smooth-background-transition`}>
         <div onClick={spinLogo}>
-          <Link href="/">
-            <motion.img src={isTextWhite ? '/logo_white.png' : '/logo_black.png'} alt="Robust Logo" className="w-12 h-12 cursor-pointer" animate={logoSpin} />
+          <Link href={backLink} passHref>
+            <motion.div className="cursor-pointer" animate={isSubPage ? {} : logoSpin}>
+              {isSubPage ? (
+                // Arrow icon with smaller size on mobile using Tailwind's responsive prefixes
+                <ArrowLeftIcon className={`w-10 h-10 sm:w-12 sm:h-12 ${isTextWhite ? 'text-white' : 'text-black'}`} />
+              ) : (
+                // Logo image with smaller size on mobile using Tailwind's responsive prefixes
+                <img src={isTextWhite ? '/logo_white.png' : '/logo_black.png'} alt="Robust Logo" className="w-8 h-8 sm:w-12 sm:h-12" />
+              )}
+            </motion.div>
           </Link>
         </div>
         <motion.button
@@ -64,6 +88,7 @@ const NavBar = ({ currentSection, sectionColors }: NavBarProps) => {
           {isMenuOpen ? <XIcon className={`w-10 h-10 ${isTextWhite ? 'text-white' : 'text-black'}`} /> : <MenuIcon className={`w-10 h-10 ${isTextWhite ? 'text-white' : 'text-black'}`} />}
         </motion.button>
       </nav>
+
 
       <AnimatePresence>
         {isMenuOpen && (
