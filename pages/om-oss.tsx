@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll } from 'framer-motion';
-import NavBar from '../app/components/NavBar';
 import OmOssSectionContent from '../app/components/OmOssSectionContent';
 import FingerFooter from '../app/components/FingerFooter';
 import '../app/globals.css';
@@ -49,7 +48,6 @@ const OmOss = () => {
 
   return (
     <>
-      <NavBar currentSection={currentSection} sectionColors={sectionColorsOmOss} />
       <motion.div
         className="flex flex-col items-center justify-center w-full min-h-screen"
         style={{ backgroundColor: sectionColorsOmOss[currentSection] }}

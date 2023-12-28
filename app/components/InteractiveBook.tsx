@@ -1,9 +1,10 @@
+"use client";
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 type InteractiveBookProps = {
-  images: string[]; // Array of image paths representing the pages
+  images: string[]; 
 };
 
 const InteractiveBook: React.FC<InteractiveBookProps> = ({ images }) => {
@@ -41,14 +42,13 @@ const InteractiveBook: React.FC<InteractiveBookProps> = ({ images }) => {
               <p className="text-lg">
                 Side {pageNumber + 1} av {images.length}
               </p>
-              {/* Corrected download link placement */}
-              <a
+              <div
                 href={images[pageNumber]}
                 download={`Vedtekter-side-${pageNumber + 1}.png`}
                 className="text-blue-600 hover:text-blue-800 transition-colors duration-300"
               >
                 Last ned PDF
-              </a>
+              </div>
             </div>
           </div>
         </motion.div>

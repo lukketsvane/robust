@@ -26,6 +26,7 @@ const NavBar = ({ currentSection, sectionColors }: NavBarProps) => {
   const menuOverlayBackgroundColor = sectionColors?.[currentSection] || 'transparent';
   const isTextWhite = textColorForSection[sectionColors[currentSection]] === 'text-white';
   const iconAnimation = useAnimation();
+  const logoSpin = useAnimation();
 
   useEffect(() => {
     const bgColor = sectionColors[currentSection];
@@ -37,12 +38,23 @@ const NavBar = ({ currentSection, sectionColors }: NavBarProps) => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  const spinLogo = async () => {
+    await logoSpin.start({ rotate: 360 });
+    logoSpin.set({ rotate: 0 });
+  };
+
   return (
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 py-2 ${isMenuOpen ? 'bg-transparent' : sectionColors[currentSection]} px-4 sm:px-6 lg:px-8 flex items-center justify-between smooth-background-transition`}>
-        <Link href="/">
-          <img src={isTextWhite ? '/logo_white.png' : '/logo_black.png'} alt="Robust Logo" className="w-12 h-12" />
-        </Link>
+        <div onClick={spinLogo}>
+          <Link href="/">
+            <motion.img src={isTextWhite ? '/logo_white.png' : '/logo_black.png'} alt="Robust Logo" className="w-12 h-12 cursor-pointer" animate={logoSpin} />
+          </Link>
+        </div>
         <motion.button
           onClick={toggleMenu}
           className="focus:outline-none z-50"
@@ -63,31 +75,34 @@ const NavBar = ({ currentSection, sectionColors }: NavBarProps) => {
             animate="visible"
             exit="hidden"
             transition={{ duration: 0.2 }}
+            onClick={closeMenu}
           >
             <div className="pt-52 pl-4 pr-4 sm:pl-6 sm:pr-6 lg:pl-8 lg:pr-8 text-left">
-              <Link href="/om-oss">
-                <span className={`title block cursor-pointer text-5xl md:text-8xl mb-4 ${isTextWhite ? 'text-white' : 'text-black'} small-text menu-item`}>Om Oss</span>
-              </Link>
-              <Link href="/siste-nytt">
-                <span className={`title block cursor-pointer text-5xl md:text-8xl mb-4 ${isTextWhite ? 'text-white' : 'text-black'} small-text menu-item`}>Siste nytt</span>
-              </Link>
-              <Link href="/prosjekter">
-                <span className={`title block cursor-pointer text-5xl md:text-8xl mb-4 ${isTextWhite ? 'text-white' : 'text-black'} small-text menu-item`}>Prosjekter</span>
-              </Link>
+              <Link href="/om-oss"><div onClick={closeMenu} className={`title block cursor-pointer text-5xl md:text-8xl mb-4 ${isTextWhite ? 'text-white' : 'text-black'} small-text menu-item`}>Om Oss</div></Link>
+              <Link href="/siste-nytt"><div onClick={closeMenu} className={`title block cursor-pointer text-5xl md:text-8xl mb-4 ${isTextWhite ? 'text-white' : 'text-black'} small-text menu-item`}>Siste nytt</div></Link>
+              <Link href="/prosjekter"><div onClick={closeMenu} className={`title block cursor-pointer text-5xl md:text-8xl mb-4 ${isTextWhite ? 'text-white' : 'text-black'} small-text menu-item`}>Prosjekter</div></Link>
             </div>
             <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
-              <Link href="/kontakt">
-                <span className={`cursor-pointer text-3xl md:text-4xl ${isTextWhite ? 'text-white' : 'text-black'} small-text contact-newsletter-text`}>Kontakt</span>
-              </Link>
-              <Link href="/nyhetsbrev">
-                <span className={`cursor-pointer text-3xl md:text-4xl ${isTextWhite ? 'text-white' : 'text-black'} small-text contact-newsletter-text`}>Nyhetsbrev</span>
-              </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
-  );
+            <Link href="/kontakt">
+  <div onClick={closeMenu} className={`cursor-pointer text-3xl md:text-4xl ${isTextWhite ? 'text-white' : 'text-black'} small-text contact-newsletter-text`}>Kontakt</div>
+</Link>
+<Link href="/nyhetsbrev">
+  <div onClick={closeMenu} className={`cursor-pointer text-3xl md:text-4xl ${isTextWhite ? 'text-white' : 'text-black'} small-text contact-newsletter-text`}>Nyhetsbrev</div>
+</Link>
+</div>
+<div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+  <Link href="/kontakt">
+    <div onClick={closeMenu} className={`cursor-pointer text-3xl md:text-4xl ${isTextWhite ? 'text-white' : 'text-black'} small-text contact-newsletter-text`}>Kontakt</div>
+  </Link>
+  <Link href="/nyhetsbrev">
+    <div onClick={closeMenu} className={`cursor-pointer text-3xl md:text-4xl ${isTextWhite ? 'text-white' : 'text-black'} small-text contact-newsletter-text`}>Nyhetsbrev</div>
+  </Link>
+</div>
+</motion.div>
+)}
+</AnimatePresence>
+</>
+);
 };
 
 export default NavBar;

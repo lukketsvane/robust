@@ -1,12 +1,10 @@
 import { motion } from 'framer-motion';
-import NavBar from '../app/components/NavBar';
 const Nyhetsbrev = () => {
   const yellowColor = "#F2C744"; 
   const hoverColor = "#dba63c"; 
 
   return (
     <>
-      <NavBar currentSection={0} sectionColors={[yellowColor]} />
       <motion.div
         className="flex flex-col items-left justify-center mx-16 w-full min-h-screen"
         style={{ backgroundColor: yellowColor }}

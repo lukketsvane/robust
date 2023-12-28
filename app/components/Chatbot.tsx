@@ -69,7 +69,7 @@ const Chatbot = () => {
                 </div>
                 {showTooltip && (
                   <div className="tooltip-content">
-                  Test          
+                  Vår eksperimentelle chatbot-funksjon er designet for å gi rask og effektiv assistanse. Anna kan hjelpe deg med å finne informasjon på nettstedet og svare på dine spørsmål.          
                   </div>
                   )}
                       <div className="overflow-y-auto h-[75vh] md:h-80" style={{ paddingBottom: '3.5rem' }}>
