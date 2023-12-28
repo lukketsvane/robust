@@ -14,8 +14,7 @@ const Blimedlem = () => {
             Bli medlem av Robust
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Og få tilgang til eksklusive medlemsfordeler
-          </p>
+           </p>
         </div>
         <form className="mt-8 space-y-6" action="#" method="POST">
           <input type="hidden" name="remember" defaultValue="true" />

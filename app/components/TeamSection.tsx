@@ -51,7 +51,7 @@ const TeamSection = () => {
             <motion.div key={member.name} className="team-card" layout style={{ height: '500px' }}>
               <div className="image-container h-[320px] overflow-hidden">
                 <Image
-                  src={selectedMember === member.name ? "https://d5i52xlspk7ew.cloudfront.net/images/Ahead_temp.svg" : member.imageUrl}
+                  src={selectedMember === member.name ? (member.name === "Iver Finne" ? "/profile_pictures/iver_finne.jpeg" : "https://d5i52xlspk7ew.cloudfront.net/images/Ahead_temp.svg") : member.imageUrl}
                   alt={member.name}
                   width={320}
                   height={320}
@@ -78,7 +78,7 @@ const TeamSection = () => {
                     exit="hidden"
                     transition={{ duration: 0.2 }}
                     className="team-info text-sm overflow-auto"
-                    style={{ maxHeight: '100px' }} // Set a maximum height for the description
+                    style={{ maxHeight: '100px' }}
                   >
                     <p>{member.description}</p>
                   </motion.div>
