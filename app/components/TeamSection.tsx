@@ -30,7 +30,6 @@ const teamMembers = [
   }
 ];
 
-
 const TeamSection = () => {
   const [selectedMember, setSelectedMember] = useState<string | null>(null);
 
@@ -49,8 +48,8 @@ const TeamSection = () => {
         <h2 className="title text-4xl mb-6 font-bold leading-tight text-left">Møt Robust teamet</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
           {teamMembers.map(member => (
-            <motion.div key={member.name} className="team-card h-[500px] overflow-hidden" layout>
-              <div className="image-container">
+            <motion.div key={member.name} className="team-card" layout style={{ height: '500px' }}>
+              <div className="image-container h-[320px] overflow-hidden">
                 <Image
                   src={selectedMember === member.name ? "https://d5i52xlspk7ew.cloudfront.net/images/Ahead_temp.svg" : member.imageUrl}
                   alt={member.name}
@@ -78,8 +77,8 @@ const TeamSection = () => {
                     animate="visible"
                     exit="hidden"
                     transition={{ duration: 0.2 }}
-                    className="team-info text-sm"
-                    style={{ overflow: 'hidden' }}
+                    className="team-info text-sm overflow-auto"
+                    style={{ maxHeight: '100px' }} // Set a maximum height for the description
                   >
                     <p>{member.description}</p>
                   </motion.div>

@@ -61,7 +61,6 @@ body::-webkit-scrollbar-thumb {
 
 html, body {
   min-height: 100vh;
-  min-height: 100svh; /* Note: 'svh' might be a typo. It should be 'vh' */
   background-attachment: fixed;
 }
 

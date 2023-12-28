@@ -12,14 +12,14 @@ const FingerFooter = () => {
   return (
     <div className="h-screen flex justify-center items-center">
       <div className="text-center">
-        <h1 className="text-6xl font-bold mb-6">Meld deg inn!</h1>
+        <h1 className="title text-7xl font-bold mb-6">Meld deg inn!</h1>
         <Link href="/blimedlem" passHref>
           <motion.a
-            className="py-2 px-4 bg-transparent text-3xl font-semibold rounded-full border-2 border-black cursor-pointer"
+            className=" py-2 px-4 bg-transparent text-lg font-semibold rounded-full border-2 border-black cursor-pointer"
             whileHover={{ scale: 1.05, boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.2)" }}
             style={{ color: '#333333', boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.1)" }}
           >
-            Bli Medlem
+            BLI MEDLEM
           </motion.a>
         </Link>
         <motion.div
