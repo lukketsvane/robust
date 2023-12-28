@@ -43,22 +43,21 @@ const TeamSection = () => {
   };
 
   return (
-    <section className="ml-12 pl-12 team-section py-12 bg-transparent">
+    <section className="ml-12 pl-12 team-section bg-transparent">
       <div className="max-w-7xl mx-auto">
-        <h2 className="title text-4xl mb-6 font-bold leading-tight text-left">Møt Robust teamet</h2>
+        <h2 className="title text-4xl  font-bold leading-tight text-left">Møt Robust teamet</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
           {teamMembers.map(member => (
-            <motion.div key={member.name} className="team-card" layout style={{ height: '500px' }}>
-              <div className="image-container h-[320px] overflow-hidden">
+            <motion.div key={member.name} className="team-card" layout>
+              <div className="image-container h-[250px] overflow-hidden relative">
                 <Image
                   src={selectedMember === member.name ? (member.name === "Iver Finne" ? "/profile_pictures/iver_finne.jpeg" : "https://d5i52xlspk7ew.cloudfront.net/images/Ahead_temp.svg") : member.imageUrl}
                   alt={member.name}
-                  width={320}
-                  height={320}
-                  layout="responsive"
+                  layout="fill"
+                  objectFit="cover"
                 />
               </div>
-              <div className="info-container py-4">
+              <div className="info-container py-2">
                 <h3 className="title text-lg font-bold">{member.name}</h3>
                 <p className="text-sm">{member.position}</p>
                 <motion.div
@@ -77,7 +76,7 @@ const TeamSection = () => {
                     animate="visible"
                     exit="hidden"
                     transition={{ duration: 0.2 }}
-                    className="team-info text-sm overflow-auto"
+                    className="team-info text-sm p-4 overflow-auto"
                     style={{ maxHeight: '100px' }}
                   >
                     <p>{member.description}</p>
