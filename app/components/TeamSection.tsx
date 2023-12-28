@@ -46,7 +46,7 @@ const TeamSection = () => {
   };
 
   return (
-    <section className="min-h-screen  items-right team-section -mr-24 py-12 bg-transparent overflow-x-auto ml-12 pl-12">
+    <section className="min-h-screen items-right team-section -mr-24 py-12 bg-transparent overflow-x-auto ml-12 pl-12">
       <div className="max-w-full mx-auto">
         <h2 className="title text-4xl mb-6 font-bold leading-tight text-left">Møt Robust teamet</h2>
         <div className="grid grid-flow-col auto-cols-max gap-4 md:grid-cols-4">
