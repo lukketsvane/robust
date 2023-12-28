@@ -58,7 +58,7 @@ const TeamSection = () => {
                   layout="responsive"
                 />
               </div>
-              <div className="info-container p-4">
+              <div className="info-container py-4">
                 <h3 className="title text-lg font-bold">{member.name}</h3>
                 <p className="text-sm">{member.position}</p>
                 <motion.div
