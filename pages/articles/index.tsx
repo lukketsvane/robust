@@ -2,38 +2,38 @@ import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { getSortedArticlesData, ArticleData as MyArticleData } from '../../lib/articles'; // Use alias for ArticleData
+import { getSortedArticlesData, ArticleData } from '../../lib/articles';
 import { List, Grid } from 'lucide-react'; // Import Lucide icons
 
 interface ArticlesPageProps {
-  articles: MyArticleData[]; // Use the alias here
+  articles: ArticleData[];
 }
 
 const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState('grid'); // Default to grid view
 
-  const filteredArticles = articles.filter((article) =>
+  const filteredArticles = articles.filter(article => 
     article.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const renderGridView = () => (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-16">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 pt-16 px-4 mx-auto max-w-3xl"> {/* Added max-width container */}
       {filteredArticles.map((article) => (
         <Link key={article.title} href={`/articles/${encodeURI(article.title.toLowerCase().replace(/\s+/g, '-'))}`}>
-          <div className="block rounded-lg shadow-lg overflow-hidden hover:bg-gray-100 transition">
+          <div className="block group rounded-lg shadow-lg overflow-hidden hover:bg-gray-100 transition h-full">
             <Image
-              src={article.image || '/default-image.png'}
+              src={article.image || '/default-image.png'} // Fallback to default image if not provided
               alt={article.title}
               width={400}
               height={250}
               layout="responsive"
               className="object-cover"
             />
-            <div className="p-4">
+            <div className="p-4 h-full">
               <div className="text-xl font-semibold mb-2">{article.title}</div>
               <div className="text-sm text-gray-500 mb-2">{article.date} av {article.author}</div>
-              <p className="text-gray-600">{article.summary}</p>
+              <p className="text-gray-600 h-16 overflow-hidden">{article.summary}</p>
             </div>
           </div>
         </Link>
@@ -42,7 +42,7 @@ const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
   );
 
   const renderListView = () => (
-    <div className="space-y-4 max-w-2xl mx-auto p-5 pt-16">
+    <div className="space-y-4 max-w-2xl mx-auto p-5 pt-16"> {/* Added max-width container */}
       {filteredArticles.map((article) => (
         <Link key={article.title} href={`/articles/${encodeURI(article.title.toLowerCase().replace(/\s+/g, '-'))}`}>
           <div className="block rounded shadow p-4 hover:bg-gray-100 transition">
@@ -56,14 +56,14 @@ const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
   );
 
   return (
-    <div className="space-y-4 max-w-2xl mx-auto p-5 pt-16">
-      <div className="flex justify-between mb-6">
+    <div className="space-y-4 p-5 pt-16"> {/* Added padding at the top */}
+      <div className="flex justify-center mb-6"> {/* Center-align the search bar and toggle */}
         <input
           type="text"
           placeholder="Søk i artikler..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="p-2 border border-gray-300 rounded w-full md:w-2/3"
+          className="p-2 border border-gray-300 rounded w-1/2 md:w-2/3" // Set width to half of the container
         />
         <button
           onClick={() => setViewMode(viewMode === 'grid' ? 'list' : 'grid')}

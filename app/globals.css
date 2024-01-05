@@ -49,10 +49,7 @@ body[data-section] {
   margin-right: 0;
 }
 
-body::-webkit-scrollbar {
-  width: 0.5rem;
-  background-color: transparent;
-}
+
 
 body::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.5); 
