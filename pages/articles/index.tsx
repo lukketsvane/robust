@@ -2,19 +2,11 @@ import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { getSortedArticlesData, ArticleData } from '../../lib/articles';
+import { getSortedArticlesData, ArticleData as MyArticleData } from '../../lib/articles'; // Use alias for ArticleData
 import { List, Grid } from 'lucide-react'; // Import Lucide icons
 
 interface ArticlesPageProps {
-  articles: ArticleData[];
-}
-
-interface ArticleData {
-  title: string;
-  date: string;
-  author: string;
-  summary: string;
-  image?: string; // Add the 'image' property as an optional field
+  articles: MyArticleData[]; // Use the alias here
 }
 
 const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
