@@ -4,20 +4,24 @@ import React from 'react';
 const OmOssSectionContent = () => {
   return (
     <div className="p-4 text-left">
-      <h1 className="title text-3xl font-bold mb-4">Om Foreningen ROBUST</h1>
+      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Om Foreningen ROBUST</h1>
       <p className="mb-4">
-        Vedtektene for ROBUST ble vedtatt av Anna Nordahl Carlsen og Marie Storli i Oslo, den 10. juni 2023.
+        Foreningen Robust jobber for en regenerativ økonomi som fungerer innenfor planetens tålegrenser, og sikrer et godt liv for alle levende vesener. Vårt arbeid er bygget på tverrfaglige tilnærminger, inkludert økonomi, historie, psykologi, klima og filosofi.
       </p>
       <p className="mb-4">
-        Vårt mål er en robust økonomi som fungerer innenfor planetens tålegrenser, 
-        og sikrer et godt liv for alle levende vesener.
+        Vi kombinerer forskning, formidling og visuelle uttrykk for å spre kunnskap og engasjere samfunnet.
       </p>
       <p className="mb-4">
-        Vi fremmer dette målet gjennom tverrfaglige innsikter og mangfoldige perspektiv, 
-        aktiviteter og prosjekter som inkluderer informasjonsspredning, økonomiske analyser, 
-        og praktiske eksempler på en regenerativ økonomi.
+        Robust består av medlemmer med ulik bakgrunn, inkludert økonomi, design, kunst, matematikk, miljøstudier og business. Vi henter styrke fra våre mangfoldige bakgrunner og er tilknyttet ulike nettverk som International Degrowth Network, Rethinking Economics Norge, Postgrowth Nordics Network og Vekstfri Norge.
       </p>
-      {/* Additional content sections can be added here */}
+      <p className="mb-4">
+        Vi utfordrer konvensjonelle metoder for å fremme omsorgsfulle og livskraftige tilnærminger.
+      </p>
+      <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-2">VÅRE EKSPERTOMRÅDER:</h2>
+      <ul className="list-disc pl-6 mb-4">
+        <li className="mb-2">ØKONOMISK VELVÆRE</li>
+        <li>SYSTEMTENKNING</li>
+      </ul>
     </div>
   );
 };

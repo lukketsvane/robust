@@ -14,7 +14,7 @@ interface ArticleTemplateProps {
 
 const ArticleTemplate: React.FC<ArticleTemplateProps> = ({ children, frontMatter }) => {
   return (
-    <article className="max-w-2xl mx-auto p-5">
+    <article className="max-w-2xl mx-auto p-5 pt-16"> {/* Increased padding at the top */}
       <h1 className="text-3xl font-bold mb-2">{frontMatter.title}</h1>
       <p className="text-sm text-gray-600 mb-4">{frontMatter.date} By: {frontMatter.author}</p>
       <Image
