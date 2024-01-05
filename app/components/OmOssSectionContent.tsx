@@ -1,9 +1,15 @@
 "use client"; 
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const OmOssSectionContent = () => {
   return (
-    <div className="p-4 text-left">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="p-4 text-left"
+    >
       <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Om Foreningen ROBUST</h1>
       <p className="mb-4">
         Foreningen Robust jobber for en regenerativ økonomi som fungerer innenfor planetens tålegrenser, og sikrer et godt liv for alle levende vesener. Vårt arbeid er bygget på tverrfaglige tilnærminger, inkludert økonomi, historie, psykologi, klima og filosofi.
@@ -22,7 +28,7 @@ const OmOssSectionContent = () => {
         <li className="mb-2">ØKONOMISK VELVÆRE</li>
         <li>SYSTEMTENKNING</li>
       </ul>
-    </div>
+    </motion.div>
   );
 };
 
