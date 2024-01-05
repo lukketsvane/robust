@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef } from 'react';
-import { motion, useViewportScroll, useTransform, useAnimation } from 'framer-motion';
+import { motion, useViewportScroll, useAnimation } from 'framer-motion';
 
 interface AboutHeroProps {
   textColor: string;
@@ -16,10 +16,10 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
     const updatePosition = () => {
       const top = element?.getBoundingClientRect().top ?? 0;
       const bottom = (element?.getBoundingClientRect().top ?? 0) + (element?.offsetHeight ?? 0);
-      
+
       const rotateStart = top - window.innerHeight;
       const rotateEnd = bottom - window.innerHeight;
-      
+
       if (scrollY.get() > rotateStart && scrollY.get() < rotateEnd) {
         controls.start(i => ({
           rotate: 0,
@@ -39,12 +39,12 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
   }, [scrollY, controls]);
 
   return (
-    <div
+    <motion.div
       ref={ref}
       className={`flex flex-col justify-center items-start min-h-screen px-4 sm:px-8 md:px-16 lg:px-24 ${textColor}`}
     >
-      {['HVA GJØR ROBUST?', 'Vi bygger et økonomisk system som prioriterer velvære og beskytter planetens økosystemer.', 
-        'Foreningen Robust jobber for en regenerativ økonomi innenfor planetens tålegrenser, fremmer formålet gjennom tverrfaglige innsikter og mangfoldige perspektiv, og kombinerer forskning, formidling og visuelle uttrykk for å dele kunnskapen.', 
+      {['HVA GJØR ROBUST?', 'Vi bygger et økonomisk system som prioriterer velvære og beskytter planetens økosystemer.',
+        'Foreningen Robust jobber for en regenerativ økonomi innenfor planetens tålegrenser, fremmer formålet gjennom tverrfaglige innsikter og mangfoldige perspektiv, og kombinerer forskning, formidling og visuelle uttrykk for å dele kunnskapen.',
         'Robust består (foreløpig) av medlemmer med bakgrunn innen økonomi, (visuell) design, kunst, matematikk, miljøstudier, kognitiv (IVER HVA ER DIN BAKGRUNN?) og business. Foreningen høster styrke i medlemmenes ulike bakgrunner. Videre er flere av medlemmene koblet opp til ulike nettverk som International Degrowth Network, Rethinking Economics Norge, Postgrowth Nordics Network og Vekstfri Norge.']
         .map((text, index) => (
           <motion.div
@@ -58,7 +58,7 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
           </motion.div>
         ))
       }
-    </div>
+    </motion.div>
   );
 };
 
