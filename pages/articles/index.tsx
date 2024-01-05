@@ -30,7 +30,7 @@ const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
               layout="responsive"
               className="object-cover"
             />
-            <div className="p-4 h-full">
+            <div className="p-4 h-full bg-white"> {/* Add white background here */}
               <div className="text-xl font-semibold mb-2">{article.title}</div>
               <div className="text-sm text-gray-500 mb-2">{article.date} av {article.author}</div>
               <p className="text-gray-600 h-16 overflow-hidden">{article.summary}</p>
