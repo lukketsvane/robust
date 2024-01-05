@@ -18,15 +18,15 @@ const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
   );
 
   const renderGridView = () => (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 pt-16 px-4 mx-auto max-w-3xl"> {/* Added max-width container */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 pt-16 px-4 mx-auto max-w-6xl">
       {filteredArticles.map((article) => (
         <Link key={article.title} href={`/articles/${encodeURI(article.title.toLowerCase().replace(/\s+/g, '-'))}`}>
           <div className="block group rounded-lg shadow-lg overflow-hidden hover:bg-gray-100 transition h-full">
             <Image
               src={article.image || '/default-image.png'} // Fallback to default image if not provided
               alt={article.title}
-              width={400}
-              height={250}
+              width={600}
+              height={375}
               layout="responsive"
               className="object-cover"
             />
@@ -42,7 +42,7 @@ const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
   );
 
   const renderListView = () => (
-    <div className="space-y-4 max-w-2xl mx-auto p-5 pt-16"> {/* Added max-width container */}
+    <div className="space-y-4 max-w-2xl mx-auto p-5 pt-16">
       {filteredArticles.map((article) => (
         <Link key={article.title} href={`/articles/${encodeURI(article.title.toLowerCase().replace(/\s+/g, '-'))}`}>
           <div className="block rounded shadow p-4 hover:bg-gray-100 transition">
@@ -56,14 +56,14 @@ const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
   );
 
   return (
-    <div className="space-y-4 p-5 pt-16"> {/* Added padding at the top */}
-      <div className="flex justify-center mb-6"> {/* Center-align the search bar and toggle */}
+    <div className="space-y-4 p-5 pt-16">
+      <div className="flex justify-center mb-6">
         <input
           type="text"
           placeholder="Søk i artikler..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="p-2 border border-gray-300 rounded w-1/2 md:w-2/3" // Set width to half of the container
+          className="p-2 border border-gray-300 rounded w-1/2 md:w-2/3"
         />
         <button
           onClick={() => setViewMode(viewMode === 'grid' ? 'list' : 'grid')}
