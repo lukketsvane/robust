@@ -3,14 +3,24 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
+const sectionVariants = {
+  hidden: { opacity: 0, scale: 0.9, rotate: -5 }, // Initial values
+  visible: { opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.5 } }, // Final values
+};
+
 const cardVariants = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+  hidden: { opacity: 0, scale: 0.9, rotate: 5 }, // Initial values
+  visible: { opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.5 } }, // Final values
 };
 
 const HeroSection = () => {
   return (
-    <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-24 py-12">
+    <motion.div
+      className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-24 py-12"
+      initial="hidden"
+      animate="visible"
+      variants={sectionVariants}
+    >
       <div className="flex flex-col md:flex-row items-center">
         <div className="md:w-1/2">
           <p className="text-sm uppercase mb-2">Robust | Din Pålitelige Partner</p>
@@ -49,7 +59,7 @@ const HeroSection = () => {
           </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

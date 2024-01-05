@@ -27,7 +27,6 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
           const elementCenter = rect.height / 2 + elementTop;
           const distanceToCenter = viewportHeight / 2 - elementCenter;
 
-          // Calculate rotation, with a delay when the element is in the center
           let rotation = 0;
           if (distanceToCenter > transitionDelay) {
             rotation = (distanceToCenter - transitionDelay) / viewportHeight * initialRotations[i];
@@ -35,12 +34,10 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
             rotation = (distanceToCenter + transitionDelay) / viewportHeight * initialRotations[i];
           }
 
-          // Calculate opacity with a stable period in the center
           let opacity = 1;
           if (Math.abs(distanceToCenter) > transitionDelay) {
             opacity = 1;
           } else {
-            // Extend the opacity duration in the center
             opacity = 1;
           }
 
@@ -52,8 +49,7 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
 
     window.addEventListener('scroll', updateStyles);
     window.addEventListener('resize', updateStyles);
-    updateStyles(); // Initial call to set styles
-
+    updateStyles(); /
     return () => {
       window.removeEventListener('scroll', updateStyles);
       window.removeEventListener('resize', updateStyles);
