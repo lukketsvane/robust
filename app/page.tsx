@@ -61,7 +61,7 @@ export default function Home() {
           {[0, 1, 2, 3, 4].map((index) => (
             <div key={index} className={`section w-full my-8 ${textColor}`}>
               {index === 0 && <HeroTitle />}
-              {index === 1 && <AboutHero />}
+              {index === 1 && <AboutHero textColor={textColor} />}
               {index === 2 && <Stories />}
               {index === 3 && <HeroSection />}
               {index === 4 && <Partners />}

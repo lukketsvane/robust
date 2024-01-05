@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+"use client";
+import React, { useEffect, useRef } from 'react';
 import { motion, useViewportScroll, useAnimation } from 'framer-motion';
 
 interface AboutHeroProps {
@@ -7,9 +8,8 @@ interface AboutHeroProps {
 
 const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
   const { scrollY } = useViewportScroll();
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef(null);
   const controls = useAnimation();
-  const [isCentered, setIsCentered] = useState(true);
 
   useEffect(() => {
     const element = ref.current;
@@ -18,20 +18,15 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
       const bottom = (element?.getBoundingClientRect().top ?? 0) + (element?.offsetHeight ?? 0);
 
       const center = window.innerHeight / 2;
+      const scrollPosition = scrollY.get();
 
-      const rotateStart = top - center;
-      const rotateEnd = bottom - center;
-
-      if (scrollY.get() > rotateStart && scrollY.get() < rotateEnd) {
-        setIsCentered(true);
-      } else {
-        setIsCentered(false);
+      if (scrollPosition > top && scrollPosition < bottom) {
+        const rotationAngle = (scrollPosition - top - center) * 0.5;
+        controls.start({
+          rotate: rotationAngle,
+          transition: { type: 'spring', stiffness: 100, damping: 10 },
+        });
       }
-
-      controls.start(i => ({
-        rotate: isCentered ? 0 : 2 + i * 0.5,
-        transition: { delay: i * 0.1, type: 'spring', stiffness: 100, damping: 10 },
-      }));
     };
 
     updatePosition();
@@ -42,7 +37,7 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
       window.removeEventListener('scroll', updatePosition);
       window.removeEventListener('resize', updatePosition);
     };
-  }, [scrollY, controls, isCentered]);
+  }, [scrollY, controls]);
 
   return (
     <div
@@ -55,9 +50,8 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
         .map((text, index) => (
           <motion.div
             key={index}
-            initial={{ rotate: isCentered ? 0 : 2 + index * 0.5 }} // Adjust initial rotation based on isCentered
+            initial={{ rotate: 0 }} // Set initial rotation to 0
             animate={controls}
-            custom={index}
             className={`mb-6 ${index === 0 ? 'text-sm uppercase tracking-widest' : index === 1 ? 'title text-3xl sm:text-5xl font-extrabold leading-tight' : 'text-lg sm:text-xl font-normal'}`}
           >
             {text}
@@ -67,5 +61,5 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
     </div>
   );
 };
- 
+
 export default AboutHero;
