@@ -1,49 +1,65 @@
 "use client";
-
 import React, { useEffect, useRef } from 'react';
-import { motion, useViewportScroll, useTransform } from 'framer-motion';
+import { motion, useViewportScroll, useTransform, useAnimation } from 'framer-motion';
 
 interface AboutHeroProps {
   textColor: string;
+  sectionIndex: number;
 }
 
-const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
+const AboutHero: React.FC<AboutHeroProps> = ({ textColor, sectionIndex }) => {
   const { scrollY } = useViewportScroll();
   const ref = useRef(null);
+  const controls = useAnimation();
 
-  // Calculate the range for rotation based on element's position
-  const offsetTop = ref.current?.offsetTop || 0;
-  const offsetHeight = ref.current?.offsetHeight || 1; // Avoid division by zero
-  const rotateRange = [offsetTop - window.innerHeight, offsetTop + offsetHeight];
+  useEffect(() => {
+    const element = ref.current;
+    const updatePosition = () => {
+      const top = element?.getBoundingClientRect().top ?? 0;
+      const bottom = (element?.getBoundingClientRect().top ?? 0) + (element?.offsetHeight ?? 0);
+      
+      const rotateStart = top - window.innerHeight;
+      const rotateEnd = bottom - window.innerHeight;
+      
+      if (scrollY.get() > rotateStart && scrollY.get() < rotateEnd) {
+        controls.start(i => ({
+          rotate: sectionIndex % 2 === 0 ? (i % 2 === 0 ? 0 : 5) : (i % 2 === 0 ? 5 : 0), // Rotate text elements based on sectionIndex
+          transition: { delay: i * 0.1, type: 'spring', stiffness: 100, damping: 10 }
+        }));
+      }
+    };
 
-  // Create a dynamic rotation animation
-  const rotate = useTransform(scrollY, rotateRange, [2, 0]);
+    updatePosition();
+    window.addEventListener('scroll', updatePosition);
+    window.addEventListener('resize', updatePosition);
 
-  // Calculate the midpoint of the screen
-  const screenMidpoint = window.innerHeight / 2;
+    return () => {
+      window.removeEventListener('scroll', updatePosition);
+      window.removeEventListener('resize', updatePosition);
+    };
+  }, [scrollY, controls, sectionIndex]);
 
   return (
-    <motion.div
+    <div
       ref={ref}
       className={`flex flex-col justify-center items-start min-h-screen px-4 sm:px-8 md:px-16 lg:px-24 ${textColor}`}
     >
-      {['HVA GJØR ROBUST?', 'Vi bygger et økonomisk system som prioriterer velvære og beskytter planetens økosystemer.',
-        'Foreningen Robust jobber for en regenerativ økonomi innenfor planetens tålegrenser, fremmer formålet gjennom tverrfaglige innsikter og mangfoldige perspektiv, og kombinerer forskning, formidling og visuelle uttrykk for å dele kunnskapen.',
+      {['HVA GJØR ROBUST?', 'Vi bygger et økonomisk system som prioriterer velvære og beskytter planetens økosystemer.', 
+        'Foreningen Robust jobber for en regenerativ økonomi innenfor planetens tålegrenser, fremmer formålet gjennom tverrfaglige innsikter og mangfoldige perspektiv, og kombinerer forskning, formidling og visuelle uttrykk for å dele kunnskapen.', 
         'Robust består (foreløpig) av medlemmer med bakgrunn innen økonomi, (visuell) design, kunst, matematikk, miljøstudier, kognitiv (IVER HVA ER DIN BAKGRUNN?) og business. Foreningen høster styrke i medlemmenes ulike bakgrunner. Videre er flere av medlemmene koblet opp til ulike nettverk som International Degrowth Network, Rethinking Economics Norge, Postgrowth Nordics Network og Vekstfri Norge.']
         .map((text, index) => (
           <motion.div
             key={index}
-            initial={{ rotate: 2 + index * 0.5 }}
-            animate={{
-              rotate: scrollY.get() <= screenMidpoint ? 0 : rotate,
-            }}
+            initial={{ rotate: sectionIndex % 2 === 0 ? (index % 2 === 0 ? 0 : 5) : (index % 2 === 0 ? 5 : 0) }} // Rotate text elements based on sectionIndex
+            animate={controls}
+            custom={index} // Pass the index as a custom prop to use in the animation control
             className={`mb-6 ${index === 0 ? 'text-sm uppercase tracking-widest' : index === 1 ? 'title text-3xl sm:text-5xl font-extrabold leading-tight' : 'text-lg sm:text-xl font-normal'}`}
           >
             {text}
           </motion.div>
         ))
       }
-    </motion.div>
+    </div>
   );
 };
 
