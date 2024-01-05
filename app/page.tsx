@@ -12,7 +12,8 @@ import AboutHero from './components/AboutHero';
 import Partners from './components/Partners';
 import TeamSection from './components/TeamSection';
 import FingerFooter from './components/FingerFooter';
-import Chatbot from './components/Chatbot'; // Import the ChatBox component
+import Chatbot from './components/Chatbot';
+import ArticlesCTA from './components/ArticlesCTA'; // Import the ArticlesCTA component
 
 const sectionColors: string[] = ['#F2C744', '#617864', '#4324D2', '#FFFFFF', '#F2C744'];
 const textColorForSection: { [key: string]: string } = {
@@ -70,6 +71,7 @@ export default function Home() {
           <FingerFooter />
         </div>
       </motion.main>
+      <ArticlesCTA /> {/* Include the ArticlesCTA component */}
       <Chatbot /> 
     </>
   );

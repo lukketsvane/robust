@@ -1,24 +1,30 @@
 "use client"; 
-import React from 'react';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 const ArticlesCTA: React.FC = () => {
   return (
-    <div className="my-10 text-center">
-      <h2 className="text-2xl font-semibold mb-4">Utforsk Våre Artikler</h2>
-      <p className="mb-6 text-gray-600">
-        Dykk ned i våre innsiktsfulle artikler for å lære mer om bærekraft og teknologi.
-      </p>
-      <Link href="/articles" passHref>
-        <motion.a
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="inline-block bg-indigo-600 text-white py-3 px-6 rounded-lg shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 transition duration-300"
-        >
-          Se Artikler
-        </motion.a>
-      </Link>
+    <div className="bg-gray-100 py-16">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-12 gap-4">
+          <div className="col-span-12 md:col-span-8 md:col-start-3">
+            <h2 className="text-3xl font-semibold mb-4 title">Utforsk Våre Artikler</h2>
+            <p className="text-gray-600">
+              Dykk ned i våre innsiktsfulle artikler for å lære mer om bærekraft og teknologi.
+            </p>
+            {/* No link, just styled text with underline */}
+            <style jsx>{`
+              .text-indigo-600 {
+                color: inherit; /* Inherit the parent's text color */
+                text-decoration: underline; /* Add underline on hover */
+                cursor: pointer; /* Show pointer cursor on hover */
+              }
+            `}</style>
+            <p className="text-indigo-600 hover:text-indigo-700 mt-4">
+              Utforsk alle artikler
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
