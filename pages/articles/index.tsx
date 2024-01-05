@@ -2,11 +2,11 @@ import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { getSortedArticlesData, ArticleData as ArticleDataType } from '../../lib/articles'; // Rename the imported type
+import { getSortedArticlesData, ArticleData } from '../../lib/articles';
 import { List, Grid } from 'lucide-react'; // Import Lucide icons
 
 interface ArticlesPageProps {
-  articles: ArticleDataType[]; // Use the renamed type here
+  articles: ArticleData[];
 }
 
 interface ArticleData {
