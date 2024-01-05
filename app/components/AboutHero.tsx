@@ -1,6 +1,7 @@
 "use client";
+
 import React, { useEffect, useRef } from 'react';
-import { motion, useViewportScroll, useAnimation } from 'framer-motion';
+import { motion, useViewportScroll, useTransform } from 'framer-motion';
 
 interface AboutHeroProps {
   textColor: string;
@@ -9,34 +10,17 @@ interface AboutHeroProps {
 const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
   const { scrollY } = useViewportScroll();
   const ref = useRef(null);
-  const controls = useAnimation();
 
-  useEffect(() => {
-    const element = ref.current;
-    const updatePosition = () => {
-      const top = element?.getBoundingClientRect().top ?? 0;
-      const bottom = (element?.getBoundingClientRect().top ?? 0) + (element?.offsetHeight ?? 0);
+  // Calculate the range for rotation based on element's position
+  const offsetTop = ref.current?.offsetTop || 0;
+  const offsetHeight = ref.current?.offsetHeight || 1; // Avoid division by zero
+  const rotateRange = [offsetTop - window.innerHeight, offsetTop + offsetHeight];
 
-      const rotateStart = top - window.innerHeight;
-      const rotateEnd = bottom - window.innerHeight;
+  // Create a dynamic rotation animation
+  const rotate = useTransform(scrollY, rotateRange, [2, 0]);
 
-      if (scrollY.get() > rotateStart && scrollY.get() < rotateEnd) {
-        controls.start(i => ({
-          rotate: 0,
-          transition: { delay: i * 0.1, type: 'spring', stiffness: 100, damping: 10 }
-        }));
-      }
-    };
-
-    updatePosition();
-    window.addEventListener('scroll', updatePosition);
-    window.addEventListener('resize', updatePosition);
-
-    return () => {
-      window.removeEventListener('scroll', updatePosition);
-      window.removeEventListener('resize', updatePosition);
-    };
-  }, [scrollY, controls]);
+  // Calculate the midpoint of the screen
+  const screenMidpoint = window.innerHeight / 2;
 
   return (
     <motion.div
@@ -49,9 +33,10 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
         .map((text, index) => (
           <motion.div
             key={index}
-            initial={{ rotate: 2 + index * 0.5 }} // Incremental initial rotation for each text
-            animate={controls}
-            custom={index} // Pass the index as a custom prop to use in the animation control
+            initial={{ rotate: 2 + index * 0.5 }}
+            animate={{
+              rotate: scrollY.get() <= screenMidpoint ? 0 : rotate,
+            }}
             className={`mb-6 ${index === 0 ? 'text-sm uppercase tracking-widest' : index === 1 ? 'title text-3xl sm:text-5xl font-extrabold leading-tight' : 'text-lg sm:text-xl font-normal'}`}
           >
             {text}
