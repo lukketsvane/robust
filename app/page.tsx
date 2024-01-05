@@ -58,16 +58,18 @@ export default function Home() {
         data-section={currentSection}
       >
         <div className="w-full max-w-[90%] sm:max-w-[80%] mx-auto">
-          {[0, 1, 2, 3, 4].map((index) => (
-            <div key={index} className={`section w-full my-8 ${textColor}`}>
-              {index === 0 && <HeroTitle />}
-              {index === 1 && <AboutHero textColor={textColor} />}
-              {index === 2 && <Stories />}
-              {index === 3 && <HeroSection />}
-              {index === 4 && <Partners />}
-              {index === 5 && <TeamSection />}
-            </div>
-          ))}
+        {
+              [0, 1, 2, 3, 4].map((index) => (
+                <div key={index} className={`section w-full my-8 ${textColor}`}>
+                  {index === 0 && <HeroTitle textColor={textColor} />} {/* Pass the textColor prop */}
+                  {index === 1 && <AboutHero textColor={textColor} />} {/* Pass the textColor prop */}
+                  {index === 2 && <Stories />}
+                  {index === 3 && <HeroSection />}
+                  {index === 4 && <Partners />}
+                  {index === 5 && <TeamSection />}
+                </div>
+              ))
+            }
           <FingerFooter />
         </div>
       </motion.main>
