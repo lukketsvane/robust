@@ -8,7 +8,7 @@ interface AboutHeroProps {
 
 const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
   const { scrollY } = useViewportScroll();
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement | null>(null); // Add type annotation
   const controls = useAnimation();
   const [isCentered, setIsCentered] = useState(true);
 
