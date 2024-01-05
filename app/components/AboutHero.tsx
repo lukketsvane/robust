@@ -27,14 +27,14 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
       <p className={`title text-4xl sm:text-5xl font-extrabold leading-tight mb-6 ${textColor}`}>
         Vi bygger et økonomisk system som prioriterer velvære og beskytter planetens økosystemer.
       </p>
-      <p className={`text-lg sm:text-xl ${textColor}`}>
+      <p className={`text-lg sm:text-xl font-normal ${textColor}`}> {/* Changed font weight to normal */}
         Foreningen Robust jobber for en regenerativ økonomi innenfor planetens tålegrenser, fremmer formålet gjennom tverrfaglige innsikter og mangfoldige perspektiv, og kombinerer forskning, formidling og visuelle uttrykk for å dele kunnskapen.
       </p>
       
       {/* Add space between paragraphs */}
       <br />
 
-      <p className={`text-lg sm:text-xl ${textColor}`}>
+      <p className={`text-lg sm:text-xl font-normal ${textColor}`}> {/* Changed font weight to normal */}
         Robust består (foreløpig) av medlemmer med bakgrunn innen økonomi, (visuell) design, kunst, matematikk, miljøstudier, kognitiv (IVER HVA ER DIN BAKGRUNN?) og business. Foreningen høster styrke i medlemmenes ulike bakgrunner. Videre er flere av medlemmene koblet opp til ulike nettverk som International Degrowth Network, Rethinking Economics Norge, Postgrowth Nordics Network og Vekstfri Norge.
       </p>
     </motion.div>
@@ -42,3 +42,5 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
 };
 
 export default AboutHero;
+
+
