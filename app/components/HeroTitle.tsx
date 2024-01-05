@@ -6,12 +6,17 @@ interface HeroTitleProps {
 }
 
 const HeroTitle: React.FC<HeroTitleProps> = ({ textColor }) => {
-  const ref = useRef<HTMLDivElement | null>(null); // Add type annotation
-  const [isCentered, setIsCentered] = useState(false); // Initialize to false
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [isCentered, setIsCentered] = useState(false);
   const titleControls = useAnimation();
-  const typewriterControls = useAnimation();
   const typewriterText = "for et bærekraftig Norge.";
-  const typewriterDelay = 0.1; // Adjust the delay for typewriter effect
+
+  // Custom delay function with random variations
+  const getTypewriterDelay = (index: number) => {
+    const baseDelay = 0.05; // Base delay between letters
+    const variation = Math.random() * 0.1; // Random variation
+    return baseDelay + variation + index * 0.02; // Adjust the values as needed
+  };
 
   useEffect(() => {
     const element = ref.current;
@@ -28,13 +33,6 @@ const HeroTitle: React.FC<HeroTitleProps> = ({ textColor }) => {
           rotate: 0,
           transition: { type: 'spring', stiffness: 100, damping: 10 },
         });
-        // Play the typewriter effect one by one
-        for (let i = 0; i < typewriterText.length; i++) {
-          typewriterControls.start({
-            opacity: 1,
-            transition: { delay: i * typewriterDelay },
-          });
-        }
       }
     };
 
@@ -44,7 +42,7 @@ const HeroTitle: React.FC<HeroTitleProps> = ({ textColor }) => {
     return () => {
       window.removeEventListener('scroll', updatePosition);
     };
-  }, [isCentered, titleControls, typewriterControls]);
+  }, [isCentered, titleControls]);
 
   return (
     <div ref={ref} className="min-h-screen flex items-center justify-start px-4 sm:px-6 md:px-[10%] lg:px-[15%] xl:px-[20%]">
@@ -57,8 +55,9 @@ const HeroTitle: React.FC<HeroTitleProps> = ({ textColor }) => {
         {typewriterText.split('').map((char, index) => (
           <motion.span
             key={index}
-            initial={{ opacity: 0 }}
-            animate={typewriterControls}
+            initial={{ opacity: 0, x: -10 }} // Start hidden and move in from the left
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: getTypewriterDelay(index) }}
           >
             {char}
           </motion.span>
