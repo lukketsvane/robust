@@ -10,7 +10,7 @@ const OmOssSectionContent = () => {
       transition={{ duration: 0.5 }}
       className="p-4 text-left"
     >
-      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Om Foreningen ROBUST</h1>
+      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 title">Om Foreningen ROBUST</h1>
       <p className="mb-4">
         Foreningen Robust jobber for en regenerativ økonomi som fungerer innenfor planetens tålegrenser, og sikrer et godt liv for alle levende vesener. Vårt arbeid er bygget på tverrfaglige tilnærminger, inkludert økonomi, historie, psykologi, klima og filosofi.
       </p>
@@ -23,7 +23,7 @@ const OmOssSectionContent = () => {
       <p className="mb-4">
         Vi utfordrer konvensjonelle metoder for å fremme omsorgsfulle og livskraftige tilnærminger.
       </p>
-      <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-2">VÅRE EKSPERTOMRÅDER:</h2>
+      <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-2 title">VÅRE EKSPERTOMRÅDER:</h2>
       <ul className="list-disc pl-6 mb-4">
         <li className="mb-2">ØKONOMISK VELVÆRE</li>
         <li>SYSTEMTENKNING</li>
