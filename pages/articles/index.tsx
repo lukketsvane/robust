@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { getSortedArticlesData, ArticleData } from '../../lib/articles';
-import { List, Grid } from 'lucide-react'; // Import Lucide icons
+import { List, Grid } from 'lucide-react';
 
 interface ArticlesPageProps {
   articles: ArticleData[];
@@ -11,12 +11,11 @@ interface ArticlesPageProps {
 
 const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [viewMode, setViewMode] = useState('grid'); // Default to grid view
+  const [viewMode, setViewMode] = useState('grid');
 
+  // Search functionality only includes properties that exist in ArticleData
   const filteredArticles = articles.filter(article =>
-    article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    article.content.toLowerCase().includes(searchQuery.toLowerCase()) // Assuming content search is required
-    // Further filters for tags or other article content can be added here
+    article.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const renderGridView = () => (
@@ -25,7 +24,7 @@ const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
         <Link key={article.title} href={`/articles/${encodeURI(article.title.toLowerCase().replace(/\s+/g, '-'))}`}>
           <div className="block group rounded-lg shadow-lg overflow-hidden hover:bg-gray-100 transition duration-300 ease-in-out h-full">
             <Image
-              src={article.image || '/default-image.png'} // Fallback to default image if not provided
+              src={article.image || '/default-image.png'}
               alt={article.title}
               width={600}
               height={375}
@@ -50,7 +49,6 @@ const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
           <div className="block rounded shadow p-4 hover:bg-gray-100 transition duration-300 ease-in-out">
             <div className="text-xl font-semibold">{article.title}</div>
             <div className="text-sm text-gray-500 mt-2 hover:underline">{article.date} av {article.author}</div>
-            {/* Summary removed from list view */}
           </div>
         </Link>
       ))}
@@ -65,7 +63,7 @@ const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
           placeholder="Søk i artikler..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="p-2 border border-gray-300 rounded w-full md:w-2/3" // Adjusted for full width on mobile
+          className="p-2 border border-gray-300 rounded w-full md:w-2/3"
         />
         <button
           onClick={() => setViewMode(viewMode === 'grid' ? 'list' : 'grid')}
