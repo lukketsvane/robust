@@ -14,13 +14,14 @@ const Kontakt = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [country, setCountry] = useState('Norway');
-  const [county, setCounty] = useState('');
   const [address, setAddress] = useState('');
+  const [fylke, setFylke] = useState('');
+  const [postkode, setPostkode] = useState('');
+  const [by, setBy] = useState('');
+  const [language, setLanguage] = useState('Norwegian');
   const [countryCode, setCountryCode] = useState('+47'); // Default country code
   const [mobileNumber, setMobileNumber] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(false);
-  const [isTermsAccepted, setIsTermsAccepted] = useState(false);
 
   const handleFirstNameChange = (e) => {
     setFirstName(e.target.value);
@@ -40,10 +41,11 @@ const Kontakt = () => {
     firstName &&
     lastName &&
     isEmailValid &&
-    country &&
-    county &&
     address &&
-    isTermsAccepted;
+    fylke &&
+    postkode &&
+    by &&
+    language;
 
   return (
     <>
@@ -54,12 +56,12 @@ const Kontakt = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="flex flex-col items-center justify-center mx-16 w-full min-h-screen"
+        className="flex flex-col items-left justify-center mx-16 w-full min-h-screen"
         style={{ backgroundColor: '#F2C744' }}
       >
-        <div className="w-full max-w-3xl px-4 py-8 text-left">
-          <h1 className="text-4xl font-bold mb-4">Bli medlem av Robust</h1>
-          <p className="text-gray-600 mb-4">
+        <div className="w-full max-w-4xl px-4 py-16 text-left">
+          <h1 className="title text-5xl font-bold mb-8">Bli medlem av Robust</h1>
+          <p className="text-gray-600 mb-8">
             Bli en del av vårt samfunn og bidra til en bærekraftig fremtid.
           </p>
           <form className="space-y-4">
@@ -67,7 +69,7 @@ const Kontakt = () => {
               <input
                 type="text"
                 placeholder="Fornavn"
-                className={`w-full sm:w-1/2 p-3 border-b-2 border-black bg-transparent text-black ${
+                className={`w-full sm:w-1/2 p-4 border-b-2 border-black bg-transparent text-black ${
                   firstName ? 'bg-white' : ''
                 }`}
                 value={firstName}
@@ -76,7 +78,7 @@ const Kontakt = () => {
               <input
                 type="text"
                 placeholder="Etternavn"
-                className={`w-full sm:w-1/2 p-3 border-b-2 border-black bg-transparent text-black ${
+                className={`w-full sm:w-1/2 p-4 border-b-2 border-black bg-transparent text-black ${
                   lastName ? 'bg-white' : ''
                 }`}
                 value={lastName}
@@ -86,60 +88,51 @@ const Kontakt = () => {
             <input
               type="email"
               placeholder="E-post"
-              className={`w-full p-3 border-b-2 border-black bg-transparent text-black ${
+              className={`w-full p-4 border-b-2 border-black bg-transparent text-black ${
                 email ? (isEmailValid ? 'bg-white' : '') : ''
               }`}
               value={email}
               onChange={handleEmailChange}
             />
-            <div className="relative">
-              <label htmlFor="country" className="text-black">
-                Land
-              </label>
-              <input
-                type="text"
-                id="country"
-                placeholder="Land"
-                className={`w-full p-3 border-b-2 border-black bg-transparent text-black ${
-                  country ? 'bg-white' : ''
-                }`}
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-              />
-            </div>
-            <div className="relative">
-              <label htmlFor="county" className="text-black">
-                Fylke
-              </label>
-              <input
-                type="text"
-                id="county"
-                placeholder="Fylke"
-                className={`w-full p-3 border-b-2 border-black bg-transparent text-black ${
-                  county ? 'bg-white' : ''
-                }`}
-                value={county}
-                onChange={(e) => setCounty(e.target.value)}
-              />
-            </div>
-            <div className="relative">
-              <label htmlFor="address" className="text-black">
-                Adresse
-              </label>
-              <input
-                type="text"
-                id="address"
-                placeholder="Adresse"
-                className={`w-full p-3 border-b-2 border-black bg-transparent text-black ${
-                  address ? 'bg-white' : ''
-                }`}
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              />
-            </div>
+            <input
+              type="text"
+              placeholder="Adresse"
+              className={`w-full p-4 border-b-2 border-black bg-transparent text-black ${
+                address ? 'bg-white' : ''
+              }`}
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Fylke"
+              className={`w-full p-4 border-b-2 border-black bg-transparent text-black ${
+                fylke ? 'bg-white' : ''
+              }`}
+              value={fylke}
+              onChange={(e) => setFylke(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Postkode"
+              className={`w-full p-4 border-b-2 border-black bg-transparent text-black ${
+                postkode ? 'bg-white' : ''
+              }`}
+              value={postkode}
+              onChange={(e) => setPostkode(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="By"
+              className={`w-full p-4 border-b-2 border-black bg-transparent text-black ${
+                by ? 'bg-white' : ''
+              }`}
+              value={by}
+              onChange={(e) => setBy(e.target.value)}
+            />
             <div className="flex items-center space-x-2">
               <select
-                className="w-1/4 p-3 border-b-2 border-black bg-transparent text-black"
+                className="w-1/4 p-4 border-b-2 border-black bg-transparent text-black"
                 value={countryCode}
                 onChange={(e) => setCountryCode(e.target.value)}
               >
@@ -149,37 +142,25 @@ const Kontakt = () => {
               <input
                 type="tel"
                 placeholder="Mobilnummer"
-                className={`w-3/4 p-3 border-b-2 border-black bg-transparent text-black ${
+                className={`w-3/4 p-4 border-b-2 border-black bg-transparent text-black ${
                   mobileNumber ? 'bg-white' : ''
                 }`}
                 value={mobileNumber}
                 onChange={(e) => setMobileNumber(e.target.value)}
               />
             </div>
-            <div className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                id="terms"
-                className="text-black"
-                checked={isTermsAccepted}
-                onChange={() => setIsTermsAccepted(!isTermsAccepted)}
-              />
-              <label htmlFor="terms" className="text-gray-600">
-                Jeg godtar vilkår og betingelser
-              </label>
-            </div>
+          </form>
+          <div className="mt-8">
             <button
-              type="submit"
-              className={`group relative w-full flex justify-center py-3 px-4 border border-transparent text-lg font-semibold rounded-md text-white ${
-                isFormValid
-                  ? 'bg-indigo-600 hover:bg-indigo-700 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-                  : ''
+              className={`text-black text-lg font-semibold rounded-full border-2 border-black px-6 py-3 ${
+                isFormValid ? 'bg-white' : ''
               }`}
+              style={{ backgroundColor: isFormValid ? '#F2C744' : '', color: 'black' }}
               disabled={!isFormValid}
             >
               Bli medlem
             </button>
-          </form>
+          </div>
         </div>
       </motion.div>
     </>
