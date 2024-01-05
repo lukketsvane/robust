@@ -10,6 +10,7 @@ export interface ArticleData {
   author: string;
   tags: string[];
   summary: string; // New field for summary
+  image?: string; // Add the 'image' property as an optional field
 }
 
 export const getSortedArticlesData = (): ArticleData[] => {
