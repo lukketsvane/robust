@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import NavBar from '../app/components/NavBar';
 import FingerFooter from '../app/components/FingerFooter';
 import Chatbot from '../app/components/Chatbot';
 import ArticlesCTA from '../app/components/ArticlesCTA';
@@ -41,7 +40,6 @@ const OmOss = () => {
 
   return (
     <>
-      <NavBar currentSection={currentSection} sectionColors={sectionColorsOmOss} />
       <motion.div
         className={`min-h-screen bg-${sectionColorsOmOss[currentSection]}`}
         initial={{ backgroundColor: sectionColorsOmOss[currentSection] }}
@@ -57,8 +55,8 @@ const OmOss = () => {
                 index === 0 && currentSection === 0 ? 'min-h-screen' : ''
               }`}
             >
-              {index === 0 && <OmOssSectionContent />}
-              {index === 1 && <InteractiveBook images={pdfImages} />}
+              {index === 1 && <OmOssSectionContent />}
+              {index === 2 && <InteractiveBook images={pdfImages} />}
               {/* Add other sections as needed */}
             </div>
           ))}
