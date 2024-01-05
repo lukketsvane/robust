@@ -6,7 +6,8 @@ import path from 'path';
 import fs from 'fs';
 import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { MDXRemote } from 'next-mdx-remote';
+import remarkGfm from 'remark-gfm'; // To support GitHub Flavored Markdown
 
 const articlesDirectory = path.join(process.cwd(), 'articles');
 
@@ -17,18 +18,22 @@ interface ArticleData {
   image: string;
   author: string;
   tags: string[];
-  content?: string; // Optional, for the article content
+  content?: string;
 }
 
 interface ArticleProps {
   articleData: ArticleData;
-  mdxSource: MDXRemoteSerializeResult;
+  mdxSource: any; // Change to any to avoid typing issues
 }
 
 const Article: React.FC<ArticleProps> = ({ articleData, mdxSource }) => {
   return (
     <ArticleTemplate frontMatter={articleData}>
-      <MDXRemote {...mdxSource} />
+      <MDXRemote {...mdxSource} components={{
+        h1: (props) => <h1 className="text-3xl font-bold mb-4" {...props} />,
+        h2: (props) => <h2 className="text-2xl font-semibold mb-3" {...props} />,
+        // ... other components
+      }} />
     </ArticleTemplate>
   );
 };
@@ -38,15 +43,18 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const formattedTitle = params?.title || '';
   const fullPath = path.join(articlesDirectory, `${formattedTitle}.mdx`);
   
-  let mdxSource: MDXRemoteSerializeResult;
+  let mdxSource: any; // Change to any to avoid typing issues
   let articleData: ArticleData | null = null;
 
   try {
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { content, data } = matter(fileContents);
     articleData = data as ArticleData;
-    articleData.content = content; // Optional, if you want to store the content in the articleData
-    mdxSource = await serialize(content);
+    mdxSource = await serialize(content, {
+      mdxOptions: {
+        remarkPlugins: [remarkGfm], // Use remarkGfm for GitHub Flavored Markdown
+      },
+    });
   } catch (error) {
     console.error('Error reading MDX file:', error);
     mdxSource = await serialize('<p>Article not found.</p>');

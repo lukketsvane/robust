@@ -60,7 +60,7 @@ const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
       <div className="flex justify-between mb-6">
         <input
           type="text"
-          placeholder="Search articles..."
+          placeholder="Søk i artikler..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="p-2 border border-gray-300 rounded w-full md:w-2/3"

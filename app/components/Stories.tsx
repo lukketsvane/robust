@@ -27,7 +27,7 @@ const Stories = () => {
             <p className="text-gray-600 mb-4">
               Robust tar initiativ for å sette lys på begrensningene av økonomisk vekst og utforsker alternative modeller som vektlegger miljømessig bærekraft og sosial rettferdighet.
             </p>
-            <Link href="/degrowth-strategies" passHref>
+            <Link href="/articles" passHref>
               <span className="text-indigo-600 hover:text-indigo-800 transition duration-150 ease-in-out cursor-pointer">Les Mer</span>
             </Link>
           </div>
@@ -53,7 +53,7 @@ const Stories = () => {
             <p className="text-gray-600 mb-4">
               Oppdag hvordan Robust engasjerer seg i samfunnet for å fremme bærekraftige løsninger og støtter prosjekter som bidrar til en mer rettferdig og holdbar fremtid.
             </p>
-            <Link href="/community-engagement" passHref>
+            <Link href="/articles" passHref>
               <span className="text-indigo-600 hover:text-indigo-800 transition duration-150 ease-in-out cursor-pointer">Utforsk Prosjekter</span>
             </Link>
           </div>
