@@ -15,10 +15,10 @@ const SisteNytt = () => {
 
   return (
     <div className="flex flex-col items-center " style={{ backgroundColor: '#F2C744' }}>
-      <HeroTitle />
+      <HeroTitle textColor="#F2C744" /> {/* Pass the textColor prop */}
       <AboutHero textColor="#000" />
       <div className=' '>
-      <TeamSection /> 
+        <TeamSection /> 
       </div>
     </div>
   );
