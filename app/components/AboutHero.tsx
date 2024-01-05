@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef, useEffect } from 'react';
 
 interface AboutHeroProps {
@@ -7,8 +8,8 @@ interface AboutHeroProps {
 const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  // These are the updated initial rotation values for each text section (more exaggerated).
-  const initialRotations = [20, 15, 10, 5];
+  // These are the updated initial rotation values for each text section (more exaggerated) in the clockwise direction.
+  const initialRotations = [-20, -15, -10, -5]; // Negative values for clockwise rotation
 
   useEffect(() => {
     const updateRotation = () => {
