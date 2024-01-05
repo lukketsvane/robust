@@ -7,7 +7,7 @@ interface AboutHeroProps {
 
 const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
   const { scrollY } = useViewportScroll();
-  const ref = useRef<HTMLDivElement | null>(null); // Add type annotation
+  const ref = useRef<HTMLDivElement | null>(null);
   const controls = useAnimation();
   const [isCentered, setIsCentered] = useState(true);
 
@@ -55,9 +55,9 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
         .map((text, index) => (
           <motion.div
             key={index}
-            initial={{ rotate: 2 + index * 0.5 }} // Incremental initial rotation for each text
+            initial={{ rotate: isCentered ? 0 : 2 + index * 0.5 }} // Adjust initial rotation based on isCentered
             animate={controls}
-            custom={index} // Pass the index as a custom prop to use in the animation control
+            custom={index}
             className={`mb-6 ${index === 0 ? 'text-sm uppercase tracking-widest' : index === 1 ? 'title text-3xl sm:text-5xl font-extrabold leading-tight' : 'text-lg sm:text-xl font-normal'}`}
           >
             {text}
@@ -67,5 +67,5 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
     </div>
   );
 };
-
+ 
 export default AboutHero;
