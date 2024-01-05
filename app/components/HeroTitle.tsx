@@ -9,7 +9,7 @@ const HeroTitle: React.FC<HeroTitleProps> = ({ textColor }) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [isCentered, setIsCentered] = useState(false);
   const titleControls = useAnimation();
-  const typewriterText = "Mot en robust fremtid — for et bærekraftig Norge.";
+  const typewriterText = "for et bærekraftig Norge.";
 
   // Custom delay function with random variations
   const getTypewriterDelay = (index: number) => {
@@ -36,10 +36,11 @@ const HeroTitle: React.FC<HeroTitleProps> = ({ textColor }) => {
 
         // Play the typewriter effect with delays
         for (let i = 0; i < typewriterText.length; i++) {
-          const charDelay = getTypewriterDelay(i);
+          const charDelay = i * 0.1;
           titleControls.start((i) => ({
             opacity: 1,
-            transition: { delay: charDelay, duration: 0.2 },
+            x: 0,
+            transition: { delay: charDelay + getTypewriterDelay(i), duration: 0.2 },
           }));
         }
       }
@@ -60,16 +61,23 @@ const HeroTitle: React.FC<HeroTitleProps> = ({ textColor }) => {
         animate={titleControls}
         className={`title text-5xl sm:text-6xl md:text-7xl font-extrabold text-left leading-tight ${textColor}`}
       >
-        {typewriterText.split('').map((char, index) => (
-          <motion.span
-            key={index}
-            initial={{ opacity: 0, x: -10 }} // Start hidden and move in from the left
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: getTypewriterDelay(index) }}
-          >
-            {char}
-          </motion.span>
-        ))}
+        Mot en robust fremtid —<br />
+        <motion.span
+          key="typewriter"
+          initial={{ opacity: 0, x: -10 }} // Start hidden and move in from the left
+          animate={{ opacity: 1, x: 0 }}
+        >
+          {typewriterText.split('').map((char, index) => (
+            <motion.span
+              key={index}
+              initial={{ opacity: 0, x: -10 }} // Start hidden and move in from the left
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: getTypewriterDelay(index) }}
+            >
+              {char}
+            </motion.span>
+          ))}
+        </motion.span>
       </motion.h1>
     </div>
   );
