@@ -1,9 +1,7 @@
 "use client";
-"use client";
 import { motion } from 'framer-motion';
 import Head from 'next/head';
-import Link from 'next/link';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const Kontakt = () => {
   useEffect(() => {
@@ -12,6 +10,22 @@ const Kontakt = () => {
       document.body.style.backgroundColor = '';
     };
   }, []);
+
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+
+  const handleFirstNameChange = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  const handleLastNameChange = (e) => {
+    setLastName(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
 
   return (
     <>
@@ -36,22 +50,41 @@ const Kontakt = () => {
               <input
                 type="text"
                 placeholder="Fornavn"
-                className="w-full sm:w-1/2 p-4 border-b-2 border-black bg-transparent text-black"
+                className={`w-full sm:w-1/2 p-4 border-b-2 border-black bg-transparent text-black ${
+                  firstName ? 'bg-white' : ''
+                }`}
+                value={firstName}
+                onChange={handleFirstNameChange}
               />
               <input
                 type="text"
                 placeholder="Etternavn"
-                className="w-full sm:w-1/2 p-4 border-b-2 border-black bg-transparent text-black"
+                className={`w-full sm:w-1/2 p-4 border-b-2 border-black bg-transparent text-black ${
+                  lastName ? 'bg-white' : ''
+                }`}
+                value={lastName}
+                onChange={handleLastNameChange}
               />
             </div>
             <input
               type="email"
               placeholder="E-post"
-              className="w-full p-4 border-b-2 border-black bg-transparent text-black"
+              className={`w-full p-4 border-b-2 border-black bg-transparent text-black ${
+                email ? 'bg-white' : ''
+              }`}
+              value={email}
+              onChange={handleEmailChange}
             />
           </form>
+          <div className="mt-8">
+            <button
+              className="text-black text-lg font-semibold rounded-full border-2 border-black px-6 py-3"
+              style={{ backgroundColor: '#F2C744', color: 'black' }}
+            >
+              Bli medlem
+            </button>
           </div>
-
+        </div>
       </motion.div>
     </>
   );
