@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from 'react';
-import { motion, useScroll } from 'framer-motion';
+import { motion, useScroll, useAnimation } from 'framer-motion'; // Add useAnimation here
 import './globals.css';
+
 
 import NavBar from './components/NavBar';
 import HeroTitle from './components/HeroTitle';
@@ -27,6 +28,7 @@ export default function Home() {
   const { scrollYProgress } = useScroll();
   const [currentSection, setCurrentSection] = useState(0);
   const [textColor, setTextColor] = useState('text-black');
+  const [animationControls, setAnimationControls] = useState(Array(5).fill(null).map(() => useAnimation()));
 
   useEffect(() => {
     const unsubscribe = scrollYProgress.onChange(latest => {
@@ -59,13 +61,13 @@ export default function Home() {
         <div className="w-full max-w-[90%] sm:max-w-[80%] mx-auto">
           {[0, 1, 2, 3, 4].map(index => (
             <div key={index} className={`section w-full my-8 ${textColor}`}>
-              {/* Pass textColor to HeroTitle */}
+              {/* Pass textColor and animationControls to relevant components */}
               {index === 0 && <HeroTitle textColor={textColor} />}
-              {index === 1 && <AboutHero textColor={textColor} />}
-              {index === 2 && <Stories />}
-              {index === 3 && <HeroSection />}
-              {index === 4 && <Partners />}
-              {index === 5 && <TeamSection />}
+              {index === 1 && <AboutHero textColor={textColor} animationControls={animationControls[index]} />}
+              {index === 2 && <Stories animationControls={animationControls[index]} />}
+              {index === 3 && <HeroSection animationControls={animationControls[index]} />}
+              {index === 4 && <Partners animationControls={animationControls[index]} />}
+              {index === 5 && <TeamSection animationControls={animationControls[index]} />}
             </div>
           ))}
           <FingerFooter />
