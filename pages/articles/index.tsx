@@ -13,8 +13,10 @@ const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState('grid'); // Default to grid view
 
-  const filteredArticles = articles.filter(article => 
-    article.title.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredArticles = articles.filter(article =>
+    article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    article.content.toLowerCase().includes(searchQuery.toLowerCase()) // Assuming content search is required
+    // Further filters for tags or other article content can be added here
   );
 
   const renderGridView = () => (
@@ -30,7 +32,7 @@ const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
               layout="responsive"
               className="object-cover"
             />
-            <div className="p-4 h-full bg-white"> {/* Add white background here */}
+            <div className="p-4 h-full bg-white">
               <div className="text-xl font-semibold mb-2">{article.title}</div>
               <div className="text-sm text-gray-500 mb-2">{article.date} av {article.author}</div>
               <p className="text-gray-600 h-16 overflow-hidden">{article.summary}</p>
@@ -48,7 +50,7 @@ const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
           <div className="block rounded shadow p-4 hover:bg-gray-100 transition duration-300 ease-in-out">
             <div className="text-xl font-semibold">{article.title}</div>
             <div className="text-sm text-gray-500 mt-2 hover:underline">{article.date} av {article.author}</div>
-            <p className="text-gray-600 mt-2">{article.summary}</p>
+            {/* Summary removed from list view */}
           </div>
         </Link>
       ))}
@@ -63,7 +65,7 @@ const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
           placeholder="Søk i artikler..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="p-2 border border-gray-300 rounded w-1/2 md:w-2/3"
+          className="p-2 border border-gray-300 rounded w-full md:w-2/3" // Adjusted for full width on mobile
         />
         <button
           onClick={() => setViewMode(viewMode === 'grid' ? 'list' : 'grid')}
