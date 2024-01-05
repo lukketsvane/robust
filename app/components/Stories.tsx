@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 const Stories = () => {
   return (
     <div className="container mx-auto py-16 px-4 sm:px-6 md:px-8 lg:px-24">
-      <h2 className="text-2xl font-semibold mb-6">Innsikt i Robust</h2>
+      <h2 className="title text-2xl font-semibold mb-6">Siste nytt</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
