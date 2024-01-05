@@ -1,6 +1,7 @@
 "use client"; 
 import React from 'react';
 import { motion, useAnimation } from 'framer-motion';
+import Link from 'next/link';
 
 const ArticlesCTA: React.FC = () => {
   const controls = useAnimation();
@@ -17,7 +18,6 @@ const ArticlesCTA: React.FC = () => {
     }
   };
 
-  // Add scroll event listener
   React.useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -37,17 +37,11 @@ const ArticlesCTA: React.FC = () => {
             <p className="text-gray-600">
               Dykk ned i våre innsiktsfulle artikler for å lære mer om bærekraft og teknologi.
             </p>
-            {/* No link, just styled text with underline */}
-            <style jsx>{`
-              .text-indigo-600 {
-                color: inherit; /* Inherit the parent's text color */
-                text-decoration: underline; /* Add underline on hover */
-                cursor: pointer; /* Show pointer cursor on hover */
-              }
-            `}</style>
-            <p className="text-indigo-600 hover:text-indigo-700 mt-4">
-              Utforsk alle artikler
-            </p>
+            <Link href="/articles">
+              <p className="text-indigo-600 hover:text-indigo-700 mt-4 cursor-pointer">
+                Utforsk alle artikler
+              </p>
+            </Link>
           </div>
         </div>
       </div>
@@ -56,4 +50,3 @@ const ArticlesCTA: React.FC = () => {
 };
 
 export default ArticlesCTA;
-
