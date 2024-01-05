@@ -29,12 +29,13 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
         setIsCentered(true);
       } else {
         setIsCentered(false);
+        rotationAngle = 2 + (scrollY.get() - rotateEnd) / (rotateStart - rotateEnd) * 0.5;
       }
 
-      controls.start((i) => ({
-        rotate: isCentered ? 0 : 2 + i * 0.5,
-        transition: { delay: isCentered ? 0 : i * 0.1, type: 'spring', stiffness: 100, damping: 10 },
-      }));
+      controls.start({
+        rotate: isCentered ? 0 : rotationAngle,
+        transition: { type: 'spring', stiffness: 100, damping: 10 },
+      });
     };
 
     updatePosition();
@@ -58,7 +59,7 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
         .map((text, index) => (
           <motion.div
             key={index}
-            initial={{ rotate: isCentered ? 0 : 2 + index * 0.5 }}
+            initial={{ rotate: 0 }} // Set initial rotation to 0
             animate={controls}
             custom={index}
             className={`mb-6 ${index === 0 ? 'text-sm uppercase tracking-widest' : index === 1 ? 'title text-3xl sm:text-5xl font-extrabold leading-tight' : 'text-lg sm:text-xl font-normal'}`}
