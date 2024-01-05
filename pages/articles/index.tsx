@@ -21,7 +21,7 @@ const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 pt-16 px-4 mx-auto max-w-6xl">
       {filteredArticles.map((article) => (
         <Link key={article.title} href={`/articles/${encodeURI(article.title.toLowerCase().replace(/\s+/g, '-'))}`}>
-          <div className="block group rounded-lg shadow-lg overflow-hidden hover:bg-gray-100 transition h-full">
+          <div className="block group rounded-lg shadow-lg overflow-hidden hover:bg-gray-100 transition duration-300 ease-in-out h-full">
             <Image
               src={article.image || '/default-image.png'} // Fallback to default image if not provided
               alt={article.title}
@@ -45,7 +45,7 @@ const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
     <div className="space-y-4 max-w-2xl mx-auto p-5 pt-16">
       {filteredArticles.map((article) => (
         <Link key={article.title} href={`/articles/${encodeURI(article.title.toLowerCase().replace(/\s+/g, '-'))}`}>
-          <div className="block rounded shadow p-4 hover:bg-gray-100 transition">
+          <div className="block rounded shadow p-4 hover:bg-gray-100 transition duration-300 ease-in-out">
             <div className="text-xl font-semibold">{article.title}</div>
             <div className="text-sm text-gray-500 mt-2 hover:underline">{article.date} av {article.author}</div>
             <p className="text-gray-600 mt-2">{article.summary}</p>
