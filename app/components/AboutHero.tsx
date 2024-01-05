@@ -49,7 +49,7 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
 
     window.addEventListener('scroll', updateStyles);
     window.addEventListener('resize', updateStyles);
-    updateStyles(); 
+    updateStyles();
     return () => {
       window.removeEventListener('scroll', updateStyles);
       window.removeEventListener('resize', updateStyles);
@@ -91,4 +91,3 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
 };
 
 export default AboutHero;
-
