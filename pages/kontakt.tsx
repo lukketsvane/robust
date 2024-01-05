@@ -1,7 +1,7 @@
 "use client";
 import { motion } from 'framer-motion';
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, ChangeEvent } from 'react';
 
 const Kontakt = () => {
   useEffect(() => {
@@ -23,15 +23,15 @@ const Kontakt = () => {
   const [mobileNumber, setMobileNumber] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(false);
 
-  const handleFirstNameChange = (e) => {
+  const handleFirstNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFirstName(e.target.value);
   };
 
-  const handleLastNameChange = (e) => {
+  const handleLastNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setLastName(e.target.value);
   };
 
-  const handleEmailChange = (e) => {
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     const enteredEmail = e.target.value;
     setEmail(enteredEmail);
     setIsEmailValid(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(enteredEmail));
