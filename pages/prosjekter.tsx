@@ -17,7 +17,7 @@ const Prosjekter = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen w-full" style={{ backgroundColor: '#F2C744' }}>
-      <HeroTitle />
+      <HeroTitle textColor="#F2C744" /> {/* Pass the textColor prop */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
