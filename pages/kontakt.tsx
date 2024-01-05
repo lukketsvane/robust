@@ -94,73 +94,68 @@ const Kontakt = () => {
               value={email}
               onChange={handleEmailChange}
             />
-            <input
-              type="text"
-              placeholder="Adresse"
-              className={`w-full p-4 border-b-2 border-black bg-transparent text-black ${
-                address ? 'bg-white' : ''
-              }`}
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="Fylke"
-              className={`w-full p-4 border-b-2 border-black bg-transparent text-black ${
-                fylke ? 'bg-white' : ''
-              }`}
-              value={fylke}
-              onChange={(e) => setFylke(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="Postkode"
-              className={`w-full p-4 border-b-2 border-black bg-transparent text-black ${
-                postkode ? 'bg-white' : ''
-              }`}
-              value={postkode}
-              onChange={(e) => setPostkode(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="By"
-              className={`w-full p-4 border-b-2 border-black bg-transparent text-black ${
-                by ? 'bg-white' : ''
-              }`}
-              value={by}
-              onChange={(e) => setBy(e.target.value)}
-            />
-            <div className="flex items-center space-x-2">
-              <select
-                className="w-1/4 p-4 border-b-2 border-black bg-transparent text-black"
-                value={countryCode}
-                onChange={(e) => setCountryCode(e.target.value)}
-              >
-                <option value="+47">+47 (Norway)</option>
-                {/* Add more country codes as needed */}
-              </select>
+            <div className="flex flex-col sm:flex-row gap-4">
               <input
-                type="tel"
-                placeholder="Mobilnummer"
-                className={`w-3/4 p-4 border-b-2 border-black bg-transparent text-black ${
-                  mobileNumber ? 'bg-white' : ''
+                type="text"
+                placeholder="Adresse"
+                className={`w-full sm:w-3/4 p-4 border-b-2 border-black bg-transparent text-black ${
+                  address ? 'bg-white' : ''
                 }`}
-                value={mobileNumber}
-                onChange={(e) => setMobileNumber(e.target.value)}
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="By"
+                className={`w-full sm:w-1/4 p-4 border-b-2 border-black bg-transparent text-black ${
+                  by ? 'bg-white' : ''
+                }`}
+                value={by}
+                onChange={(e) => setBy(e.target.value)}
               />
             </div>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <input
+                type="text"
+                placeholder="Fylke"
+                className={`w-full sm:w-1/4 p-4 border-b-2 border-black bg-transparent text-black ${
+                  fylke ? 'bg-white' : ''
+                }`}
+                value={fylke}
+                onChange={(e) => setFylke(e.target.value)}
+              />
+              <div className="flex items-center space-x-2 w-3/4">
+                <select
+                  className="w-1/4 p-4 border-b-2 border-black bg-transparent text-black"
+                  value={countryCode}
+                  onChange={(e) => setCountryCode(e.target.value)}
+                >
+                  <option value="+47">+47 (Norway)</option>
+                  {/* Add more country codes as needed */}
+                </select>
+                <input
+                  type="tel"
+                  placeholder="Mobilnummer"
+                  className={`w-3/4 p-4 border-b-2 border-black bg-transparent text-black ${
+                    mobileNumber ? 'bg-white' : ''
+                  }`}
+                  value={mobileNumber}
+                  onChange={(e) => setMobileNumber(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="mt-8">
+              <button
+                className={`text-black text-lg font-semibold rounded-full border-2 border-black px-6 py-3 ${
+                  isFormValid ? 'bg-white' : ''
+                }`}
+                style={{ backgroundColor: '#F2C744', color: 'black' }}
+                disabled={!isFormValid}
+              >
+                Bli medlem
+              </button>
+            </div>
           </form>
-          <div className="mt-8">
-            <button
-              className={`text-black text-lg font-semibold rounded-full border-2 border-black px-6 py-3 ${
-                isFormValid ? 'bg-white' : ''
-              }`}
-              style={{ backgroundColor: isFormValid ? '#F2C744' : '', color: 'black' }}
-              disabled={!isFormValid}
-            >
-              Bli medlem
-            </button>
-          </div>
         </div>
       </motion.div>
     </>
