@@ -1,4 +1,5 @@
 "use client";
+"use client";
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -39,14 +40,28 @@ const Kontakt = () => {
               <p className="text-gray-600">Se vår kalender for kommende arrangementer</p>
             </div>
           </div>
-          <Link href="/kontakt">
-            <motion.button
-              whileHover={{ backgroundColor: '#dba63c', transition: { duration: 0.3 } }}
-              className="text-black text-lg font-semibold rounded-full border-2 border-black px-6 py-3"
-            >
-              Kontakt oss for mer informasjon
-            </motion.button>
-          </Link>
+        </div>
+        <div className="w-full max-w-4xl px-4 py-8 mt-8 text-left bg-white rounded-lg shadow-lg">
+          <h2 className="text-2xl font-semibold mb-4">Sign Up</h2>
+          <form className="space-y-4">
+            <div className="flex flex-col sm:flex-row justify-between gap-4">
+              <input
+                type="text"
+                placeholder="Fornavn"
+                className="w-full sm:w-1/2 p-4 border-b-2 border-black bg-transparent text-black"
+              />
+              <input
+                type="text"
+                placeholder="Etternavn"
+                className="w-full sm:w-1/2 p-4 border-b-2 border-black bg-transparent text-black"
+              />
+            </div>
+            <input
+              type="email"
+              placeholder="E-post"
+              className="w-full p-4 border-b-2 border-black bg-transparent text-black"
+            />
+          </form>
         </div>
       </motion.div>
     </>
