@@ -9,7 +9,7 @@ const HeroTitle: React.FC<HeroTitleProps> = ({ textColor }) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [isCentered, setIsCentered] = useState(false);
   const titleControls = useAnimation();
-  const typewriterText = "for et bærekraftig Norge.";
+  const typewriterText = "Mot en robust fremtid — for et bærekraftig Norge.";
 
   // Custom delay function with random variations
   const getTypewriterDelay = (index: number) => {
@@ -33,6 +33,15 @@ const HeroTitle: React.FC<HeroTitleProps> = ({ textColor }) => {
           rotate: 0,
           transition: { type: 'spring', stiffness: 100, damping: 10 },
         });
+
+        // Play the typewriter effect with delays
+        for (let i = 0; i < typewriterText.length; i++) {
+          const charDelay = getTypewriterDelay(i);
+          titleControls.start((i) => ({
+            opacity: 1,
+            transition: { delay: charDelay, duration: 0.2 },
+          }));
+        }
       }
     };
 
@@ -51,7 +60,6 @@ const HeroTitle: React.FC<HeroTitleProps> = ({ textColor }) => {
         animate={titleControls}
         className={`title text-5xl sm:text-6xl md:text-7xl font-extrabold text-left leading-tight ${textColor}`}
       >
-        Mot en robust fremtid —<br />
         {typewriterText.split('').map((char, index) => (
           <motion.span
             key={index}
