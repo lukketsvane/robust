@@ -1,13 +1,13 @@
 "use client";
-import React, { useEffect, useState } from 'react';
-import { motion, useViewportScroll } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { motion, useScroll } from 'framer-motion';
 import './globals.css';
 
 import NavBar from './components/NavBar';
 import HeroTitle from './components/HeroTitle';
 import HeroSection from './components/HeroSection';
 import Stories from './components/Stories';
-import AboutHero from './components/AboutHero'; // Updated component
+import AboutHero from './components/AboutHero';
 import Partners from './components/Partners';
 import TeamSection from './components/TeamSection';
 import FingerFooter from './components/FingerFooter';
@@ -21,31 +21,30 @@ const textColorForSection = {
   '#FFFFFF': 'text-black',
   '#F2C744': 'text-black',
 };
+const triggerPoints = [0.10, 0.4, 0.6, 0.8, 1.0];
 
 export default function Home() {
-  const { scrollY } = useViewportScroll();
+  const { scrollYProgress } = useScroll();
   const [currentSection, setCurrentSection] = useState(0);
   const [textColor, setTextColor] = useState('text-black');
 
   useEffect(() => {
-    const updateSection = () => {
-      const scrollPosition = scrollY.get();
-      const sectionIndex = sectionColors.findIndex((color, index) => {
-        if (index === sectionColors.length - 1) {
-          return true;
+    const unsubscribe = scrollYProgress.onChange(latest => {
+      for (let i = 0; i < triggerPoints.length; i++) {
+        if (latest < triggerPoints[i]) {
+          setCurrentSection(i);
+          break;
         }
-        return scrollPosition < window.innerHeight * (index + 1);
-      });
-      setCurrentSection(sectionIndex);
-      setTextColor(textColorForSection[sectionColors[sectionIndex]] || 'text-black');
-    };
+      }
+    });
 
-    updateSection();
-    window.addEventListener('scroll', updateSection);
-    return () => {
-      window.removeEventListener('scroll', updateSection);
-    };
-  }, [scrollY]);
+    return () => unsubscribe();
+  }, [scrollYProgress]);
+
+  useEffect(() => {
+    document.body.style.backgroundColor = sectionColors[currentSection];
+    setTextColor(textColorForSection[sectionColors[currentSection]] || 'text-black');
+  }, [currentSection]);
 
   return (
     <>
@@ -53,6 +52,7 @@ export default function Home() {
       <motion.main
         className={`min-h-screen flex flex-col items-center justify-center ${textColor}`}
         style={{ backgroundColor: sectionColors[currentSection] }}
+        animate={{ backgroundColor: sectionColors[currentSection] }}
         transition={{ duration: 0.35 }}
         data-section={currentSection}
       >
@@ -61,18 +61,18 @@ export default function Home() {
             <div key={index} className={`section w-full my-8 ${textColor}`}>
               {/* Pass textColor to HeroTitle */}
               {index === 0 && <HeroTitle textColor={textColor} />}
-              {index === 1 && <AboutHero textColor={textColor} />} {/* Updated component */}
-              {index === 2 && <Stories />} {/* No need to pass textColor */}
-              {index === 3 && <HeroSection />} {/* No need to pass textColor */}
-              {index === 4 && <Partners />} {/* No need to pass textColor */}
-              {index === 5 && <TeamSection />} {/* No need to pass textColor */}
+              {index === 1 && <AboutHero textColor={textColor} />}
+              {index === 2 && <Stories />}
+              {index === 3 && <HeroSection />}
+              {index === 4 && <Partners />}
+              {index === 5 && <TeamSection />}
             </div>
           ))}
           <FingerFooter />
         </div>
       </motion.main>
-      <ArticlesCTA /> {/* No need to pass textColor */}
-      <Chatbot /> {/* No need to pass textColor */}
+      <ArticlesCTA />
+      <Chatbot />
     </>
   );
 }
