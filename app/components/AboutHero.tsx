@@ -30,6 +30,10 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
       <p className={`text-lg sm:text-xl ${textColor}`}>
         Foreningen Robust jobber for en regenerativ økonomi innenfor planetens tålegrenser, fremmer formålet gjennom tverrfaglige innsikter og mangfoldige perspektiv, og kombinerer forskning, formidling og visuelle uttrykk for å dele kunnskapen.
       </p>
+      
+      {/* Add space between paragraphs */}
+      <br />
+
       <p className={`text-lg sm:text-xl ${textColor}`}>
         Robust består (foreløpig) av medlemmer med bakgrunn innen økonomi, (visuell) design, kunst, matematikk, miljøstudier, kognitiv (IVER HVA ER DIN BAKGRUNN?) og business. Foreningen høster styrke i medlemmenes ulike bakgrunner. Videre er flere av medlemmene koblet opp til ulike nettverk som International Degrowth Network, Rethinking Economics Norge, Postgrowth Nordics Network og Vekstfri Norge.
       </p>
