@@ -9,21 +9,29 @@ interface ArticlesPageProps {
   articles: ArticleData[];
 }
 
+interface ArticleData {
+  title: string;
+  date: string;
+  author: string;
+  summary: string;
+  image?: string; // Add the 'image' property as an optional field
+}
+
 const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState('grid'); // Default to grid view
 
-  const filteredArticles = articles.filter(article => 
+  const filteredArticles = articles.filter((article) =>
     article.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const renderGridView = () => (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-16"> {/* Added padding at the top */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-16">
       {filteredArticles.map((article) => (
         <Link key={article.title} href={`/articles/${encodeURI(article.title.toLowerCase().replace(/\s+/g, '-'))}`}>
           <div className="block rounded-lg shadow-lg overflow-hidden hover:bg-gray-100 transition">
             <Image
-              src={article.image || '/default-image.png'} // Fallback to default image if not provided
+              src={article.image || '/default-image.png'}
               alt={article.title}
               width={400}
               height={250}
@@ -42,7 +50,7 @@ const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
   );
 
   const renderListView = () => (
-    <div className="space-y-4 max-w-2xl mx-auto p-5 pt-16"> {/* Added padding at the top */}
+    <div className="space-y-4 max-w-2xl mx-auto p-5 pt-16">
       {filteredArticles.map((article) => (
         <Link key={article.title} href={`/articles/${encodeURI(article.title.toLowerCase().replace(/\s+/g, '-'))}`}>
           <div className="block rounded shadow p-4 hover:bg-gray-100 transition">
@@ -56,7 +64,7 @@ const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
   );
 
   return (
-    <div className="space-y-4 max-w-2xl mx-auto p-5 pt-16"> {/* Added padding at the top */}
+    <div className="space-y-4 max-w-2xl mx-auto p-5 pt-16">
       <div className="flex justify-between mb-6">
         <input
           type="text"
