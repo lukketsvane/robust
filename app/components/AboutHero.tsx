@@ -1,4 +1,5 @@
-import React, { useRef, useEffect } from 'react';
+"use client";
+import React, { useRef, useEffect, useState } from 'react';
 import { motion, useViewportScroll, useTransform } from 'framer-motion';
 
 interface AboutHeroProps {
@@ -8,12 +9,12 @@ interface AboutHeroProps {
 const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
   const { scrollY } = useViewportScroll();
   const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
-  // These are the initial rotation values for each text section.
-  // Increase these values for more exaggerated rotation.
-  const initialRotations = [20, 15, 10, 5];
+  // Adjust these values to control the delay and transition speed
+  const transitionDelay = 100; // Pixels scrolled before starting to rotate out
+  const initialRotations = [-20, -15, -10, -5]; // Negative values for counterclockwise rotation
 
-  // Calculate rotation and opacity based on the scroll position
   useEffect(() => {
     const updateStyles = () => {
       if (ref.current) {
@@ -26,44 +27,48 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
           const elementCenter = rect.height / 2 + elementTop;
           const distanceToCenter = viewportHeight / 2 - elementCenter;
 
-          // Exaggerated rotation based on distance to center
-          const rotation = distanceToCenter / viewportHeight * initialRotations[i];
+          // Calculate rotation, with a delay when the element is in the center
+          let rotation = 0;
+          if (distanceToCenter > transitionDelay) {
+            rotation = (distanceToCenter - transitionDelay) / viewportHeight * initialRotations[i];
+          } else if (distanceToCenter < -transitionDelay) {
+            rotation = (distanceToCenter + transitionDelay) / viewportHeight * initialRotations[i];
+          }
 
-          // Opacity goes from 0 to 1 as the element moves to the center
-          const opacity = 1 - Math.abs(distanceToCenter / (viewportHeight / 2));
+          // Calculate opacity with a stable period in the center
+          let opacity = 1;
+          if (Math.abs(distanceToCenter) > transitionDelay) {
+            opacity = 1;
+          } else {
+            // Extend the opacity duration in the center
+            opacity = 1;
+          }
 
-          element.style.transform = `rotate(${rotation}deg)`;
-          element.style.opacity = `${Math.max(Math.min(opacity, 1), 0)}`; // Ensure opacity stays between 0 and 1
-        }
-      }
-    };
-
-    const exitDelay = 200; // Set the delay before the exit animation (in milliseconds)
-
-    const exitStyles = () => {
-      if (ref.current) {
-        const elements = ref.current.children;
-        for (let i = 0; i < elements.length; i++) {
-          const element = elements[i] as HTMLDivElement;
-          element.style.transition = `transform ${exitDelay}ms ease-in-out, opacity ${exitDelay}ms ease-in-out`;
-          element.style.transform = 'rotate(0deg)'; // Rotate back to 0 degrees
-          element.style.opacity = '0'; // Fade out
+          element.style.transform = `rotate(${isVisible ? 0 : rotation}deg)`;
+          element.style.opacity = `${Math.max(Math.min(opacity, 1), 0)}`;
         }
       }
     };
 
     window.addEventListener('scroll', updateStyles);
     window.addEventListener('resize', updateStyles);
-
-    // Add a delay before applying the exit animation
-    const exitTimeout = setTimeout(() => {
-      exitStyles(); // Apply the exit animation
-    }, exitDelay);
+    updateStyles(); // Initial call to set styles
 
     return () => {
       window.removeEventListener('scroll', updateStyles);
       window.removeEventListener('resize', updateStyles);
-      clearTimeout(exitTimeout); // Clear the timeout to prevent unnecessary animations
+    };
+  }, [isVisible]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsVisible(scrollY.get() > window.innerHeight);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -77,8 +82,8 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
             key={index}
             className={`mb-6 ${index === 0 ? 'text-sm uppercase tracking-widest' : index === 1 ? 'title text-3xl sm:text-5xl font-extrabold leading-tight' : 'text-lg sm:text-xl font-normal'}`}
             style={{
-              transform: `rotate(${initialRotations[index]}deg)`, // Initial rotation
-              opacity: 0 // Initial opacity
+              transform: `rotate(${isVisible ? 0 : initialRotations[index]}deg)`,
+              opacity: 1 // Set opacity to 1 for immediate visibility
             }}
           >
             {text}
@@ -90,3 +95,4 @@ const AboutHero: React.FC<AboutHeroProps> = ({ textColor }) => {
 };
 
 export default AboutHero;
+
