@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from 'react';
 import { motion, useScroll } from 'framer-motion';
 import './globals.css';
@@ -13,24 +12,24 @@ import Partners from './components/Partners';
 import TeamSection from './components/TeamSection';
 import FingerFooter from './components/FingerFooter';
 import Chatbot from './components/Chatbot';
-import ArticlesCTA from './components/ArticlesCTA'; // Import the ArticlesCTA component
+import ArticlesCTA from './components/ArticlesCTA';
 
-const sectionColors: string[] = ['#F2C744', '#617864', '#4324D2', '#FFFFFF', '#F2C744'];
-const textColorForSection: { [key: string]: string } = {
+const sectionColors = ['#F2C744', '#617864', '#4324D2', '#FFFFFF', '#F2C744'];
+const textColorForSection = {
   '#617864': 'text-white',
   '#4324D2': 'text-white',
   '#FFFFFF': 'text-black',
   '#F2C744': 'text-black',
 };
-const triggerPoints: number[] = [0.10, 0.4, 0.6, 0.8, 1.0];
+const triggerPoints = [0.10, 0.4, 0.6, 0.8, 1.0];
 
 export default function Home() {
   const { scrollYProgress } = useScroll();
-  const [currentSection, setCurrentSection] = useState<number>(0);
-  const [textColor, setTextColor] = useState<string>('text-black');
+  const [currentSection, setCurrentSection] = useState(0);
+  const [textColor, setTextColor] = useState('text-black');
 
   useEffect(() => {
-    const unsubscribe = scrollYProgress.onChange((latest) => {
+    const unsubscribe = scrollYProgress.onChange(latest => {
       for (let i = 0; i < triggerPoints.length; i++) {
         if (latest < triggerPoints[i]) {
           setCurrentSection(i);
@@ -58,9 +57,10 @@ export default function Home() {
         data-section={currentSection}
       >
         <div className="w-full max-w-[90%] sm:max-w-[80%] mx-auto">
-          {[0, 1, 2, 3, 4].map((index) => (
+          {[0, 1, 2, 3, 4].map(index => (
             <div key={index} className={`section w-full my-8 ${textColor}`}>
-              {index === 0 && <HeroTitle />}
+              {/* Pass textColor to HeroTitle */}
+              {index === 0 && <HeroTitle textColor={textColor} />}
               {index === 1 && <AboutHero textColor={textColor} />}
               {index === 2 && <Stories />}
               {index === 3 && <HeroSection />}
@@ -71,8 +71,8 @@ export default function Home() {
           <FingerFooter />
         </div>
       </motion.main>
-      <ArticlesCTA /> {/* Include the ArticlesCTA component */}
-      <Chatbot /> 
+      <ArticlesCTA />
+      <Chatbot />
     </>
   );
 }

@@ -13,9 +13,11 @@ const ArticleIndexPage: React.FC<ArticlesPageProps> = ({ articles }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState('grid');
 
-  // Search functionality only includes properties that exist in ArticleData
   const filteredArticles = articles.filter(article =>
-    article.title.toLowerCase().includes(searchQuery.toLowerCase())
+    article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    (article.tags && article.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))) ||
+    article.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    article.summary.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const renderGridView = () => (
